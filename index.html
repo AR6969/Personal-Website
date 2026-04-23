@@ -145,13 +145,14 @@
             font-family: 'Segoe UI', Arial, sans-serif;
         }
         .about-section .profile-img {
-            width: 220px;
-            height: 220px;
+            width: 300px;
+            height: 300px;
             object-fit: contain;
-            border-radius: 12px;
+            border-radius: 18px;
             margin-bottom: 32px;
-            box-shadow: 0 4px 24px rgba(0,0,0,0.18);
-            background: #181818;
+            box-shadow: 0 18px 36px rgba(0, 0, 0, 0.28);
+            background: #111;
+            border: 6px solid #111;
         }
         .about-section h2 {
             font-size: 2.3rem;
@@ -864,12 +865,60 @@
             line-height: 1.8;
             max-width: 920px;
         }
-        .consulting-service-block {
-            padding: 2rem 0;
-            border-top: 1px solid rgba(203, 170, 104, 0.16);
+        .consulting-service-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1.5rem;
+            align-items: stretch;
         }
-        .consulting-service-block:first-of-type {
-            border-top: 1px solid rgba(203, 170, 104, 0.16);
+        .consulting-service-block {
+            position: relative;
+            padding: 1.8rem;
+            border: 1px solid rgba(203, 170, 104, 0.16);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 18px 42px rgba(0, 0, 0, 0.22);
+        }
+        .consulting-service-block::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            border-radius: 24px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), transparent 34%);
+        }
+        .consulting-service-block.applications {
+            border-color: rgba(112, 198, 255, 0.24);
+            background:
+                radial-gradient(circle at top left, rgba(74, 160, 255, 0.18), transparent 40%),
+                linear-gradient(180deg, rgba(16, 35, 56, 0.9), rgba(12, 24, 39, 0.94));
+        }
+        .consulting-service-block.recruiting {
+            border-color: rgba(203, 170, 104, 0.24);
+            background:
+                radial-gradient(circle at top right, rgba(215, 181, 108, 0.18), transparent 42%),
+                linear-gradient(180deg, rgba(38, 32, 18, 0.88), rgba(19, 17, 11, 0.95));
+        }
+        .consulting-service-label {
+            display: inline-flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding: 0.45rem 0.8rem;
+            border-radius: 999px;
+            font-size: 0.76rem;
+            font-weight: 800;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+        .consulting-service-block.applications .consulting-service-label {
+            background: rgba(112, 198, 255, 0.14);
+            border: 1px solid rgba(112, 198, 255, 0.28);
+            color: #bfe5ff;
+        }
+        .consulting-service-block.recruiting .consulting-service-label {
+            background: rgba(203, 170, 104, 0.14);
+            border: 1px solid rgba(203, 170, 104, 0.28);
+            color: #f0dfb2;
         }
         .consulting-service-title {
             margin: 0 0 0.75rem 0;
@@ -905,6 +954,14 @@
             height: 7px;
             border-radius: 50%;
             background: #d7b56c;
+        }
+        .consulting-service-block.applications .consulting-service-list li::before {
+            background: #72c6ff;
+            box-shadow: 0 0 0 5px rgba(114, 198, 255, 0.12);
+        }
+        .consulting-service-block.recruiting .consulting-service-list li::before {
+            background: #d7b56c;
+            box-shadow: 0 0 0 5px rgba(215, 181, 108, 0.12);
         }
         .consulting-grid {
             display: grid;
@@ -1240,6 +1297,7 @@
                 grid-column: 1 / -1;
                 align-items: flex-start;
             }
+            .consulting-service-grid,
             .consulting-grid,
             .consulting-detail-grid,
             .consulting-booking,
@@ -1351,7 +1409,7 @@
                     <li>2L at UC Berkeley School of Law (Class of 2027)</li>
                     <li>Summer Associate, Cooley LLP Palo Alto (2026) - Cooley Diversity Scholar</li>
                     <li>Managing Editor, Berkeley Business Law Journal</li>
-                    <li>President, <a href="https://www.aibl.org" target="_blank">AI @ Berkeley Law</a></li>
+                    <li>President, <a href="https://www.linkedin.com/company/ai-at-berkeley-law" target="_blank">AI @ Berkeley Law</a></li>
                     <li>Goodwin Fellow, Goodwin Procter Silicon Valley (1L Summer 2025)</li>
                 </ul>
             </div>
@@ -1384,17 +1442,10 @@
                     <li>Recent guests include leaders from Flock Safety, Coupa, Toyota Research Institute, Microsoft, Anthropic, Cooley, and more</li>
                 </ul>
             </div>
-            <div class="interests">
-                <div class="section-title">Interests</div>
-                <ul class="interest-list">
-                    <li><b>Cars:</b> Automotive enthusiast with a passion for all cars from the 90s to 2020s.</li>
-                    <li><b>Real Estate:</b> Airbnb Superhost for 4+ years.</li>
-                </ul>
-            </div>
             <div class="connect">
                 <div class="section-title">Connect With Me</div>
                 <div class="connect-links">
-                    <a href="[LINKEDIN_LINK_PLACEHOLDER]" target="_blank" aria-label="LinkedIn">
+                    <a href="https://www.linkedin.com/in/alirafie/" target="_blank" aria-label="LinkedIn">
                         <svg viewBox="0 0 32 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M29 0H3C1.3 0 0 1.3 0 3v26c0 1.7 1.3 3 3 3h26c1.7 0 3-1.3 3-3V3c0-1.7-1.3-3-3-3zM9.4 27.1H5.2V12.1h4.2v15zm-2.1-17.1c-1.3 0-2.3-1-2.3-2.3s1-2.3 2.3-2.3 2.3 1 2.3 2.3-1 2.3-2.3 2.3zm19.8 17.1h-4.2v-7.3c0-1.7 0-3.8-2.3-3.8-2.3 0-2.7 1.8-2.7 3.7v7.4h-4.2V12.1h4v2.1h0.1c0.6-1.1 2-2.3 4.1-2.3 4.4 0 5.2 2.9 5.2 6.7v8.6z"/></svg>
                         LinkedIn
                     </a>
@@ -1480,36 +1531,40 @@
                 </div>
                 <div class="consulting-proof">
                     <h3>Tailored positioning for people aiming high</h3>
-                    <p>I was fortunate to secure both a 1L and 2L BigLaw summer offer in my top offices, and both came with diversity fellowship / DEI scholarship awards totaling $50K. I also currently mentor many 1Ls and incoming law students and genuinely enjoy helping people position themselves to land the schools, firms, and roles they want most.</p>
+                    <p>I was fortunate to secure both a 1L and 2L BigLaw summer offer in my top offices, and both came with diversity fellowship / DEI scholarship awards totaling $100K. I also currently mentor many 1Ls and incoming law students and genuinely enjoy helping people position themselves to land the schools, firms, and roles they want most.</p>
                     <p>Before law school, I spent 7 years in sales, which gives me a different lens than what most career offices provide. Schools often give broad advice. I work with you to tailor the story to you: your background, your goals, your work experience, your target schools, your desired firms, and how to make your narrative hit with decision-makers.</p>
-                    <p>I care a lot about helping people stand out, especially older applicants and candidates with real work experience. Law schools and BigLaw increasingly value maturity, judgment, and professional polish in ways that can feel closer to MBA-style evaluation than people realize. That is where positioning, messaging, and interview strategy really matter.</p>
+                    <p>I specialize in helping people stand out. Law schools and BigLaw increasingly value maturity, judgment, and professional polish in ways that can feel closer to MBA-style evaluation than people realize. That is where positioning, messaging, and interview strategy really matter.</p>
                 </div>
                 <div class="consulting-services">
                     <div class="consulting-services-header">
                         <h3>Core Services</h3>
                         <p>My consulting is centered on two main areas. Both are highly tailored, narrative-driven, and designed around what actually moves outcomes rather than generic templates.</p>
                     </div>
-                    <div class="consulting-service-block">
-                        <h4 class="consulting-service-title">Law School Applications</h4>
-                        <p class="consulting-service-copy">For law school applicants, I help craft a sharper application strategy built around your story, your strengths, and the specific schools you are targeting. That includes helping you frame your background in a way that feels authentic, compelling, and aligned with the narrative politics and culture of each individual school.</p>
-                        <ul class="consulting-service-list">
-                            <li>Personal statement and essay development, from idea shaping to line-by-line refinement.</li>
-                            <li>Narrative positioning so your application tells one coherent story instead of reading like disconnected accomplishments.</li>
-                            <li>School-by-school tailoring based on how different programs think about fit, culture, ambition, and professional identity.</li>
-                            <li>Resume review, addenda strategy, and help explaining work experience, pivots, gaps, or nontraditional backgrounds the right way.</li>
-                            <li>Application strategy focused on where you should lean in, where you should be careful, and how to present yourself with intention.</li>
-                        </ul>
-                    </div>
-                    <div class="consulting-service-block">
-                        <h4 class="consulting-service-title">Big Law Recruiting</h4>
-                        <p class="consulting-service-copy">For BigLaw recruiting, I bring a deep interest in V100 / Am Law 100 firms and a strong understanding of how to position candidates based on what kind of practice they want, what office they want, and what story they need to tell. I love talking through firm strategy and helping people map themselves to the right opportunities.</p>
-                        <ul class="consulting-service-list">
-                            <li>Interview preparation and message discipline so you come across polished, thoughtful, and genuinely differentiated.</li>
-                            <li>Firm and practice-group positioning across private equity, venture capital, private companies, startups, real estate, public company work, and capital markets.</li>
-                            <li>Office strategy based on geography, market dynamics, and how to explain why you want a specific office in a credible way.</li>
-                            <li>Resume, networking, and outreach strategy that reflects what firms actually value in candidates with and without prior work experience.</li>
-                            <li>Practical advice on how to set yourself apart in a market that increasingly values maturity, commercial instincts, and real professional experience.</li>
-                        </ul>
+                    <div class="consulting-service-grid">
+                        <div class="consulting-service-block applications">
+                            <div class="consulting-service-label">Admissions Strategy</div>
+                            <h4 class="consulting-service-title">Law School Applications</h4>
+                            <p class="consulting-service-copy">For law school applicants, I help craft a sharper application strategy built around your story, your strengths, and the specific schools you are targeting. That includes helping you frame your background in a way that feels authentic, compelling, and aligned with the narrative politics and culture of each individual school.</p>
+                            <ul class="consulting-service-list">
+                                <li>Personal statement and essay development, from idea shaping to line-by-line refinement.</li>
+                                <li>Narrative positioning so your application tells one coherent story instead of reading like disconnected accomplishments.</li>
+                                <li>School-by-school tailoring based on how different programs think about fit, culture, ambition, and professional identity.</li>
+                                <li>Resume review, addenda strategy, and help explaining work experience, pivots, gaps, or nontraditional backgrounds the right way.</li>
+                                <li>Application strategy focused on where you should lean in, where you should be careful, and how to present yourself with intention.</li>
+                            </ul>
+                        </div>
+                        <div class="consulting-service-block recruiting">
+                            <div class="consulting-service-label">Recruiting Positioning</div>
+                            <h4 class="consulting-service-title">Big Law Recruiting</h4>
+                            <p class="consulting-service-copy">For BigLaw recruiting, I bring a deep interest in V100 / Am Law 100 firms and a strong understanding of how to position candidates based on what kind of practice they want, what office they want, and what story they need to tell. I love talking through firm strategy and helping people map themselves to the right opportunities.</p>
+                            <ul class="consulting-service-list">
+                                <li>Interview preparation and message discipline so you come across polished, thoughtful, and genuinely differentiated.</li>
+                                <li>Firm and practice-group positioning across private equity, venture capital, private companies, startups, real estate, public company work, and capital markets.</li>
+                                <li>Office strategy based on geography, market dynamics, and how to explain why you want a specific office in a credible way.</li>
+                                <li>Resume, networking, and outreach strategy that reflects what firms actually value in candidates with and without prior work experience.</li>
+                                <li>Practical advice on how to set yourself apart in a market that increasingly values maturity, commercial instincts, and real professional experience.</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
                 <div class="consulting-outcomes">
@@ -1572,7 +1627,7 @@
         <section id="contact" class="section">
             <div class="contact-section">
                 <div class="contact-hero">
-                    <img src="74F116AF-7E3C-48A7-91D6-0A9DB268064D.JPG" alt="Contact" class="profile-img">
+                    <img src="1750BC56-E5FE-4E8E-8F4A-BC7A7A844C8C.PNG" alt="Contact" class="profile-img">
                     <h2>Contact</h2>
                     <p class="contact-subtitle">Reach out for podcast guest ideas, speaking opportunities, consulting questions, or anything else where it makes sense to connect directly.</p>
                 </div>
