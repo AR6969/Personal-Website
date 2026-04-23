@@ -29,8 +29,8 @@
             background: #000;
         }
         body.consulting-mode {
-            background: radial-gradient(circle at top, #23352b 0%, #162219 46%, #0c130e 100%);
-            color: #eef1e6;
+            background: linear-gradient(180deg, #f8f3ea 0%, #efe6d6 100%);
+            color: #25303b;
         }
         body.contact-mode {
             background: radial-gradient(circle at top, #31262b 0%, #1d1519 48%, #0d090b 100%);
@@ -53,8 +53,8 @@
             border-bottom-color: rgba(255, 255, 255, 0.08);
         }
         body.consulting-mode .navbar {
-            background: rgba(14, 25, 18, 0.92);
-            border-bottom-color: rgba(203, 170, 104, 0.22);
+            background: rgba(255, 251, 245, 0.94);
+            border-bottom-color: rgba(31, 62, 96, 0.1);
         }
         body.contact-mode .navbar {
             background: rgba(21, 14, 17, 0.92);
@@ -67,7 +67,7 @@
             transition: color 0.2s;
         }
         body.consulting-mode .navbar a {
-            color: #f0ead9;
+            color: #31455c;
         }
         body.contact-mode .navbar a {
             color: #fff1ee;
@@ -76,7 +76,7 @@
             color: var(--accent);
         }
         body.consulting-mode .navbar a:hover {
-            color: #d7b56c;
+            color: #9b7b3a;
         }
         body.contact-mode .navbar a:hover {
             color: #ff9b8b;
@@ -96,9 +96,9 @@
             box-shadow: 0 4px 32px rgba(0, 0, 0, 0.35);
         }
         body.consulting-mode .container {
-            background: linear-gradient(180deg, #162219 0%, #111913 100%);
-            border-color: rgba(203, 170, 104, 0.16);
-            box-shadow: 0 22px 60px rgba(0, 0, 0, 0.34);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(249, 245, 237, 0.98) 100%);
+            border-color: rgba(31, 62, 96, 0.08);
+            box-shadow: 0 24px 60px rgba(37, 48, 59, 0.08);
         }
         body.contact-mode .container {
             background: linear-gradient(180deg, #1d1519 0%, #140f12 100%);
@@ -127,136 +127,205 @@
             box-shadow: 0 4px 24px rgba(0,0,0,0.18);
             background: #181818;
         }
+        .about-section {
+            width: 100%;
+            color: #f5f5f5;
+            display: grid;
+            gap: 1.4rem;
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+        .about-hero {
+            display: grid;
+            grid-template-columns: 320px minmax(0, 1fr);
+            gap: 2rem;
+            align-items: center;
+            padding: 1.5rem 0 1rem 0;
+        }
+        .about-hero-copy {
+            align-self: center;
+        }
         .about-section .profile-img {
+            width: 320px;
+            height: 320px;
             object-fit: contain;
-            background: transparent;
+            border-radius: 20px;
+            margin-bottom: 0;
+            background: #111;
+            border: 8px solid #111;
+            box-shadow: 0 22px 44px rgba(0, 0, 0, 0.34);
+        }
+        .about-hero-copy h2 {
+            margin: 0 0 0.75rem 0;
+            font-size: clamp(2.6rem, 5vw, 3.4rem);
+            letter-spacing: 0.01em;
+            text-align: left;
+        }
+        .about-kicker {
+            display: block;
+            margin-bottom: 1rem;
+            color: #9fb6d8;
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+        }
+        .about-kicker::after {
+            content: "";
+            display: block;
+            width: 68px;
+            height: 1px;
+            margin-top: 0.9rem;
+            background: linear-gradient(90deg, rgba(159, 182, 216, 0.9), rgba(159, 182, 216, 0));
+        }
+        .about-intro {
+            max-width: 720px;
+            margin: 0 0 1rem 0;
+            color: #ccd2dc;
+            font-size: 1.06rem;
+            line-height: 1.85;
+        }
+        .about-subtitle {
+            margin: 0;
+            color: #aeb8c6;
+            font-size: 0.98rem;
+            line-height: 1.8;
+            max-width: 720px;
+        }
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0;
+        }
+        .about-card {
+            padding: 2.25rem 0;
             border-radius: 0;
             border: none;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            background: transparent;
             box-shadow: none;
         }
-        .about-section {
-            background: transparent;
-            color: #f5f5f5;
-            border-radius: 0.75rem;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            font-family: 'Segoe UI', Arial, sans-serif;
+        .about-card.overview-card {
+            border-top: none;
         }
-        .about-section .profile-img {
-            width: 300px;
-            height: 300px;
-            object-fit: contain;
-            border-radius: 18px;
-            margin-bottom: 32px;
-            box-shadow: 0 18px 36px rgba(0, 0, 0, 0.28);
-            background: #111;
-            border: 6px solid #111;
+        .about-card.education-card {
         }
-        .about-section h2 {
-            font-size: 2.3rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            letter-spacing: 0.5px;
+        .about-card.sales-card {
+        }
+        .about-card.podcast-card {
+        }
+        .about-card.connect-card {
         }
         .about-section .section-title {
-            font-size: 1.5rem;
+            margin: 0 0 1rem 0;
+            font-size: 1.18rem;
             font-weight: 700;
-            color: #FF8C00;
-            margin-top: 60px;
-            margin-bottom: 20px;
-            letter-spacing: 0.5px;
-            position: relative;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
         }
-        .about-section .section-title:after {
-            content: '';
-            display: block;
-            width: 48px;
-            height: 3px;
-            background: linear-gradient(90deg, #FF8C00 60%, transparent 100%);
-            margin-top: 10px;
-            border-radius: 2px;
+        .about-card.overview-card .section-title {
+            color: #b9d4ff;
         }
-        .about-section .overview, .about-section .education, .about-section .sales, .about-section .podcast, .about-section .interests, .about-section .connect {
-            max-width: 700px;
-            width: 100%;
-            margin: 0 auto;
+        .about-card.education-card .section-title {
+            color: #9fe1c4;
         }
-        .about-section .overview, .about-section .education, .about-section .sales, .about-section .podcast {
-            margin-bottom: 60px;
+        .about-card.sales-card .section-title {
+            color: #e9c982;
         }
-        .about-section .overview p, .about-section .education p, .about-section .sales p, .about-section .podcast p {
-            font-size: 1.08rem;
-            line-height: 1.7;
-            margin-bottom: 18px;
+        .about-card.podcast-card .section-title {
+            color: #e1a8b6;
         }
-        .about-section ul, .about-section .sales-list, .about-section .podcast-list, .about-section .interest-list {
+        .about-card.connect-card .section-title {
+            color: #c3b4e7;
+        }
+        .about-section p {
+            font-size: 1.03rem;
+            line-height: 1.8;
+            color: #d1d7e0;
+            margin: 0 0 1rem 0;
+        }
+        .about-section p:last-child {
+            margin-bottom: 0;
+        }
+        .about-section ul,
+        .about-section .sales-list,
+        .about-section .podcast-list {
             list-style: none;
             padding: 0;
             margin: 0;
+            display: grid;
+            gap: 0.8rem;
         }
-        .about-section ul li, .about-section .sales-list li, .about-section .podcast-list li, .about-section .interest-list li {
+        .about-section ul li,
+        .about-section .sales-list li,
+        .about-section .podcast-list li {
             position: relative;
-            padding-left: 1.7em;
-            margin-bottom: 10px;
-            font-size: 1rem;
+            padding-left: 1.15rem;
+            color: #eef2f7;
+            line-height: 1.7;
         }
-        .about-section ul li:before, .about-section .sales-list li:before, .about-section .podcast-list li:before, .about-section .interest-list li:before {
-            content: '\2192';
-            color: #FF8C00;
+        .about-section ul li:before,
+        .about-section .sales-list li:before,
+        .about-section .podcast-list li:before {
+            content: "";
             position: absolute;
             left: 0;
-            font-size: 1.1em;
-            top: 0.1em;
+            top: 0.72rem;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: currentColor;
+            opacity: 0.95;
+        }
+        .about-card.education-card ul li {
+            color: #eaf9f2;
+        }
+        .about-card.sales-card .sales-list li {
+            color: #fff0d2;
+        }
+        .about-card.podcast-card .podcast-list li {
+            color: #ffe1e1;
         }
         .about-section .company {
-            font-size: 1.15rem;
-            font-weight: 600;
+            margin: 1.25rem 0 0.35rem 0;
+            font-size: 1.1rem;
+            font-weight: 700;
             color: #fff;
-            margin-top: 18px;
-            margin-bottom: 6px;
+        }
+        .about-section .company:first-of-type {
+            margin-top: 0;
         }
         .about-section .role {
-            font-size: 1rem;
-            color: #bbb;
-            margin-bottom: 6px;
-        }
-        .about-section .connect {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 18px;
-            margin-top: 60px;
-        }
-        .about-section .connect-label {
-            font-size: 1.15rem;
-            font-weight: 600;
-            color: #FF8C00;
-            margin-bottom: 10px;
+            margin-bottom: 0.75rem;
+            color: #b8c0cb;
+            line-height: 1.7;
         }
         .about-section .connect-links {
             display: flex;
-            gap: 22px;
+            flex-wrap: wrap;
+            gap: 0.85rem;
             align-items: center;
         }
         .about-section .connect-links a {
-            color: #FF8C00;
-            font-size: 1.2rem;
+            color: #f5edff;
+            font-size: 1rem;
             text-decoration: none;
-            transition: color 0.3s, transform 0.2s;
-            display: flex;
+            transition: transform 0.2s, border-color 0.2s, background 0.2s;
+            display: inline-flex;
             align-items: center;
+            gap: 0.55rem;
+            padding: 0.8rem 1rem;
+            border-radius: 14px;
+            border: 1px solid rgba(212, 187, 255, 0.2);
+            background: rgba(212, 187, 255, 0.08);
         }
         .about-section .connect-links a:hover {
-            color: #fff;
-            text-decoration: underline;
-            transform: scale(1.08);
+            transform: translateY(-2px);
+            border-color: rgba(212, 187, 255, 0.4);
+            background: rgba(212, 187, 255, 0.14);
         }
         .about-section .connect-links svg {
-            margin-right: 8px;
-            width: 26px;
-            height: 26px;
+            width: 22px;
+            height: 22px;
             vertical-align: middle;
         }
         @media (max-width: 900px) {
@@ -264,14 +333,13 @@
                 max-width: 98vw;
                 padding: 1.2rem 0.5rem;
             }
-            .about-section .overview, .about-section .education, .about-section .sales, .about-section .podcast, .about-section .interests, .about-section .connect {
-                max-width: 98vw;
+            .about-hero,
+            .about-grid {
+                grid-template-columns: 1fr;
             }
             .about-section .profile-img {
-                width: 95vw;
+                width: min(95vw, 320px);
                 height: auto;
-                max-width: 320px;
-                max-height: 320px;
             }
         }
         .about-section h2 {
@@ -769,7 +837,7 @@
             padding: 1rem 0 2rem 0;
         }
         body.consulting-mode .consulting-section {
-            color: #eef1e6;
+            color: #25303b;
         }
         .consulting-section .profile-img {
             width: 100%;
@@ -790,7 +858,7 @@
             font-weight: 800;
             letter-spacing: 0.18em;
             text-transform: uppercase;
-            color: #d7b56c;
+            color: #8e6b2f;
         }
         .consulting-hero h2 {
             font-size: clamp(2.2rem, 4vw, 3rem);
@@ -804,7 +872,7 @@
             line-height: 1.8;
         }
         body.consulting-mode .consulting-subtitle {
-            color: #b9c0ad;
+            color: #5a6470;
         }
         .consulting-chip-row,
         .consulting-list,
@@ -822,9 +890,9 @@
             font-size: 0.95rem;
         }
         body.consulting-mode .consulting-chip {
-            background: rgba(203, 170, 104, 0.12);
-            border-color: rgba(203, 170, 104, 0.22);
-            color: #f3e2b7;
+            background: rgba(31, 62, 96, 0.06);
+            border-color: rgba(31, 62, 96, 0.12);
+            color: #31455c;
         }
         .consulting-proof {
             margin: 2rem 0 2.5rem 0;
@@ -833,6 +901,11 @@
             background: rgba(255, 255, 255, 0.04);
             border: 1px solid rgba(203, 170, 104, 0.14);
             box-shadow: 0 16px 36px rgba(0, 0, 0, 0.22);
+        }
+        body.consulting-mode .consulting-proof {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(246, 248, 251, 0.96));
+            border-color: rgba(31, 62, 96, 0.1);
+            box-shadow: 0 16px 36px rgba(37, 48, 59, 0.06);
         }
         .consulting-proof h3 {
             margin: 0 0 1rem 0;
@@ -844,6 +917,9 @@
             color: #c8cfbd;
             line-height: 1.8;
             max-width: 920px;
+        }
+        body.consulting-mode .consulting-proof p {
+            color: #52606d;
         }
         .consulting-proof p:last-child {
             margin-bottom: 0;
@@ -865,6 +941,16 @@
             line-height: 1.8;
             max-width: 920px;
         }
+        body.consulting-mode .consulting-services-header p {
+            color: #5a6470;
+        }
+        body.consulting-mode .consulting-services-header h3,
+        body.consulting-mode .consulting-proof h3,
+        body.consulting-mode .consulting-cta h3,
+        body.consulting-mode .consulting-price-card h3,
+        body.consulting-mode .consulting-steps-card h3 {
+            color: #1f2f3d;
+        }
         .consulting-service-grid {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -874,10 +960,10 @@
         .consulting-service-block {
             position: relative;
             padding: 1.8rem;
-            border: 1px solid rgba(203, 170, 104, 0.16);
+            border: 1px solid rgba(31, 62, 96, 0.12);
             border-radius: 24px;
             overflow: hidden;
-            box-shadow: 0 18px 42px rgba(0, 0, 0, 0.22);
+            box-shadow: 0 18px 42px rgba(37, 48, 59, 0.08);
         }
         .consulting-service-block::before {
             content: "";
@@ -888,16 +974,16 @@
             background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), transparent 34%);
         }
         .consulting-service-block.applications {
-            border-color: rgba(112, 198, 255, 0.24);
+            border-color: rgba(65, 119, 181, 0.2);
             background:
-                radial-gradient(circle at top left, rgba(74, 160, 255, 0.18), transparent 40%),
-                linear-gradient(180deg, rgba(16, 35, 56, 0.9), rgba(12, 24, 39, 0.94));
+                radial-gradient(circle at top left, rgba(74, 160, 255, 0.14), transparent 42%),
+                linear-gradient(180deg, rgba(246, 250, 255, 1), rgba(232, 240, 250, 1));
         }
         .consulting-service-block.recruiting {
-            border-color: rgba(203, 170, 104, 0.24);
+            border-color: rgba(166, 126, 55, 0.22);
             background:
-                radial-gradient(circle at top right, rgba(215, 181, 108, 0.18), transparent 42%),
-                linear-gradient(180deg, rgba(38, 32, 18, 0.88), rgba(19, 17, 11, 0.95));
+                radial-gradient(circle at top right, rgba(203, 170, 104, 0.16), transparent 42%),
+                linear-gradient(180deg, rgba(255, 252, 245, 1), rgba(247, 238, 220, 1));
         }
         .consulting-service-label {
             display: inline-flex;
@@ -911,25 +997,31 @@
             text-transform: uppercase;
         }
         .consulting-service-block.applications .consulting-service-label {
-            background: rgba(112, 198, 255, 0.14);
-            border: 1px solid rgba(112, 198, 255, 0.28);
-            color: #bfe5ff;
+            background: rgba(65, 119, 181, 0.12);
+            border: 1px solid rgba(65, 119, 181, 0.18);
+            color: #234a74;
         }
         .consulting-service-block.recruiting .consulting-service-label {
-            background: rgba(203, 170, 104, 0.14);
-            border: 1px solid rgba(203, 170, 104, 0.28);
-            color: #f0dfb2;
+            background: rgba(166, 126, 55, 0.14);
+            border: 1px solid rgba(166, 126, 55, 0.2);
+            color: #6a4b17;
         }
         .consulting-service-title {
             margin: 0 0 0.75rem 0;
             font-size: clamp(1.8rem, 3.5vw, 2.2rem);
             line-height: 1.2;
         }
+        body.consulting-mode .consulting-service-title {
+            color: #1f2f3d;
+        }
         .consulting-service-copy {
             margin: 0 0 1rem 0;
             color: #c8cfbd;
             line-height: 1.8;
             max-width: 980px;
+        }
+        body.consulting-mode .consulting-service-copy {
+            color: #4f5c68;
         }
         .consulting-service-list {
             list-style: none;
@@ -944,6 +1036,9 @@
             padding-left: 1.2rem;
             color: #dce2d1;
             line-height: 1.7;
+        }
+        body.consulting-mode .consulting-service-list li {
+            color: #34414d;
         }
         .consulting-service-list li::before {
             content: "";
@@ -960,8 +1055,8 @@
             box-shadow: 0 0 0 5px rgba(114, 198, 255, 0.12);
         }
         .consulting-service-block.recruiting .consulting-service-list li::before {
-            background: #d7b56c;
-            box-shadow: 0 0 0 5px rgba(215, 181, 108, 0.12);
+            background: #a67e37;
+            box-shadow: 0 0 0 5px rgba(166, 126, 55, 0.12);
         }
         .consulting-grid {
             display: grid;
@@ -980,9 +1075,9 @@
         body.consulting-mode .consulting-panel,
         body.consulting-mode .consulting-price-card,
         body.consulting-mode .consulting-steps-card {
-            background: rgba(255, 255, 255, 0.04);
-            border-color: rgba(203, 170, 104, 0.14);
-            box-shadow: 0 16px 36px rgba(0, 0, 0, 0.22);
+            background: rgba(255, 255, 255, 0.94);
+            border-color: rgba(31, 62, 96, 0.1);
+            box-shadow: 0 16px 36px rgba(37, 48, 59, 0.06);
         }
         .consulting-card h3 {
             margin: 0 0 0.75rem 0;
@@ -995,7 +1090,7 @@
         }
         body.consulting-mode .consulting-card p,
         body.consulting-mode .consulting-cta p {
-            color: #c8cfbd;
+            color: #556270;
         }
         .consulting-detail-grid {
             display: grid;
@@ -1026,7 +1121,7 @@
         body.consulting-mode .consulting-list-item,
         body.consulting-mode .consulting-step-copy,
         body.consulting-mode .consulting-payment-split {
-            color: #d8decc;
+            color: #4f5b67;
         }
         .consulting-list-item::before {
             content: "";
@@ -1053,9 +1148,9 @@
             flex: 1 1 220px;
         }
         body.consulting-mode .consulting-outcome {
-            background: rgba(203, 170, 104, 0.12);
-            border-color: rgba(203, 170, 104, 0.18);
-            color: #f1dfb4;
+            background: rgba(31, 62, 96, 0.06);
+            border-color: rgba(31, 62, 96, 0.1);
+            color: #2f465d;
         }
         .consulting-cta {
             margin-top: 2rem;
@@ -1066,8 +1161,8 @@
             text-align: left;
         }
         body.consulting-mode .consulting-cta {
-            background: linear-gradient(135deg, rgba(122, 148, 97, 0.12), rgba(203, 170, 104, 0.1));
-            border-color: rgba(122, 148, 97, 0.16);
+            background: linear-gradient(135deg, rgba(244, 248, 253, 1), rgba(250, 244, 233, 1));
+            border-color: rgba(31, 62, 96, 0.1);
         }
         .consulting-cta h3 {
             margin: 0 0 0.75rem 0;
@@ -1110,14 +1205,14 @@
             color: #fff;
         }
         body.consulting-mode .consulting-price strong {
-            color: #f5f2e8;
+            color: #1f2f3d;
         }
         .consulting-price span {
             color: var(--text-secondary);
             font-size: 1rem;
         }
         body.consulting-mode .consulting-price span {
-            color: #b9c0ad;
+            color: #667280;
         }
         .consulting-free-note {
             display: inline-flex;
@@ -1131,9 +1226,46 @@
             margin-bottom: 1rem;
         }
         body.consulting-mode .consulting-free-note {
-            background: rgba(122, 148, 97, 0.14);
-            border-color: rgba(122, 148, 97, 0.2);
-            color: #e3f0d1;
+            background: rgba(68, 132, 108, 0.1);
+            border-color: rgba(68, 132, 108, 0.16);
+            color: #2c5b4b;
+        }
+        .consulting-package-list {
+            display: grid;
+            gap: 0.75rem;
+            margin: 1rem 0 0 0;
+        }
+        .consulting-package-item {
+            padding: 0.95rem 1rem;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .consulting-package-item strong {
+            display: block;
+            color: #f7f3e9;
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+        }
+        body.consulting-mode .consulting-package-item {
+            background: rgba(248, 250, 252, 1);
+            border-color: rgba(31, 62, 96, 0.08);
+        }
+        body.consulting-mode .consulting-package-item strong {
+            color: #1f2f3d;
+        }
+        .consulting-package-item span {
+            display: block;
+            color: #cbd3c0;
+            line-height: 1.65;
+            font-size: 0.96rem;
+        }
+        body.consulting-mode .consulting-package-item span {
+            color: #5a6774;
+        }
+        body.consulting-mode .consulting-payment-split {
+            background: rgba(244, 248, 253, 1);
+            border-color: rgba(31, 62, 96, 0.08);
         }
         .consulting-payment-row,
         .consulting-booking-actions {
@@ -1176,28 +1308,52 @@
             font-weight: 700;
         }
         body.consulting-mode .consulting-step-number {
-            background: rgba(203, 170, 104, 0.14);
-            border-color: rgba(203, 170, 104, 0.2);
-            color: #f3e2b7;
+            background: rgba(31, 62, 96, 0.08);
+            border-color: rgba(31, 62, 96, 0.14);
+            color: #2f465d;
         }
         .consulting-step-copy {
             color: #dbe5ee;
             line-height: 1.65;
         }
         body.consulting-mode .consulting-section .podcast-button.primary {
-            background: #c2a15b;
-            color: #1a160f;
+            background: #2f465d;
+            color: #f8fbff;
         }
         body.consulting-mode .consulting-section .podcast-button.primary:hover {
-            background: #ab8d4e;
+            background: #24384b;
         }
         body.consulting-mode .consulting-section .podcast-button.secondary {
-            border-color: rgba(203, 170, 104, 0.34);
-            color: #edd9a6;
-            background: transparent;
+            border-color: rgba(31, 62, 96, 0.22);
+            color: #2f465d;
+            background: #ffffff;
         }
         body.consulting-mode .consulting-section .podcast-button.secondary:hover {
-            background: rgba(203, 170, 104, 0.08);
+            background: rgba(31, 62, 96, 0.06);
+        }
+        body.consulting-mode .consulting-section .podcast-button.deposit-button {
+            background: #2f7d57;
+            border-color: #2f7d57;
+            color: #f5fff8;
+        }
+        body.consulting-mode .consulting-section .podcast-button.deposit-button:hover {
+            background: #26684a;
+        }
+        body.consulting-mode .consulting-section .podcast-button.final-button {
+            background: #9b7b3a;
+            border-color: #9b7b3a;
+            color: #fff7ed;
+        }
+        body.consulting-mode .consulting-section .podcast-button.final-button:hover {
+            background: #866831;
+        }
+        body.consulting-mode .consulting-section .podcast-button.calendly-button {
+            background: #416fa4;
+            border-color: #416fa4;
+            color: #f4f8ff;
+        }
+        body.consulting-mode .consulting-section .podcast-button.calendly-button:hover {
+            background: #365d89;
         }
         .contact-section {
             padding: 1rem 0 2rem 0;
@@ -1395,68 +1551,70 @@
     </nav>
     <div class="container">
         <section id="about" class="section active about-section">
-            <img src="ChatGPT Image Apr 19, 2026, 10_20_06 PM.png" alt="Ali Rafie" class="profile-img">
-            <h2>About Me</h2>
-            <div class="overview">
-                <div class="section-title">Overview</div>
-                <p>I'm Ali Rafie, a second-year law student at UC Berkeley School of Law with a passion for helping others navigate their legal careers.</p>
-                <p>Before law school, I spent 7 years in enterprise B2B software sales. That experience taught me how to understand what people actually need, ask the right questions, and help them achieve their goals. I loved the negotiation, the problem-solving, and figuring out how to create win-win outcomes.</p>
-                <p>Now I bring that same approach to law. As President of AI @ Berkeley Law and host of the Legal Leaders Podcast, I've had the privilege of interviewing 35+ Chief Legal Officers and General Counsels. These conversations have given me unique insight into what successful legal careers actually look like.</p>
+            <div class="about-hero">
+                <img src="ChatGPT Image Apr 19, 2026, 10_20_06 PM.png" alt="Ali Rafie" class="profile-img">
+                <div class="about-hero-copy">
+                    <div class="about-kicker">About Me</div>
+                    <h2>Ali Rafie</h2>
+                    <p class="about-intro">Second-year law student at UC Berkeley School of Law focused on startups, private companies, corporate law, and helping others navigate legal careers with more clarity and strategy.</p>
+                    <p class="about-subtitle">UC Berkeley Law, Legal Leaders Podcast, AI @ Berkeley Law, and Berkeley Business Law Journal.</p>
+                </div>
             </div>
-            <div class="education">
-                <div class="section-title">Education &amp; Current Roles</div>
-                <ul>
-                    <li>2L at UC Berkeley School of Law (Class of 2027)</li>
-                    <li>Summer Associate, Cooley LLP Palo Alto (2026) - Cooley Diversity Scholar</li>
-                    <li>Managing Editor, Berkeley Business Law Journal</li>
-                    <li>President, <a href="https://www.linkedin.com/company/ai-at-berkeley-law" target="_blank">AI @ Berkeley Law</a></li>
-                    <li>Goodwin Fellow, Goodwin Procter Silicon Valley (1L Summer 2025)</li>
-                </ul>
-            </div>
-            <div class="sales">
-                <div class="section-title">Sales Background</div>
-                <div class="company">Samsara (Pre-IPO, 2019-2021)</div>
-                <div class="role">Enterprise Account Executive selling IoT fleet management and industrial safety solutions (Ticker: IOT, now $15B+ public company)</div>
-                <ul class="sales-list">
-                    <li>Closed deals with Fortune 500 companies in manufacturing, logistics, and energy sectors</li>
-                    <li>Notable deals: Verkada, LA Clippers, Reddit, Brex, Gong</li>
-                </ul>
-                <div class="company">Productiv (2021-2023)</div>
-                <div class="role">Enterprise Account Executive for SaaS management platform</div>
-                <ul class="sales-list">
-                    <li>Sold to IT and procurement leaders at mid-market and enterprise companies</li>
-                </ul>
-                <div class="company">Earlier roles:</div>
-                <ul class="sales-list">
-                    <li>Business Development at GoGoGrandparent (YC 17)</li>
-                    <li>Business Development at Goodwin Procter</li>
-                </ul>
-                <p>This background taught me negotiation, stakeholder management, and how to position value—skills I now apply to legal career consulting.</p>
-            </div>
-            <div class="podcast">
-                <div class="section-title">Podcast &amp; Thought Leadership</div>
-                <div class="company">Host of the <a href="https://open.spotify.com/show/1u63TqRwYn2BxmLv1C9Q7E" target="_blank">Legal Leaders Podcast</a></div>
-                <ul class="podcast-list">
-                    <li>35 episodes and growing with Chief Legal Officers, General Counsels, founders, and law firm leaders</li>
-                    <li>Topics include career transitions, legal leadership, in-house strategy, legal tech, and AI in law</li>
-                    <li>Recent guests include leaders from Flock Safety, Coupa, Toyota Research Institute, Microsoft, Anthropic, Cooley, and more</li>
-                </ul>
-            </div>
-            <div class="connect">
-                <div class="section-title">Connect With Me</div>
-                <div class="connect-links">
-                    <a href="https://www.linkedin.com/in/alirafie/" target="_blank" aria-label="LinkedIn">
-                        <svg viewBox="0 0 32 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M29 0H3C1.3 0 0 1.3 0 3v26c0 1.7 1.3 3 3 3h26c1.7 0 3-1.3 3-3V3c0-1.7-1.3-3-3-3zM9.4 27.1H5.2V12.1h4.2v15zm-2.1-17.1c-1.3 0-2.3-1-2.3-2.3s1-2.3 2.3-2.3 2.3 1 2.3 2.3-1 2.3-2.3 2.3zm19.8 17.1h-4.2v-7.3c0-1.7 0-3.8-2.3-3.8-2.3 0-2.7 1.8-2.7 3.7v7.4h-4.2V12.1h4v2.1h0.1c0.6-1.1 2-2.3 4.1-2.3 4.4 0 5.2 2.9 5.2 6.7v8.6z"/></svg>
-                        LinkedIn
-                    </a>
-                    <a href="mailto:alirafie@berkeley.edu" target="_blank" aria-label="Email">
-                        <svg viewBox="0 0 32 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M27 4H5C3.3 4 2 5.3 2 7v18c0 1.7 1.3 3 3 3h22c1.7 0 3-1.3 3-3V7c0-1.7-1.3-3-3-3zm0 2c.6 0 1 .4 1 1v.5l-12 9.2-12-9.2V7c0-.6.4-1 1-1h22zm1 3.7v12.8c0 .6-.4 1-1 1H5c-.6 0-1-.4-1-1V9.7l12 9.2 12-9.2z"/></svg>
-                        Email
-                    </a>
-                    <a href="https://open.spotify.com/show/1u63TqRwYn2BxmLv1C9Q7E" target="_blank" aria-label="Spotify">
-                        <svg viewBox="0 0 32 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="16" cy="16" r="16"/><path d="M23.6 22.1c-.3.5-.9.7-1.4.4-3.8-2.3-8.7-2.8-14.4-1.5-.6.1-1.1-.2-1.3-.8-.1-.6.2-1.1.8-1.3 6.2-1.4 11.6-.8 15.8 1.7.5.3.7.9.5 1.5zm2-4.1c-.4.6-1.1.8-1.7.4-4.3-2.6-10.9-3.4-16-1.8-.7.2-1.4-.2-1.6-.9-.2-.7.2-1.4.9-1.6 5.7-1.7 12.9-.8 17.7 2.1.6.4.8 1.2.4 1.8zm.2-4.3C21.2 11.2 10.8 11 7.1 12c-.8.2-1.6-.2-1.8-1-.2-.8.2-1.6 1-1.8 4.3-1.1 15.3-.9 19.7 2.3.7.5.9 1.4.4 2.1-.4.7-1.3.9-2 .4z" fill="#1ED760"/></svg>
-                        Podcast
-                    </a>
+            <div class="about-grid">
+                <div class="about-card overview-card">
+                    <div class="section-title">Overview</div>
+                    <p>I'm Ali Rafie, a second-year law student at UC Berkeley School of Law with a passion for startups, private companies, corporate law, and helping others navigate their legal careers.</p>
+                    <p>Before law school, I spent 7 years in enterprise B2B software and tech sales at Samsara, Productiv, and Axe Automation, where I was responsible for $1M+ quotas. That experience taught me how to understand what people actually need, ask the right questions, and help them achieve their goals. I loved the negotiation, the problem-solving, and figuring out how to create win-win outcomes.</p>
+                    <p>My interest in the commercial side ultimately led me to pursue my JD. I bring that same approach to law. I currently serve as President of <a href="https://www.linkedin.com/company/ai-at-berkeley-law" target="_blank">AI @ Berkeley Law</a>, host the Legal Leaders Podcast, and serve as a Managing Editor of the Berkeley Business Law Journal. Over the past two years, I've had the privilege of interviewing many Chief Legal Officers and General Counsels. Those conversations have given me unique insight into what successful legal careers actually look like.</p>
+                </div>
+                <div class="about-card education-card">
+                    <div class="section-title">Education &amp; Current Roles</div>
+                    <ul>
+                        <li>2L at UC Berkeley School of Law (Class of 2027)</li>
+                        <li>Summer Associate, Cooley LLP Palo Alto (2026), Cooley Diversity Scholar</li>
+                        <li>Managing Editor, Berkeley Business Law Journal</li>
+                        <li>President, <a href="https://www.linkedin.com/company/ai-at-berkeley-law" target="_blank">AI @ Berkeley Law</a></li>
+                        <li>Goodwin Fellowship / Diversity Scholar, Goodwin Procter Silicon Valley (1L Summer 2025)</li>
+                    </ul>
+                </div>
+                <div class="about-card sales-card">
+                    <div class="section-title">Sales Background</div>
+                    <div class="company">Samsara (Pre-IPO, 2019-2021)</div>
+                    <div class="role">Account Executive selling IoT fleet management and industrial safety solutions (Ticker: IOT, now a $15B+ public company).</div>
+                    <div class="company">Productiv (2021-2023)</div>
+                    <div class="role">Account Executive for a SaaS management platform selling to IT and procurement leaders at mid-market and enterprise companies.</div>
+                    <ul class="sales-list">
+                        <li>Notable deals at Productiv included Verkada, the LA Clippers, Reddit, Brex, and Gong.</li>
+                        <li>Earlier role: Business Development at GoGoGrandparent (YC 17).</li>
+                    </ul>
+                    <p>This background taught me negotiation, stakeholder management, and how to position value, skills I now apply to legal career consulting.</p>
+                </div>
+                <div class="about-card podcast-card">
+                    <div class="section-title">Podcast &amp; Thought Leadership</div>
+                    <div class="company">Host of the <a href="https://open.spotify.com/show/1u63TqRwYn2BxmLv1C9Q7E" target="_blank">Legal Leaders Podcast</a></div>
+                    <p>I reach out to successful legal leaders, legal tech founders, in-house counsel, and adjacent operators to interview them about their careers, lessons learned, decision-making, and how they built standout paths in and around the legal industry.</p>
+                    <ul class="podcast-list">
+                        <li>35 episodes and growing with Chief Legal Officers, General Counsels, founders, and law firm leaders.</li>
+                        <li>Topics include career transitions, legal leadership, in-house strategy, legal tech, startups, and AI in law.</li>
+                        <li>Recent guests include leaders from Flock Safety, Coupa, Toyota Research Institute, Microsoft, Anthropic, OpenAI, Cooley, and Sullivan &amp; Cromwell.</li>
+                    </ul>
+                </div>
+                <div class="about-card connect-card">
+                    <div class="section-title">Connect With Me</div>
+                    <div class="connect-links">
+                        <a href="https://www.linkedin.com/in/alirafie/" target="_blank" aria-label="LinkedIn">
+                            <svg viewBox="0 0 32 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M29 0H3C1.3 0 0 1.3 0 3v26c0 1.7 1.3 3 3 3h26c1.7 0 3-1.3 3-3V3c0-1.7-1.3-3-3-3zM9.4 27.1H5.2V12.1h4.2v15zm-2.1-17.1c-1.3 0-2.3-1-2.3-2.3s1-2.3 2.3-2.3 2.3 1 2.3 2.3-1 2.3-2.3 2.3zm19.8 17.1h-4.2v-7.3c0-1.7 0-3.8-2.3-3.8-2.3 0-2.7 1.8-2.7 3.7v7.4h-4.2V12.1h4v2.1h0.1c0.6-1.1 2-2.3 4.1-2.3 4.4 0 5.2 2.9 5.2 6.7v8.6z"/></svg>
+                            LinkedIn
+                        </a>
+                        <a href="mailto:alirafie@berkeley.edu" target="_blank" aria-label="Email">
+                            <svg viewBox="0 0 32 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M27 4H5C3.3 4 2 5.3 2 7v18c0 1.7 1.3 3 3 3h22c1.7 0 3-1.3 3-3V7c0-1.7-1.3-3-3-3zm0 2c.6 0 1 .4 1 1v.5l-12 9.2-12-9.2V7c0-.6.4-1 1-1h22zm1 3.7v12.8c0 .6-.4 1-1 1H5c-.6 0-1-.4-1-1V9.7l12 9.2 12-9.2z"/></svg>
+                            Email
+                        </a>
+                        <a href="https://open.spotify.com/show/1u63TqRwYn2BxmLv1C9Q7E" target="_blank" aria-label="Spotify">
+                            <svg viewBox="0 0 32 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="16" cy="16" r="16"/><path d="M23.6 22.1c-.3.5-.9.7-1.4.4-3.8-2.3-8.7-2.8-14.4-1.5-.6.1-1.1-.2-1.3-.8-.1-.6.2-1.1.8-1.3 6.2-1.4 11.6-.8 15.8 1.7.5.3.7.9.5 1.5zm2-4.1c-.4.6-1.1.8-1.7.4-4.3-2.6-10.9-3.4-16-1.8-.7.2-1.4-.2-1.6-.9-.2-.7.2-1.4.9-1.6 5.7-1.7 12.9-.8 17.7 2.1.6.4.8 1.2.4 1.8zm.2-4.3C21.2 11.2 10.8 11 7.1 12c-.8.2-1.6-.2-1.8-1-.2-.8.2-1.6 1-1.8 4.3-1.1 15.3-.9 19.7 2.3.7.5.9 1.4.4 2.1-.4.7-1.3.9-2 .4z" fill="#1ED760"/></svg>
+                            Podcast
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1518,7 +1676,7 @@
         <section id="consulting" class="section">
             <div class="consulting-section">
                 <div class="consulting-hero">
-                    <img src="77FA9F1B-01EF-4E94-9D21-FB79C8616E34.jpeg" alt="Consulting" class="profile-img">
+                    <img src="BC0A7467-1A09-479F-815C-66E20A5C7458.PNG" alt="Consulting" class="profile-img">
                     <div class="consulting-kicker">Services</div>
                     <h2>Law School Admissions &amp; Big Law Recruiting Consulting</h2>
                     <p class="consulting-subtitle">I work with applicants and law students who want more than generic advice. The focus is on helping you position yourself clearly, tailor your narrative to your goals, and compete for the schools and firms you actually want.</p>
@@ -1580,7 +1738,17 @@
                             <span>/ hour</span>
                         </div>
                         <div class="consulting-free-note">Free 15-minute intro consult</div>
-                        <p class="consulting-subtitle">The free consult is a separate 15-minute conversation. If you want to move forward after that, the full paid session is $200 for one hour.</p>
+                        <p class="consulting-subtitle">The free consult is a separate 15-minute conversation. If you want to move forward after that, the standard paid session is $200 for one hour.</p>
+                        <div class="consulting-package-list">
+                            <div class="consulting-package-item">
+                                <strong>5-hour package: $800</strong>
+                                <span>Best for people who want more in-depth support across applications, recruiting, interviews, or multiple rounds of strategy.</span>
+                            </div>
+                            <div class="consulting-package-item">
+                                <strong>Additional offline review: $200 per hour</strong>
+                                <span>For essay reviews, resume edits, or other written materials you want me to review outside of a live session.</span>
+                            </div>
+                        </div>
                         <div class="consulting-payment-split">
                             <strong>Payment structure</strong><br>
                             Free 15-minute intro consult first.<br>
@@ -1588,8 +1756,8 @@
                             Then $100 after the one-hour session for the remaining balance.
                         </div>
                         <div class="consulting-payment-row">
-                            <a class="podcast-button primary" href="https://buy.stripe.com/00w28j3T09Jtaxc9RqcAo01" target="_blank">Pay $100 Deposit</a>
-                            <a class="podcast-button secondary" href="https://buy.stripe.com/7sYcMX75c5td7l0e7GcAo00" target="_blank">Pay Final $100</a>
+                            <a class="podcast-button primary deposit-button" href="https://buy.stripe.com/00w28j3T09Jtaxc9RqcAo01" target="_blank">Pay $100 Deposit</a>
+                            <a class="podcast-button secondary final-button" href="https://buy.stripe.com/7sYcMX75c5td7l0e7GcAo00" target="_blank">Pay Final $100</a>
                         </div>
                     </div>
                     <div class="consulting-steps-card">
@@ -1609,7 +1777,7 @@
                             </div>
                         </div>
                         <div class="consulting-booking-actions">
-                            <a class="podcast-button primary" href="https://calendly.com/alirafie-berkeley/new-meeting?month=2026-04" target="_blank">Book on Calendly</a>
+                            <a class="podcast-button primary calendly-button" href="https://calendly.com/alirafie-berkeley/new-meeting?month=2026-04" target="_blank">Book on Calendly</a>
                             <a class="podcast-button secondary" href="mailto:alirafie@berkeley.edu?subject=Consulting%20Question">Ask a Question</a>
                         </div>
                     </div>
@@ -1618,7 +1786,7 @@
                     <h3>Interested in working together?</h3>
                     <p>If you are applying to law school, preparing for BigLaw recruiting, or trying to sharpen how you present your background, start with the free 15-minute consult. If we decide to continue, you can then book and pay for the separate one-hour session.</p>
                     <div class="consulting-booking-actions">
-                        <a class="podcast-button primary" href="https://calendly.com/alirafie-berkeley/new-meeting?month=2026-04" target="_blank">Schedule a Session</a>
+                        <a class="podcast-button primary calendly-button" href="https://calendly.com/alirafie-berkeley/new-meeting?month=2026-04" target="_blank">Schedule a Session</a>
                         <a class="podcast-button secondary" href="mailto:alirafie@berkeley.edu?subject=Consulting%20Inquiry">Email About Consulting</a>
                     </div>
                 </div>
