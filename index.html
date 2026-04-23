@@ -5,17 +5,1843 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ali</title>
     <style>
+        :root {
+            --page-bg: #0f1419;
+            --surface: #1a1f2e;
+            --surface-2: #2a3441;
+            --surface-3: #22303c;
+            --text-primary: #ffffff;
+            --text-secondary: #a0adb8;
+            --accent: #1D9BF0;
+            --accent-2: #00B4D8;
+            --highlight: #FF8C00;
+            --border: rgba(255, 255, 255, 0.1);
+            --shadow: 0 18px 50px rgba(0, 0, 0, 0.28);
+        }
         body {
+            margin: 0;
+            font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: radial-gradient(circle at top, #16202a 0%, var(--page-bg) 55%, #0b1016 100%);
+            color: var(--text-primary);
+            transition: background 0.25s ease, color 0.25s ease;
+        }
+        body.about-mode {
+            background: #000;
+        }
+        body.consulting-mode {
+            background: radial-gradient(circle at top, #23352b 0%, #162219 46%, #0c130e 100%);
+            color: #eef1e6;
+        }
+        body.contact-mode {
+            background: radial-gradient(circle at top, #31262b 0%, #1d1519 48%, #0d090b 100%);
+        }
+        .navbar {
             display: flex;
             justify-content: center;
+            gap: 2rem;
+            background: rgba(15, 20, 25, 0.92);
+            color: var(--text-primary);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--border);
+        }
+        body.about-mode .navbar {
+            background: rgba(0, 0, 0, 0.92);
+            border-bottom-color: rgba(255, 255, 255, 0.08);
+        }
+        body.consulting-mode .navbar {
+            background: rgba(14, 25, 18, 0.92);
+            border-bottom-color: rgba(203, 170, 104, 0.22);
+        }
+        body.contact-mode .navbar {
+            background: rgba(21, 14, 17, 0.92);
+            border-bottom-color: rgba(255, 140, 122, 0.22);
+        }
+        .navbar a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.2s;
+        }
+        body.consulting-mode .navbar a {
+            color: #f0ead9;
+        }
+        body.contact-mode .navbar a {
+            color: #fff1ee;
+        }
+        .navbar a:hover {
+            color: var(--accent);
+        }
+        body.consulting-mode .navbar a:hover {
+            color: #d7b56c;
+        }
+        body.contact-mode .navbar a:hover {
+            color: #ff9b8b;
+        }
+        .container {
+            max-width: 1240px;
+            margin: 2.5rem auto;
+            background: var(--surface);
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            padding: 2.5rem 2.5rem;
+            border: 1px solid var(--border);
+        }
+        body.about-mode .container {
+            background: #111;
+            border-color: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 32px rgba(0, 0, 0, 0.35);
+        }
+        body.consulting-mode .container {
+            background: linear-gradient(180deg, #162219 0%, #111913 100%);
+            border-color: rgba(203, 170, 104, 0.16);
+            box-shadow: 0 22px 60px rgba(0, 0, 0, 0.34);
+        }
+        body.contact-mode .container {
+            background: linear-gradient(180deg, #1d1519 0%, #140f12 100%);
+            border-color: rgba(255, 140, 122, 0.16);
+            box-shadow: 0 18px 50px rgba(0, 0, 0, 0.34);
+        }
+        .profile-img {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 24px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+            border: 4px solid transparent;
+        }
+        .podcast .profile-img {
+            width: 100%;
+            max-width: 420px;
+            height: auto;
+            border-radius: 12px;
+            object-fit: contain;
+            margin-bottom: 32px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+            background: #181818;
+        }
+        .about-section .profile-img {
+            object-fit: contain;
+            background: transparent;
+            border-radius: 0;
+            border: none;
+            box-shadow: none;
+        }
+        .about-section {
+            background: transparent;
+            color: #f5f5f5;
+            border-radius: 0.75rem;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
             align-items: center;
-            height: 100vh;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+        .about-section .profile-img {
+            width: 220px;
+            height: 220px;
+            object-fit: contain;
+            border-radius: 12px;
+            margin-bottom: 32px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+            background: #181818;
+        }
+        .about-section h2 {
+            font-size: 2.3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.5px;
+        }
+        .about-section .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #FF8C00;
+            margin-top: 60px;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+            position: relative;
+        }
+        .about-section .section-title:after {
+            content: '';
+            display: block;
+            width: 48px;
+            height: 3px;
+            background: linear-gradient(90deg, #FF8C00 60%, transparent 100%);
+            margin-top: 10px;
+            border-radius: 2px;
+        }
+        .about-section .overview, .about-section .education, .about-section .sales, .about-section .podcast, .about-section .interests, .about-section .connect {
+            max-width: 700px;
+            width: 100%;
+            margin: 0 auto;
+        }
+        .about-section .overview, .about-section .education, .about-section .sales, .about-section .podcast {
+            margin-bottom: 60px;
+        }
+        .about-section .overview p, .about-section .education p, .about-section .sales p, .about-section .podcast p {
+            font-size: 1.08rem;
+            line-height: 1.7;
+            margin-bottom: 18px;
+        }
+        .about-section ul, .about-section .sales-list, .about-section .podcast-list, .about-section .interest-list {
+            list-style: none;
+            padding: 0;
             margin: 0;
+        }
+        .about-section ul li, .about-section .sales-list li, .about-section .podcast-list li, .about-section .interest-list li {
+            position: relative;
+            padding-left: 1.7em;
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+        .about-section ul li:before, .about-section .sales-list li:before, .about-section .podcast-list li:before, .about-section .interest-list li:before {
+            content: '\2192';
+            color: #FF8C00;
+            position: absolute;
+            left: 0;
+            font-size: 1.1em;
+            top: 0.1em;
+        }
+        .about-section .company {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #fff;
+            margin-top: 18px;
+            margin-bottom: 6px;
+        }
+        .about-section .role {
+            font-size: 1rem;
+            color: #bbb;
+            margin-bottom: 6px;
+        }
+        .about-section .connect {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 18px;
+            margin-top: 60px;
+        }
+        .about-section .connect-label {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #FF8C00;
+            margin-bottom: 10px;
+        }
+        .about-section .connect-links {
+            display: flex;
+            gap: 22px;
+            align-items: center;
+        }
+        .about-section .connect-links a {
+            color: #FF8C00;
+            font-size: 1.2rem;
+            text-decoration: none;
+            transition: color 0.3s, transform 0.2s;
+            display: flex;
+            align-items: center;
+        }
+        .about-section .connect-links a:hover {
+            color: #fff;
+            text-decoration: underline;
+            transform: scale(1.08);
+        }
+        .about-section .connect-links svg {
+            margin-right: 8px;
+            width: 26px;
+            height: 26px;
+            vertical-align: middle;
+        }
+        @media (max-width: 900px) {
+            .container {
+                max-width: 98vw;
+                padding: 1.2rem 0.5rem;
+            }
+            .about-section .overview, .about-section .education, .about-section .sales, .about-section .podcast, .about-section .interests, .about-section .connect {
+                max-width: 98vw;
+            }
+            .about-section .profile-img {
+                width: 95vw;
+                height: auto;
+                max-width: 320px;
+                max-height: 320px;
+            }
+        }
+        .about-section h2 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .about-section .subheading {
+            font-size: 1.15rem;
+            font-weight: 500;
+            color: #bbb;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        .about-section .bio {
+            font-size: 1.08rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            text-align: left;
+            max-width: 600px;
+        }
+        .about-section .credentials {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 1.5rem 0;
+            width: 100%;
+            max-width: 600px;
+        }
+        .about-section .credentials li {
+            padding: 0.4rem 0 0.4rem 1.5rem;
+            position: relative;
+            font-size: 1rem;
+        }
+        .about-section .credentials li:before {
+            content: '\2022';
+            position: absolute;
+            left: 0;
+            color: #ff5252;
+            font-size: 1.2rem;
+            top: 0.2rem;
+        }
+        .about-section .links {
+            display: flex;
+            gap: 1.2rem;
+            margin-bottom: 1.5rem;
+            align-items: center;
+        }
+        .about-section .links a {
+            color: #ff5252;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s, border-bottom 0.2s;
+            border-bottom: 1.5px solid transparent;
+        }
+        .about-section .links a:hover {
+            color: #fff;
+            border-bottom: 1.5px solid #ff5252;
+        }
+        .about-section .linkedin {
+            width: 28px;
+            height: 28px;
+            display: inline-block;
+            vertical-align: middle;
+            filter: grayscale(1) brightness(2);
+            transition: filter 0.2s;
+        }
+        .about-section .linkedin:hover {
+            filter: grayscale(0) brightness(1.2);
+        }
+        .about-section .interests {
+            font-size: 0.97rem;
+            color: #aaa;
+            margin-top: 2rem;
+            text-align: center;
+        }
+        @media (max-width: 700px) {
+            .about-section {
+                padding: 1.2rem 0.5rem 1.2rem 0.5rem;
+            }
+            .about-section .bio, .about-section .credentials {
+                max-width: 98vw;
+            }
+            .profile-img {
+                width: 95vw;
+                height: auto;
+                max-width: 320px;
+                max-height: 320px;
+            }
+        }
+        .about-section a,
+        .about-section a:visited {
+            color: #ff5252;
+        }
+        h2 {
+            text-align: center;
+            margin-top: 0;
+        }
+        .red {
+            color: red;
+        }
+        .section {
+            display: none;
+        }
+        .section.active {
+            display: block;
+        }
+        .podcast-section {
+            display: none;
+        }
+        .podcast-section.active {
+            display: block;
+        }
+        .podcast-page {
+            padding: 1.5rem 0 2.5rem 0;
+        }
+        .podcast-hero {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            align-items: stretch;
+            margin-bottom: 3rem;
+        }
+        .podcast-banner {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 22px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+            background: #0f1419;
+        }
+        .podcast-cover {
+            width: 100%;
+            max-width: 360px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            border-radius: 24px;
+            object-fit: contain;
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+        }
+        .podcast-hero-copy h2 {
+            margin-bottom: 0.75rem;
+            font-size: clamp(2.5rem, 5vw, 3rem);
+            text-align: left;
+        }
+        .podcast-subtitle {
+            margin: 0 0 1.5rem 0;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.7;
+            max-width: 720px;
+        }
+        .podcast-stat-row,
+        .podcast-actions,
+        .podcast-toolbar,
+        .podcast-toolbar-actions,
+        .episode-tags,
+        .episode-links,
+        .podcast-platform-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+        .podcast-stat-chip,
+        .podcast-platform-links a {
+            padding: 0.75rem 1rem;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            font-size: 0.96rem;
+        }
+        .podcast-toolbar {
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+        .podcast-search {
+            flex: 1 1 380px;
+            min-width: 260px;
+            padding: 0.95rem 1rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            background: var(--surface-2);
+            color: var(--text-primary);
+            font-size: 1rem;
+        }
+        .podcast-search::placeholder {
+            color: var(--text-secondary);
+        }
+        .podcast-filter {
+            padding: 0.9rem 1rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            background: var(--surface-2);
+            color: var(--text-primary);
+            font-size: 0.98rem;
+        }
+        .section-block {
+            margin-top: 5rem;
+        }
+        .section-block:first-of-type {
+            margin-top: 0;
+        }
+        .section-heading-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .section-heading-row h3 {
+            margin: 0;
+            font-size: clamp(1.9rem, 4vw, 2rem);
+            color: var(--text-primary);
+        }
+        .section-subtitle {
+            margin: 0.6rem 0 0 0;
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.6;
+            max-width: 760px;
+        }
+        .section-count {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            white-space: nowrap;
+        }
+        .section-rule {
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent) 0%, rgba(29, 155, 240, 0.1) 100%);
+            border-radius: 999px;
+            margin-top: 1rem;
+        }
+        .episode-list {
+            display: grid;
+            gap: 1.25rem;
+        }
+        .episode-card {
+            display: grid;
+            grid-template-columns: 100px minmax(0, 1fr) 220px;
+            gap: 1.5rem;
+            align-items: start;
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+        .episode-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 22px 60px rgba(0, 0, 0, 0.28);
+            border-color: rgba(29, 155, 240, 0.6);
+        }
+        .episode-avatar-wrap {
+            position: relative;
+        }
+        .episode-avatar,
+        .episode-avatar-fallback {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.24);
+            overflow: hidden;
+        }
+        .episode-avatar {
+            object-fit: cover;
+            background: var(--surface-3);
+        }
+        .episode-avatar-fallback {
+            color: #fff;
+            font-size: 1.55rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+        }
+        .episode-badge {
+            position: absolute;
+            top: -6px;
+            left: -6px;
+            padding: 0.35rem 0.55rem;
+            border-radius: 999px;
+            background: var(--highlight);
+            color: #09121a;
+            font-size: 0.7rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+        .episode-content {
+            min-width: 0;
+        }
+        .episode-title {
+            display: inline-block;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 1.25rem;
+            font-weight: 700;
+            line-height: 1.4;
+            margin-bottom: 0.45rem;
+        }
+        .episode-title:hover {
+            color: var(--accent);
+        }
+        .episode-guest {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            margin-bottom: 0.35rem;
+        }
+        .episode-meta-line {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 0.85rem;
+        }
+        .episode-summary {
+            color: #d8e0e8;
+            font-size: 0.97rem;
+            line-height: 1.7;
+            margin: 0 0 1rem 0;
+        }
+        .topic-tag {
+            padding: 6px 12px;
+            border-radius: 16px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            border: 1px solid transparent;
+        }
+        .tag-leadership {
+            color: #7ec8ff;
+            background: rgba(29, 155, 240, 0.14);
+            border-color: rgba(29, 155, 240, 0.28);
+        }
+        .tag-in-house {
+            color: #72f0ff;
+            background: rgba(0, 180, 216, 0.14);
+            border-color: rgba(0, 180, 216, 0.28);
+        }
+        .tag-biglaw {
+            color: #c6b4ff;
+            background: rgba(130, 96, 255, 0.14);
+            border-color: rgba(130, 96, 255, 0.28);
+        }
+        .tag-legal-tech {
+            color: #8be28f;
+            background: rgba(46, 204, 113, 0.14);
+            border-color: rgba(46, 204, 113, 0.28);
+        }
+        .tag-startups {
+            color: #ffc27a;
+            background: rgba(255, 140, 0, 0.14);
+            border-color: rgba(255, 140, 0, 0.28);
+        }
+        .tag-career-transitions {
+            color: #ffb3d2;
+            background: rgba(255, 86, 146, 0.14);
+            border-color: rgba(255, 86, 146, 0.28);
+        }
+        .tag-ai {
+            color: #ff9f9f;
+            background: rgba(255, 82, 82, 0.14);
+            border-color: rgba(255, 82, 82, 0.28);
+        }
+        .episode-media {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.85rem;
+        }
+        .episode-short,
+        .episode-short-placeholder {
+            width: 200px;
+            height: 355px;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            background: #111926;
+            overflow: hidden;
+        }
+        .episode-short {
+            display: block;
+        }
+        .episode-short-placeholder {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+            text-align: center;
+            color: var(--text-secondary);
+        }
+        .short-placeholder-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent-2);
+            margin-bottom: 0.55rem;
+        }
+        .short-placeholder-token {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            font-size: 0.74rem;
+            line-height: 1.55;
+            color: #d9e6f2;
+            word-break: break-word;
+        }
+        .episode-links {
+            margin-top: 1rem;
+            align-items: center;
+        }
+        .podcast-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 48px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            border: 1px solid transparent;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+            cursor: pointer;
+        }
+        .podcast-button:hover {
+            transform: scale(1.05);
+        }
+        .podcast-button.primary {
+            background: var(--accent);
+            color: #fff;
+        }
+        .podcast-button.primary:hover {
+            background: #1488d2;
+        }
+        .podcast-button.secondary {
+            background: transparent;
+            border-color: rgba(29, 155, 240, 0.55);
+            color: var(--accent);
+        }
+        .podcast-button.secondary:hover {
+            background: rgba(29, 155, 240, 0.1);
+        }
+        .podcast-button.disabled {
+            opacity: 0.65;
+        }
+        .podcast-empty {
+            padding: 1.5rem;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px dashed rgba(255, 255, 255, 0.15);
+            color: var(--text-secondary);
+        }
+        .subscribe-card {
+            margin-top: 5rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(29, 155, 240, 0.12), rgba(0, 180, 216, 0.08));
+            border: 1px solid rgba(29, 155, 240, 0.2);
+            border-radius: 18px;
+        }
+        .subscribe-card h3 {
+            margin: 0 0 0.75rem 0;
+            font-size: 1.8rem;
+        }
+        .subscribe-card p {
+            margin: 0 0 1rem 0;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            max-width: 720px;
+        }
+        .subscribe-form {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+        .subscribe-form input {
+            flex: 1 1 280px;
+            min-height: 48px;
+            padding: 0.9rem 1rem;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-primary);
+            font-size: 1rem;
+        }
+        .consulting-section {
+            padding: 1rem 0 2rem 0;
+        }
+        body.consulting-mode .consulting-section {
+            color: #eef1e6;
+        }
+        .consulting-section .profile-img {
+            width: 100%;
+            max-width: 280px;
+            height: auto;
+            border-radius: 20px;
+            object-fit: cover;
+            margin-bottom: 1.75rem;
+        }
+        .consulting-hero {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+        .consulting-kicker {
+            display: inline-block;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            font-weight: 800;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: #d7b56c;
+        }
+        .consulting-hero h2 {
+            font-size: clamp(2.2rem, 4vw, 3rem);
+            margin-bottom: 0.75rem;
+        }
+        .consulting-subtitle {
+            max-width: 760px;
+            margin: 0 auto 1rem auto;
+            color: var(--text-secondary);
+            font-size: 1.08rem;
+            line-height: 1.8;
+        }
+        body.consulting-mode .consulting-subtitle {
+            color: #b9c0ad;
+        }
+        .consulting-chip-row,
+        .consulting-list,
+        .consulting-outcomes {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+        .consulting-chip {
+            padding: 0.7rem 1rem;
+            border-radius: 999px;
+            background: rgba(29, 155, 240, 0.12);
+            border: 1px solid rgba(29, 155, 240, 0.2);
+            color: #cfe9ff;
+            font-size: 0.95rem;
+        }
+        body.consulting-mode .consulting-chip {
+            background: rgba(203, 170, 104, 0.12);
+            border-color: rgba(203, 170, 104, 0.22);
+            color: #f3e2b7;
+        }
+        .consulting-proof {
+            margin: 2rem 0 2.5rem 0;
+            padding: 1.75rem 1.8rem;
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(203, 170, 104, 0.14);
+            box-shadow: 0 16px 36px rgba(0, 0, 0, 0.22);
+        }
+        .consulting-proof h3 {
+            margin: 0 0 1rem 0;
+            font-size: 1.55rem;
+            line-height: 1.3;
+        }
+        .consulting-proof p {
+            margin: 0 0 1rem 0;
+            color: #c8cfbd;
+            line-height: 1.8;
+            max-width: 920px;
+        }
+        .consulting-proof p:last-child {
+            margin-bottom: 0;
+        }
+        .consulting-services {
+            margin-top: 2.5rem;
+        }
+        .consulting-services-header {
+            margin-bottom: 1.5rem;
+        }
+        .consulting-services-header h3 {
+            margin: 0;
+            font-size: clamp(2rem, 4vw, 2.4rem);
+            letter-spacing: 0.01em;
+        }
+        .consulting-services-header p {
+            margin: 0.9rem 0 0 0;
+            color: #c8cfbd;
+            line-height: 1.8;
+            max-width: 920px;
+        }
+        .consulting-service-block {
+            padding: 2rem 0;
+            border-top: 1px solid rgba(203, 170, 104, 0.16);
+        }
+        .consulting-service-block:first-of-type {
+            border-top: 1px solid rgba(203, 170, 104, 0.16);
+        }
+        .consulting-service-title {
+            margin: 0 0 0.75rem 0;
+            font-size: clamp(1.8rem, 3.5vw, 2.2rem);
+            line-height: 1.2;
+        }
+        .consulting-service-copy {
+            margin: 0 0 1rem 0;
+            color: #c8cfbd;
+            line-height: 1.8;
+            max-width: 980px;
+        }
+        .consulting-service-list {
+            list-style: none;
+            padding: 0;
+            margin: 1.15rem 0 0 0;
+            display: grid;
+            gap: 0.9rem;
+            max-width: 980px;
+        }
+        .consulting-service-list li {
+            position: relative;
+            padding-left: 1.2rem;
+            color: #dce2d1;
+            line-height: 1.7;
+        }
+        .consulting-service-list li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0.72rem;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #d7b56c;
+        }
+        .consulting-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1.25rem;
+            margin: 2rem 0;
+        }
+        .consulting-card {
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
+        }
+        body.consulting-mode .consulting-card,
+        body.consulting-mode .consulting-panel,
+        body.consulting-mode .consulting-price-card,
+        body.consulting-mode .consulting-steps-card {
+            background: rgba(255, 255, 255, 0.04);
+            border-color: rgba(203, 170, 104, 0.14);
+            box-shadow: 0 16px 36px rgba(0, 0, 0, 0.22);
+        }
+        .consulting-card h3 {
+            margin: 0 0 0.75rem 0;
+            font-size: 1.18rem;
+        }
+        .consulting-card p {
+            margin: 0;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+        body.consulting-mode .consulting-card p,
+        body.consulting-mode .consulting-cta p {
+            color: #c8cfbd;
+        }
+        .consulting-detail-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .consulting-panel {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem;
+        }
+        .consulting-panel h3 {
+            margin: 0 0 1rem 0;
+            font-size: 1.2rem;
+        }
+        .consulting-list {
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+        .consulting-list-item {
+            color: #dbe5ee;
+            line-height: 1.65;
+            padding-left: 1.1rem;
+            position: relative;
+        }
+        body.consulting-mode .consulting-list-item,
+        body.consulting-mode .consulting-step-copy,
+        body.consulting-mode .consulting-payment-split {
+            color: #d8decc;
+        }
+        .consulting-list-item::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0.68rem;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--accent-2);
+        }
+        body.consulting-mode .consulting-list-item::before {
+            background: #d7b56c;
+        }
+        .consulting-outcomes {
+            margin-top: 1rem;
+        }
+        .consulting-outcome {
+            padding: 0.95rem 1rem;
+            border-radius: 12px;
+            background: rgba(255, 140, 0, 0.08);
+            border: 1px solid rgba(255, 140, 0, 0.18);
+            color: #ffe1b8;
+            flex: 1 1 220px;
+        }
+        body.consulting-mode .consulting-outcome {
+            background: rgba(203, 170, 104, 0.12);
+            border-color: rgba(203, 170, 104, 0.18);
+            color: #f1dfb4;
+        }
+        .consulting-cta {
+            margin-top: 2rem;
+            padding: 1.75rem;
+            border-radius: 18px;
+            background: linear-gradient(135deg, rgba(29, 155, 240, 0.14), rgba(255, 140, 0, 0.08));
+            border: 1px solid rgba(29, 155, 240, 0.18);
+            text-align: left;
+        }
+        body.consulting-mode .consulting-cta {
+            background: linear-gradient(135deg, rgba(122, 148, 97, 0.12), rgba(203, 170, 104, 0.1));
+            border-color: rgba(122, 148, 97, 0.16);
+        }
+        .consulting-cta h3 {
+            margin: 0 0 0.75rem 0;
+            font-size: 1.45rem;
+        }
+        .consulting-cta p {
+            margin: 0 0 1rem 0;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            max-width: 760px;
+        }
+        .consulting-booking {
+            margin-top: 2rem;
+            display: grid;
+            grid-template-columns: 1.05fr 0.95fr;
+            gap: 1.5rem;
+        }
+        .consulting-price-card,
+        .consulting-steps-card {
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 1.5rem;
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
+        }
+        .consulting-price-card h3,
+        .consulting-steps-card h3 {
+            margin: 0 0 0.8rem 0;
+            font-size: 1.25rem;
+        }
+        .consulting-price {
+            display: flex;
+            align-items: baseline;
+            gap: 0.45rem;
+            margin-bottom: 0.75rem;
+        }
+        .consulting-price strong {
+            font-size: 2.2rem;
+            line-height: 1;
+            color: #fff;
+        }
+        body.consulting-mode .consulting-price strong {
+            color: #f5f2e8;
+        }
+        .consulting-price span {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+        body.consulting-mode .consulting-price span {
+            color: #b9c0ad;
+        }
+        .consulting-free-note {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.55rem 0.8rem;
+            border-radius: 999px;
+            background: rgba(0, 180, 216, 0.12);
+            border: 1px solid rgba(0, 180, 216, 0.22);
+            color: #9befff;
+            font-size: 0.93rem;
+            margin-bottom: 1rem;
+        }
+        body.consulting-mode .consulting-free-note {
+            background: rgba(122, 148, 97, 0.14);
+            border-color: rgba(122, 148, 97, 0.2);
+            color: #e3f0d1;
+        }
+        .consulting-payment-row,
+        .consulting-booking-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+        .consulting-payment-split {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            color: #dbe5ee;
+            line-height: 1.7;
+        }
+        .consulting-step-list {
+            display: grid;
+            gap: 0.85rem;
+            margin-top: 1rem;
+        }
+        .consulting-step {
+            display: grid;
+            grid-template-columns: 34px 1fr;
+            gap: 0.8rem;
+            align-items: start;
+        }
+        .consulting-step-number {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(29, 155, 240, 0.18);
+            border: 1px solid rgba(29, 155, 240, 0.28);
+            color: #fff;
+            font-size: 0.95rem;
+            font-weight: 700;
+        }
+        body.consulting-mode .consulting-step-number {
+            background: rgba(203, 170, 104, 0.14);
+            border-color: rgba(203, 170, 104, 0.2);
+            color: #f3e2b7;
+        }
+        .consulting-step-copy {
+            color: #dbe5ee;
+            line-height: 1.65;
+        }
+        body.consulting-mode .consulting-section .podcast-button.primary {
+            background: #c2a15b;
+            color: #1a160f;
+        }
+        body.consulting-mode .consulting-section .podcast-button.primary:hover {
+            background: #ab8d4e;
+        }
+        body.consulting-mode .consulting-section .podcast-button.secondary {
+            border-color: rgba(203, 170, 104, 0.34);
+            color: #edd9a6;
+            background: transparent;
+        }
+        body.consulting-mode .consulting-section .podcast-button.secondary:hover {
+            background: rgba(203, 170, 104, 0.08);
+        }
+        .contact-section {
+            padding: 1rem 0 2rem 0;
+            text-align: center;
+        }
+        .contact-section .profile-img {
+            width: min(100%, 320px);
+            height: auto;
+            border-radius: 28px;
+            object-fit: cover;
+            margin-bottom: 2rem;
+        }
+        .contact-hero h2 {
+            font-size: clamp(2.3rem, 4vw, 3.1rem);
+            margin-bottom: 0.75rem;
+        }
+        .contact-subtitle {
+            max-width: 720px;
+            margin: 0 auto 1.5rem auto;
+            color: #d3b7bc;
+            line-height: 1.75;
+            font-size: 1.06rem;
+        }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1.25rem;
+            margin-top: 2rem;
+        }
+        .contact-card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 140, 122, 0.14);
+            border-radius: 18px;
+            padding: 1.5rem;
+            text-align: left;
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.22);
+        }
+        .contact-label {
+            display: inline-block;
+            margin-bottom: 0.7rem;
+            color: #ff9b8b;
+            font-size: 0.78rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+        .contact-card h3 {
+            margin: 0 0 0.55rem 0;
+            font-size: 1.2rem;
+        }
+        .contact-card p {
+            margin: 0;
+            color: #e0cacf;
+            line-height: 1.7;
+        }
+        .contact-card a {
+            color: #fff4f1;
+            text-decoration: none;
+        }
+        .contact-card a:hover {
+            color: #ff9b8b;
+        }
+        .contact-actions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.85rem;
+            margin-top: 2rem;
+        }
+        .contact-note {
+            margin-top: 2rem;
+            padding: 1.2rem 1.4rem;
+            border-radius: 18px;
+            background: rgba(255, 140, 122, 0.08);
+            border: 1px solid rgba(255, 140, 122, 0.14);
+            color: #eddadc;
+            line-height: 1.7;
+        }
+        body.contact-mode .contact-section .podcast-button.primary {
+            background: #ff8c7a;
+        }
+        body.contact-mode .contact-section .podcast-button.primary:hover {
+            background: #ea7562;
+        }
+        body.contact-mode .contact-section .podcast-button.secondary {
+            border-color: rgba(255, 140, 122, 0.34);
+            color: #ffc1b7;
+        }
+        body.contact-mode .contact-section .podcast-button.secondary:hover {
+            background: rgba(255, 140, 122, 0.1);
+        }
+        @media (max-width: 1024px) {
+            .episode-card {
+                grid-template-columns: 88px minmax(0, 1fr);
+            }
+            .episode-media {
+                grid-column: 1 / -1;
+                align-items: flex-start;
+            }
+            .consulting-grid,
+            .consulting-detail-grid,
+            .consulting-booking,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        @media (max-width: 700px) {
+            .container {
+                padding: 1.2rem 1rem;
+                margin: 1rem auto;
+            }
+            .navbar {
+                gap: 1rem;
+                padding: 0.9rem 0.5rem;
+                flex-wrap: wrap;
+            }
+            .podcast-page {
+                padding: 0.5rem 0 1.5rem 0;
+            }
+            .podcast-hero,
+            .podcast-toolbar,
+            .section-heading-row,
+            .subscribe-form {
+                grid-template-columns: 1fr;
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .podcast-hero-copy h2,
+            h2 {
+                text-align: center;
+            }
+            .podcast-subtitle,
+            .section-subtitle,
+            .subscribe-card p {
+                text-align: center;
+            }
+            .consulting-hero,
+            .consulting-cta {
+                text-align: center;
+            }
+            .podcast-stat-row,
+            .podcast-actions,
+            .podcast-platform-links,
+            .consulting-chip-row,
+            .consulting-outcomes {
+                justify-content: center;
+            }
+            .podcast-search,
+            .podcast-filter,
+            .subscribe-form input {
+                width: 100%;
+            }
+            .episode-card {
+                grid-template-columns: 1fr;
+                padding: 16px;
+                text-align: center;
+            }
+            .episode-avatar,
+            .episode-avatar-fallback {
+                width: 80px;
+                height: 80px;
+                margin: 0 auto;
+            }
+            .episode-badge {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            .episode-media,
+            .episode-links,
+            .episode-tags {
+                justify-content: center;
+                align-items: center;
+            }
+            .episode-short,
+            .episode-short-placeholder {
+                width: min(100%, 220px);
+                height: 355px;
+            }
+            .podcast-button {
+                width: 100%;
+            }
+            .episode-links {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
 <body>
-    <div>hello world! I'm Ali</div>
-    <div style="color: red;">i am a law student</div>
+    <nav class="navbar">
+        <a href="#about" onclick="showSection('about')">About Me</a>
+        <a href="#podcast" onclick="showSection('podcast')">Podcast</a>
+        <a href="#consulting" onclick="showSection('consulting')">Consulting</a>
+        <a href="#contact" onclick="showSection('contact')">Contact</a>
+    </nav>
+    <div class="container">
+        <section id="about" class="section active about-section">
+            <img src="ChatGPT Image Apr 19, 2026, 10_20_06 PM.png" alt="Ali Rafie" class="profile-img">
+            <h2>About Me</h2>
+            <div class="overview">
+                <div class="section-title">Overview</div>
+                <p>I'm Ali Rafie, a second-year law student at UC Berkeley School of Law with a passion for helping others navigate their legal careers.</p>
+                <p>Before law school, I spent 7 years in enterprise B2B software sales. That experience taught me how to understand what people actually need, ask the right questions, and help them achieve their goals. I loved the negotiation, the problem-solving, and figuring out how to create win-win outcomes.</p>
+                <p>Now I bring that same approach to law. As President of AI @ Berkeley Law and host of the Legal Leaders Podcast, I've had the privilege of interviewing 35+ Chief Legal Officers and General Counsels. These conversations have given me unique insight into what successful legal careers actually look like.</p>
+            </div>
+            <div class="education">
+                <div class="section-title">Education &amp; Current Roles</div>
+                <ul>
+                    <li>2L at UC Berkeley School of Law (Class of 2027)</li>
+                    <li>Summer Associate, Cooley LLP Palo Alto (2026) - Cooley Diversity Scholar</li>
+                    <li>Managing Editor, Berkeley Business Law Journal</li>
+                    <li>President, <a href="https://www.aibl.org" target="_blank">AI @ Berkeley Law</a></li>
+                    <li>Goodwin Fellow, Goodwin Procter Silicon Valley (1L Summer 2025)</li>
+                </ul>
+            </div>
+            <div class="sales">
+                <div class="section-title">Sales Background</div>
+                <div class="company">Samsara (Pre-IPO, 2019-2021)</div>
+                <div class="role">Enterprise Account Executive selling IoT fleet management and industrial safety solutions (Ticker: IOT, now $15B+ public company)</div>
+                <ul class="sales-list">
+                    <li>Closed deals with Fortune 500 companies in manufacturing, logistics, and energy sectors</li>
+                    <li>Notable deals: Verkada, LA Clippers, Reddit, Brex, Gong</li>
+                </ul>
+                <div class="company">Productiv (2021-2023)</div>
+                <div class="role">Enterprise Account Executive for SaaS management platform</div>
+                <ul class="sales-list">
+                    <li>Sold to IT and procurement leaders at mid-market and enterprise companies</li>
+                </ul>
+                <div class="company">Earlier roles:</div>
+                <ul class="sales-list">
+                    <li>Business Development at GoGoGrandparent (YC 17)</li>
+                    <li>Business Development at Goodwin Procter</li>
+                </ul>
+                <p>This background taught me negotiation, stakeholder management, and how to position value—skills I now apply to legal career consulting.</p>
+            </div>
+            <div class="podcast">
+                <div class="section-title">Podcast &amp; Thought Leadership</div>
+                <div class="company">Host of the <a href="https://open.spotify.com/show/1u63TqRwYn2BxmLv1C9Q7E" target="_blank">Legal Leaders Podcast</a></div>
+                <ul class="podcast-list">
+                    <li>35 episodes and growing with Chief Legal Officers, General Counsels, founders, and law firm leaders</li>
+                    <li>Topics include career transitions, legal leadership, in-house strategy, legal tech, and AI in law</li>
+                    <li>Recent guests include leaders from Flock Safety, Coupa, Toyota Research Institute, Microsoft, Anthropic, Cooley, and more</li>
+                </ul>
+            </div>
+            <div class="interests">
+                <div class="section-title">Interests</div>
+                <ul class="interest-list">
+                    <li><b>Cars:</b> Automotive enthusiast with a passion for all cars from the 90s to 2020s.</li>
+                    <li><b>Real Estate:</b> Airbnb Superhost for 4+ years.</li>
+                </ul>
+            </div>
+            <div class="connect">
+                <div class="section-title">Connect With Me</div>
+                <div class="connect-links">
+                    <a href="[LINKEDIN_LINK_PLACEHOLDER]" target="_blank" aria-label="LinkedIn">
+                        <svg viewBox="0 0 32 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M29 0H3C1.3 0 0 1.3 0 3v26c0 1.7 1.3 3 3 3h26c1.7 0 3-1.3 3-3V3c0-1.7-1.3-3-3-3zM9.4 27.1H5.2V12.1h4.2v15zm-2.1-17.1c-1.3 0-2.3-1-2.3-2.3s1-2.3 2.3-2.3 2.3 1 2.3 2.3-1 2.3-2.3 2.3zm19.8 17.1h-4.2v-7.3c0-1.7 0-3.8-2.3-3.8-2.3 0-2.7 1.8-2.7 3.7v7.4h-4.2V12.1h4v2.1h0.1c0.6-1.1 2-2.3 4.1-2.3 4.4 0 5.2 2.9 5.2 6.7v8.6z"/></svg>
+                        LinkedIn
+                    </a>
+                    <a href="mailto:alirafie@berkeley.edu" target="_blank" aria-label="Email">
+                        <svg viewBox="0 0 32 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M27 4H5C3.3 4 2 5.3 2 7v18c0 1.7 1.3 3 3 3h22c1.7 0 3-1.3 3-3V7c0-1.7-1.3-3-3-3zm0 2c.6 0 1 .4 1 1v.5l-12 9.2-12-9.2V7c0-.6.4-1 1-1h22zm1 3.7v12.8c0 .6-.4 1-1 1H5c-.6 0-1-.4-1-1V9.7l12 9.2 12-9.2z"/></svg>
+                        Email
+                    </a>
+                    <a href="https://open.spotify.com/show/1u63TqRwYn2BxmLv1C9Q7E" target="_blank" aria-label="Spotify">
+                        <svg viewBox="0 0 32 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="16" cy="16" r="16"/><path d="M23.6 22.1c-.3.5-.9.7-1.4.4-3.8-2.3-8.7-2.8-14.4-1.5-.6.1-1.1-.2-1.3-.8-.1-.6.2-1.1.8-1.3 6.2-1.4 11.6-.8 15.8 1.7.5.3.7.9.5 1.5zm2-4.1c-.4.6-1.1.8-1.7.4-4.3-2.6-10.9-3.4-16-1.8-.7.2-1.4-.2-1.6-.9-.2-.7.2-1.4.9-1.6 5.7-1.7 12.9-.8 17.7 2.1.6.4.8 1.2.4 1.8zm.2-4.3C21.2 11.2 10.8 11 7.1 12c-.8.2-1.6-.2-1.8-1-.2-.8.2-1.6 1-1.8 4.3-1.1 15.3-.9 19.7 2.3.7.5.9 1.4.4 2.1-.4.7-1.3.9-2 .4z" fill="#1ED760"/></svg>
+                        Podcast
+                    </a>
+                </div>
+            </div>
+        </section>
+        <section id="podcast" class="section podcast-section">
+            <div class="podcast-page">
+                <div class="podcast-hero">
+                    <img src="Facebook-Header copy.jpg" alt="Legal Leaders Podcast banner" class="podcast-banner">
+                    <div class="podcast-hero-copy">
+                        <h2>Legal Leaders Podcast</h2>
+                        <p class="podcast-subtitle">Conversations with Chief Legal Officers, General Counsels, founders, and law firm leaders on building standout legal careers.</p>
+                        <div class="podcast-stat-row">
+                            <span class="podcast-stat-chip">35 episodes</span>
+                            <span class="podcast-stat-chip">Host: Ali Rafie</span>
+                        </div>
+                        <div class="podcast-actions" style="margin-top: 1.5rem;">
+                            <a class="podcast-button primary" href="https://open.spotify.com/show/1u63TqRwYn2BxmLv1C9Q7E" target="_blank">Listen on Spotify</a>
+                            <a class="podcast-button secondary" href="https://www.youtube.com/@LegalLeadersPodcast" target="_blank">Watch on YouTube</a>
+                            <a class="podcast-button secondary" href="https://podcasts.apple.com/us/podcast/legal-leaders/id1729091694" target="_blank">Apple Podcasts</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="podcast-toolbar">
+                    <input id="podcast-search" class="podcast-search" type="search" placeholder="Search episodes by guest, topic, or keyword...">
+                    <div class="podcast-toolbar-actions">
+                        <select id="podcast-topic-filter" class="podcast-filter" aria-label="Filter by topic">
+                            <option value="all">All topics</option>
+                            <option value="Leadership">Leadership</option>
+                            <option value="In-house">In-house</option>
+                            <option value="BigLaw">BigLaw</option>
+                            <option value="Legal Tech">Legal Tech</option>
+                            <option value="Startups">Startups</option>
+                            <option value="Career Transitions">Career Transitions</option>
+                            <option value="AI">AI</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="podcast-featured" class="section-block"></div>
+                <div id="podcast-2026" class="section-block"></div>
+                <div id="podcast-2025" class="section-block"></div>
+                <div id="podcast-2024" class="section-block"></div>
+
+                <div class="subscribe-card">
+                    <h3>Never miss an episode</h3>
+                    <p>Drop in your email below for a future subscribe workflow, or follow Legal Leaders on the platforms you already use.</p>
+                    <div class="subscribe-form">
+                        <input type="email" placeholder="Email address">
+                        <button class="podcast-button primary" type="button">Subscribe</button>
+                    </div>
+                    <div class="podcast-platform-links">
+                        <a href="https://open.spotify.com/show/1u63TqRwYn2BxmLv1C9Q7E" target="_blank">Spotify</a>
+                        <a href="https://www.youtube.com/@LegalLeadersPodcast" target="_blank">YouTube</a>
+                        <a href="https://podcasts.apple.com/us/podcast/legal-leaders/id1729091694" target="_blank">Apple Podcasts</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="consulting" class="section">
+            <div class="consulting-section">
+                <div class="consulting-hero">
+                    <img src="77FA9F1B-01EF-4E94-9D21-FB79C8616E34.jpeg" alt="Consulting" class="profile-img">
+                    <div class="consulting-kicker">Services</div>
+                    <h2>Law School Admissions &amp; Big Law Recruiting Consulting</h2>
+                    <p class="consulting-subtitle">I work with applicants and law students who want more than generic advice. The focus is on helping you position yourself clearly, tailor your narrative to your goals, and compete for the schools and firms you actually want.</p>
+                    <div class="consulting-chip-row">
+                        <span class="consulting-chip">Law School Applications</span>
+                        <span class="consulting-chip">Big Law Recruiting</span>
+                        <span class="consulting-chip">Narrative Positioning</span>
+                        <span class="consulting-chip">Interview Strategy</span>
+                    </div>
+                </div>
+                <div class="consulting-proof">
+                    <h3>Tailored positioning for people aiming high</h3>
+                    <p>I was fortunate to secure both a 1L and 2L BigLaw summer offer in my top offices, and both came with diversity fellowship / DEI scholarship awards totaling $50K. I also currently mentor many 1Ls and incoming law students and genuinely enjoy helping people position themselves to land the schools, firms, and roles they want most.</p>
+                    <p>Before law school, I spent 7 years in sales, which gives me a different lens than what most career offices provide. Schools often give broad advice. I work with you to tailor the story to you: your background, your goals, your work experience, your target schools, your desired firms, and how to make your narrative hit with decision-makers.</p>
+                    <p>I care a lot about helping people stand out, especially older applicants and candidates with real work experience. Law schools and BigLaw increasingly value maturity, judgment, and professional polish in ways that can feel closer to MBA-style evaluation than people realize. That is where positioning, messaging, and interview strategy really matter.</p>
+                </div>
+                <div class="consulting-services">
+                    <div class="consulting-services-header">
+                        <h3>Core Services</h3>
+                        <p>My consulting is centered on two main areas. Both are highly tailored, narrative-driven, and designed around what actually moves outcomes rather than generic templates.</p>
+                    </div>
+                    <div class="consulting-service-block">
+                        <h4 class="consulting-service-title">Law School Applications</h4>
+                        <p class="consulting-service-copy">For law school applicants, I help craft a sharper application strategy built around your story, your strengths, and the specific schools you are targeting. That includes helping you frame your background in a way that feels authentic, compelling, and aligned with the narrative politics and culture of each individual school.</p>
+                        <ul class="consulting-service-list">
+                            <li>Personal statement and essay development, from idea shaping to line-by-line refinement.</li>
+                            <li>Narrative positioning so your application tells one coherent story instead of reading like disconnected accomplishments.</li>
+                            <li>School-by-school tailoring based on how different programs think about fit, culture, ambition, and professional identity.</li>
+                            <li>Resume review, addenda strategy, and help explaining work experience, pivots, gaps, or nontraditional backgrounds the right way.</li>
+                            <li>Application strategy focused on where you should lean in, where you should be careful, and how to present yourself with intention.</li>
+                        </ul>
+                    </div>
+                    <div class="consulting-service-block">
+                        <h4 class="consulting-service-title">Big Law Recruiting</h4>
+                        <p class="consulting-service-copy">For BigLaw recruiting, I bring a deep interest in V100 / Am Law 100 firms and a strong understanding of how to position candidates based on what kind of practice they want, what office they want, and what story they need to tell. I love talking through firm strategy and helping people map themselves to the right opportunities.</p>
+                        <ul class="consulting-service-list">
+                            <li>Interview preparation and message discipline so you come across polished, thoughtful, and genuinely differentiated.</li>
+                            <li>Firm and practice-group positioning across private equity, venture capital, private companies, startups, real estate, public company work, and capital markets.</li>
+                            <li>Office strategy based on geography, market dynamics, and how to explain why you want a specific office in a credible way.</li>
+                            <li>Resume, networking, and outreach strategy that reflects what firms actually value in candidates with and without prior work experience.</li>
+                            <li>Practical advice on how to set yourself apart in a market that increasingly values maturity, commercial instincts, and real professional experience.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="consulting-outcomes">
+                    <div class="consulting-outcome">Clearer application and recruiting materials</div>
+                    <div class="consulting-outcome">A tailored narrative for your dream schools and firms</div>
+                    <div class="consulting-outcome">Stronger interview answers, outreach, and market positioning</div>
+                </div>
+                <div class="consulting-booking">
+                    <div class="consulting-price-card">
+                        <h3>Booking &amp; Pricing</h3>
+                        <div class="consulting-price">
+                            <strong>$200</strong>
+                            <span>/ hour</span>
+                        </div>
+                        <div class="consulting-free-note">Free 15-minute intro consult</div>
+                        <p class="consulting-subtitle">The free consult is a separate 15-minute conversation. If you want to move forward after that, the full paid session is $200 for one hour.</p>
+                        <div class="consulting-payment-split">
+                            <strong>Payment structure</strong><br>
+                            Free 15-minute intro consult first.<br>
+                            Then $100 upfront to reserve the paid session.<br>
+                            Then $100 after the one-hour session for the remaining balance.
+                        </div>
+                        <div class="consulting-payment-row">
+                            <a class="podcast-button primary" href="https://buy.stripe.com/00w28j3T09Jtaxc9RqcAo01" target="_blank">Pay $100 Deposit</a>
+                            <a class="podcast-button secondary" href="https://buy.stripe.com/7sYcMX75c5td7l0e7GcAo00" target="_blank">Pay Final $100</a>
+                        </div>
+                    </div>
+                    <div class="consulting-steps-card">
+                        <h3>How to Book</h3>
+                        <div class="consulting-step-list">
+                            <div class="consulting-step">
+                                <div class="consulting-step-number">1</div>
+                                <div class="consulting-step-copy">Start with the free 15-minute intro consult on Calendly so we can talk through fit and goals.</div>
+                            </div>
+                            <div class="consulting-step">
+                                <div class="consulting-step-number">2</div>
+                                <div class="consulting-step-copy">If it makes sense to continue, pay the $100 deposit to confirm the separate one-hour paid session.</div>
+                            </div>
+                            <div class="consulting-step">
+                                <div class="consulting-step-number">3</div>
+                                <div class="consulting-step-copy">We do the one-hour paid session, then settle the remaining $100 afterward.</div>
+                            </div>
+                        </div>
+                        <div class="consulting-booking-actions">
+                            <a class="podcast-button primary" href="https://calendly.com/alirafie-berkeley/new-meeting?month=2026-04" target="_blank">Book on Calendly</a>
+                            <a class="podcast-button secondary" href="mailto:alirafie@berkeley.edu?subject=Consulting%20Question">Ask a Question</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="consulting-cta">
+                    <h3>Interested in working together?</h3>
+                    <p>If you are applying to law school, preparing for BigLaw recruiting, or trying to sharpen how you present your background, start with the free 15-minute consult. If we decide to continue, you can then book and pay for the separate one-hour session.</p>
+                    <div class="consulting-booking-actions">
+                        <a class="podcast-button primary" href="https://calendly.com/alirafie-berkeley/new-meeting?month=2026-04" target="_blank">Schedule a Session</a>
+                        <a class="podcast-button secondary" href="mailto:alirafie@berkeley.edu?subject=Consulting%20Inquiry">Email About Consulting</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="contact" class="section">
+            <div class="contact-section">
+                <div class="contact-hero">
+                    <img src="74F116AF-7E3C-48A7-91D6-0A9DB268064D.JPG" alt="Contact" class="profile-img">
+                    <h2>Contact</h2>
+                    <p class="contact-subtitle">Reach out for podcast guest ideas, speaking opportunities, consulting questions, or anything else where it makes sense to connect directly.</p>
+                </div>
+                <div class="contact-grid">
+                    <div class="contact-card">
+                        <span class="contact-label">Email</span>
+                        <h3>Best for direct outreach</h3>
+                        <p><a href="mailto:alirafie@berkeley.edu">alirafie@berkeley.edu</a></p>
+                    </div>
+                    <div class="contact-card">
+                        <span class="contact-label">Podcast</span>
+                        <h3>Legal Leaders Podcast</h3>
+                        <p>For guest ideas, crossovers, and platform inquiries, the podcast page is the best place to start.</p>
+                    </div>
+                    <div class="contact-card">
+                        <span class="contact-label">Consulting</span>
+                        <h3>Admissions and recruiting help</h3>
+                        <p>If you are interested in consulting, you can jump straight to booking or send an email first with a few lines on what you need.</p>
+                    </div>
+                </div>
+                <div class="contact-actions">
+                    <a class="podcast-button primary" href="mailto:alirafie@berkeley.edu?subject=Hello%20Ali">Send an Email</a>
+                    <a class="podcast-button secondary" href="https://calendly.com/alirafie-berkeley/new-meeting?month=2026-04" target="_blank">Book a Consult</a>
+                </div>
+                <div class="contact-note">
+                    I usually respond fastest by email. If your note is about consulting, include where you are in the law school or recruiting process so I have context before we talk.
+                </div>
+            </div>
+        </section>
+    </div>
+    <script>
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
+            document.body.classList.remove('about-mode', 'consulting-mode', 'contact-mode');
+            if (sectionId === 'about') {
+                document.body.classList.add('about-mode');
+            } else if (sectionId === 'consulting') {
+                document.body.classList.add('consulting-mode');
+            } else if (sectionId === 'contact') {
+                document.body.classList.add('contact-mode');
+            }
+        }
+        const podcastEpisodes = [
+            { ep: 35, year: 2026, date: "February 17, 2026", title: "EP 35: Leading Legal Teams & Managing Yourself as GC with Executive Coach Dennis Adsit", guest: "Dennis Adsit", role: "Executive Coach, Adsum Insights", duration: "42 min", tags: ["Leadership", "In-house"], summary: "Dennis Adsit shares frameworks for communicating business impact, building stronger legal teams, and making the leap from individual contributor to GC-level leadership.", spotify: "https://creators.spotify.com/ali-rafie7/episodes/EP-35-Leading-Legal-Teams--Managing-Yourself-as-GC-with-Executive-Coach-Dennis-Adsit-e3f6os7", youtube: "https://youtu.be/zcfux4QPmjs", apple: "https://podcasts.apple.com/in/podcast/ep-35-leading-legal-teams-managing-yourself-as-gc-with/id1729091694?i=1000750170393", shortEmbed: "zcfux4QPmjs", photo: "" },
+            { ep: 34, year: 2026, date: "February 4, 2026", title: "EP 34: Dan Haley, CLO of Flock Safety: Building & Leading Legal Teams at High-Growth Companies", guest: "Dan Haley", role: "Chief Legal Officer, Flock Safety", duration: "55 min", tags: ["Leadership", "In-house"], summary: "Dan Haley talks through high-growth legal leadership, the transition from firms to in-house, and how privacy and constitutional questions show up inside a fast-scaling public safety company.", spotify: "https://creators.spotify.com/ali-rafie7/episodes/EP-34-Dan-Haley--CLO-of-Flock-Safety-Building--Leading-Legal-Teams-at-High-Growth-Companies-e3ekvup", youtube: "https://youtube.com/shorts/GHqKZmfNylo?feature=share", apple: "https://podcasts.apple.com/in/podcast/ep-34-dan-haley-clo-of-flock-safety-building-leading/id1729091694?i=1000748247619", shortEmbed: "GHqKZmfNylo", photo: "" },
+            { ep: 33, year: 2026, date: "January 19, 2026", title: "EP 33: Building the Future of Legal AI with Justin McCallon, Founder of StrongSuit", guest: "Justin McCallon", role: "Founder and CEO, StrongSuit", duration: "39 min", tags: ["AI", "Legal Tech"], summary: "Justin McCallon breaks down legal AI adoption, product strategy, and where lawyers may see the biggest workflow transformation over the next several years.", spotify: "https://creators.spotify.com/pod/profile/ali-rafie7/episodes/EP-33-Building-the-Future-of-Legal-AI-with-Justin-McCallon--Founder-of-StrongSuit-e3dpbhv", youtube: "[YOUTUBE_EP33_LINK]", apple: "https://podcasts.apple.com/in/podcast/ep-33-building-the-future-of-legal-ai-with/id1729091694?i=1000745755167", shortEmbed: "[YOUTUBE_SHORT_EMBED_EP33]", photo: "" },
+            { ep: 32, year: 2026, date: "January 12, 2026", title: "EP 32: Autonomous Vehicle Regulation: A Conversation with Ian Poirier (Toyota Research Institute)", guest: "Ian Poirier", role: "Associate General Counsel, Toyota Research Institute", duration: "42 min", tags: ["AI", "Career Transitions"], summary: "Ian Poirier explores autonomous vehicle regulation, emerging tech safety questions, and the unconventional career path that led him into robotics and policy work.", spotify: "https://creators.spotify.com/ali-rafie7/episodes/EP-32-Autonomous-Vehicle-Regulation-A-Conversation-with-Ian-Poirier-Toyota-Research-Institute-e3dfmc5", youtube: "[YOUTUBE_EP32_LINK]", apple: "https://podcasts.apple.com/in/podcast/ep-32-autonomous-vehicle-regulation-a-conversation/id1729091694?i=1000744752805", shortEmbed: "[YOUTUBE_SHORT_EMBED_EP32]", photo: "" },
+            { ep: 31, year: 2026, date: "January 1, 2026", title: "EP 31: Coupa CLO Julia Taylor: From BigLaw to Eventbrite's $1.8B IPO", guest: "Julia Taylor", role: "Chief Legal Officer, Coupa", duration: "1 hr", tags: ["In-house", "Career Transitions"], summary: "Julia Taylor reflects on becoming Eventbrite's first lawyer, helping lead the company through its IPO, and what durable in-house leadership really looks like.", spotify: "https://creators.spotify.com/ali-rafie7/episodes/EP-31-Coupa-CLO-Julia-Taylor-From-BigLaw-to-Eventbrites-1-8B-IPO-e3d2jd4", youtube: "https://youtube.com/shorts/_kIypBEuftQ?feature=share", apple: "https://podcasts.apple.com/in/podcast/ep-31-coupa-clo-julia-taylor-from-biglaw-to-eventbrites/id1729091694?i=1000743464287", shortEmbed: "_kIypBEuftQ", photo: "" },
+            { ep: 30, year: 2025, date: "December 3, 2025", title: "EP 30: Reflecting on 15 Years at Microsoft with Jason Barnwell", guest: "Jason Barnwell", role: "Chief Legal Officer, Agiloft", duration: "53 min", tags: ["Leadership", "Legal Tech"], summary: "Jason Barnwell shares lessons from Microsoft, legal department transformation, and why technical fluency increasingly matters inside modern legal teams.", spotify: "https://creators.spotify.com/ali-rafie7/episodes/EP-30-Reflecting-on-15-Years-at-Microsoft-with-Jason-Barnwell-e3bpmf6", youtube: "[YOUTUBE_EP30_LINK]", apple: "https://podcasts.apple.com/in/podcast/ep-30-reflecting-on-15-years-at-microsoft-with-jason/id1729091694?i=1000739543693", shortEmbed: "[YOUTUBE_SHORT_EMBED_EP30]", photo: "" },
+            { ep: 29, year: 2025, date: "August 8, 2025", title: "EP 29: Building a Legal Tech Brand with Colin Levy & Innovating the Future of Law", guest: "Colin Levy", role: "General Counsel, Malbek", duration: "40 min", tags: ["Legal Tech", "AI"], summary: "Colin Levy talks about legal innovation, personal brand building, and how lawyers can position themselves for a profession being reshaped by technology.", spotify: "[SPOTIFY_EP29_LINK]", youtube: "[YOUTUBE_EP29_LINK]", apple: "[APPLE_EP29_LINK]", shortEmbed: "[YOUTUBE_SHORT_EMBED_EP29]", photo: "" },
+            { ep: 28, year: 2025, date: "July 29, 2025", title: "EP 28: The Truth About AI in BigLaw: Why Culture Beats Tech and Veterans Are Leading the Way", guest: "David Cunningham", role: "Chief Innovation Officer, Reed Smith", duration: "39 min", tags: ["AI", "BigLaw"], summary: "David Cunningham explains why legal AI adoption is really about culture, incentives, and behavior change rather than just new tools.", spotify: "[SPOTIFY_EP28_LINK]", youtube: "https://youtube.com/shorts/X_jfJ6PRzcQ?feature=share", apple: "[APPLE_EP28_LINK]", shortEmbed: "X_jfJ6PRzcQ", photo: "" },
+            { ep: 27, year: 2025, date: "July 3, 2025", title: "EP 27: Abboud Chaballout - Founder of Vide Law", guest: "Abboud Chaballout", role: "Founder, Vide Law", duration: "58 min", tags: ["Startups", "Career Transitions"], summary: "Abboud Chaballout shares a nontraditional journey from medicine and entrepreneurship into building a legal practice at the intersection of startups, healthcare, and AI.", spotify: "[SPOTIFY_EP27_LINK]", youtube: "https://youtube.com/shorts/twY78S039Ec?feature=share", apple: "[APPLE_EP27_LINK]", shortEmbed: "twY78S039Ec", photo: "" },
+            { ep: 26, year: 2025, date: "June 20, 2025", title: "EP 26: Reflecting on 1L at Berkeley Law", guest: "Alex Kang, Laith Hourani, Aman Madan", role: "Berkeley Law Students", duration: "49 min", tags: ["Career Transitions", "Leadership"], summary: "A candid conversation about grades, recruiting, social life, and what 1L actually feels like once you move past the polished version.", spotify: "[SPOTIFY_EP26_LINK]", youtube: "https://youtube.com/shorts/Xn16QZ_j8gw?feature=share", apple: "[APPLE_EP26_LINK]", shortEmbed: "Xn16QZ_j8gw", photo: "" },
+            { ep: 25, year: 2025, date: "April 17, 2025", title: "EP 25: Joseph Schohl - 5x Chief Legal Officer / General Counsel & Founder of General Counsel West", guest: "Joseph Schohl", role: "Founder, General Counsel West", duration: "50 min", tags: ["Leadership", "In-house"], summary: "Joseph Schohl talks about rising to the GC seat early, building a strategic advisory practice, and helping lawyers think more like operators.", spotify: "[SPOTIFY_EP25_LINK]", youtube: "https://youtube.com/shorts/zqdYiLMzBhI?feature=share", apple: "[APPLE_EP25_LINK]", shortEmbed: "zqdYiLMzBhI", photo: "" },
+            { ep: 24, year: 2025, date: "April 10, 2025", title: "EP 24: Roger Royse - Partner at Haynes & Boone", guest: "Roger Royse", role: "Partner, Haynes & Boone", duration: "48 min", tags: ["Startups", "BigLaw"], summary: "Roger Royse reflects on startup law, entrepreneurship, and what it takes to build a practice with both resilience and range.", spotify: "[SPOTIFY_EP24_LINK]", youtube: "[YOUTUBE_EP24_LINK]", apple: "[APPLE_EP24_LINK]", shortEmbed: "[YOUTUBE_SHORT_EMBED_EP24]", photo: "" },
+            { ep: 23, year: 2025, date: "March 16, 2025", title: "EP 23: Jon Gavenman - Partner at Cooley", guest: "Jon Gavenman", role: "Partner, Cooley", duration: "37 min", tags: ["Startups", "BigLaw"], summary: "Jon Gavenman shares lessons from decades advising startups and public companies, with a focus on client trust and long-term partnership.", spotify: "[SPOTIFY_EP23_LINK]", youtube: "https://youtube.com/shorts/o6jXO5WMbtY?feature=share", apple: "[APPLE_EP23_LINK]", shortEmbed: "o6jXO5WMbtY", photo: "" },
+            { ep: 22, year: 2025, date: "March 10, 2025", title: "EP 22: Mark Pike - Associate General Counsel at Anthropic", guest: "Mark Pike", role: "Associate General Counsel, Anthropic", duration: "34 min", tags: ["AI", "In-house"], summary: "Mark Pike breaks down product counsel work at a high-growth AI company and how legal teams can support ambitious technical roadmaps without losing perspective on risk.", spotify: "[SPOTIFY_EP22_LINK]", youtube: "https://youtube.com/shorts/xM_Awpi3dLQ?feature=share", apple: "[APPLE_EP22_LINK]", shortEmbed: "xM_Awpi3dLQ", photo: "" },
+            { ep: 21, year: 2025, date: "February 24, 2025", title: "EP 21: Kim Fine & Neil Handwerker - Founders of Ex Judicata", guest: "Kim Fine & Neil Handwerker", role: "Co-Founders, Ex Judicata", duration: "32 min", tags: ["Career Transitions", "Startups"], summary: "The founders of Ex Judicata explain how they built a platform helping attorneys find nontraditional careers that still make strong use of a JD.", spotify: "[SPOTIFY_EP21_LINK]", youtube: "[YOUTUBE_EP21_LINK]", apple: "[APPLE_EP21_LINK]", shortEmbed: "[YOUTUBE_SHORT_EMBED_EP21]", photo: "" },
+            { ep: 20, year: 2025, date: "February 14, 2025", title: "EP 20: Aaron Brogan - Founder of Brogan Law", guest: "Aaron Brogan", role: "Founder, Brogan Law", duration: "40 min", tags: ["Startups", "Career Transitions"], summary: "Aaron Brogan discusses moving from BigLaw litigation into crypto and fintech work and what it took to build a boutique practice around emerging industries.", spotify: "[SPOTIFY_EP20_LINK]", youtube: "[YOUTUBE_EP20_LINK]", apple: "[APPLE_EP20_LINK]", shortEmbed: "[YOUTUBE_SHORT_EMBED_EP20]", photo: "" },
+            { ep: 19, year: 2025, date: "January 30, 2025", title: "EP 19: Kevin Liu - Partner at Goodwin Procter", guest: "Kevin Liu", role: "Partner, Goodwin Procter", duration: "30 min", tags: ["BigLaw", "Legal Tech"], summary: "Kevin Liu talks about blending engineering and law, advising cutting-edge technology companies, and staying close to industries that move fast.", spotify: "[SPOTIFY_EP19_LINK]", youtube: "[YOUTUBE_EP19_LINK]", apple: "[APPLE_EP19_LINK]", shortEmbed: "[YOUTUBE_SHORT_EMBED_EP19]", photo: "" },
+            { ep: 18, year: 2025, date: "January 2, 2025", title: "EP 18: Lindsey Mignano - Founding Partner of SSM", guest: "Lindsey Mignano", role: "Founding Partner, SSM Law", duration: "41 min", tags: ["Startups", "Leadership"], summary: "Lindsey Mignano shares how SSM Law is rethinking corporate legal services with a more flexible, high-touch model for emerging companies.", spotify: "[SPOTIFY_EP18_LINK]", youtube: "[YOUTUBE_EP18_LINK]", apple: "[APPLE_EP18_LINK]", shortEmbed: "[YOUTUBE_SHORT_EMBED_EP18]", photo: "" },
+            { ep: 17, year: 2024, date: "November 22, 2024", title: "EP 17: Simi Raina - Head of Legal at Webflow", guest: "Simi Raina", role: "Head of Legal, Webflow", duration: "39 min", tags: ["In-house", "Leadership"], summary: "Simi Raina reflects on hyper-growth environments, networking, and the realities of leading legal work inside some of Silicon Valley's fastest-scaling companies.", spotify: "[SPOTIFY_EP17_LINK]", youtube: "https://youtube.com/shorts/FuYPLQpe6JY?feature=share", apple: "[APPLE_EP17_LINK]", shortEmbed: "FuYPLQpe6JY", photo: "" },
+            { ep: 16, year: 2024, date: "October 20, 2024", title: "EP 16: Ali Alemozafar - Partner at Wilson Sonsini", guest: "Ali Alemozafar", role: "Partner, Wilson Sonsini", duration: "40 min", tags: ["BigLaw", "Career Transitions"], summary: "Ali Alemozafar discusses his path from chemical engineering and academia into patent law and why STEM backgrounds can become a major advantage in practice.", spotify: "[SPOTIFY_EP16_LINK]", youtube: "https://youtube.com/shorts/YXgzb-BPdhI?feature=share", apple: "[APPLE_EP16_LINK]", shortEmbed: "YXgzb-BPdhI", photo: "" },
+            { ep: 15, year: 2024, date: "September 24, 2024", title: "EP 15: Bradley Krack - Partner at Gunderson Dettmer", guest: "Bradley Krack", role: "Partner, Gunderson Dettmer", duration: "30 min", tags: ["BigLaw", "Startups"], summary: "Bradley Krack talks about discipline, hard work, and advising venture-backed technology companies through financing, IPO, and M&A milestones.", spotify: "[SPOTIFY_EP15_LINK]", youtube: "[YOUTUBE_EP15_LINK]", apple: "[APPLE_EP15_LINK]", shortEmbed: "[YOUTUBE_SHORT_EMBED_EP15]", photo: "" },
+            { ep: 14, year: 2024, date: "September 16, 2024", title: "EP 14: Mehdi Ansari - Partner at Sullivan & Cromwell", guest: "Mehdi Ansari", role: "Partner, Sullivan & Cromwell", duration: "50 min", tags: ["BigLaw", "AI"], summary: "Mehdi Ansari dives into AI, IP, and strategic transaction work while sharing advice on getting uncomfortable and becoming a true business advisor.", spotify: "[SPOTIFY_EP14_LINK]", youtube: "[YOUTUBE_EP14_LINK]", apple: "[APPLE_EP14_LINK]", shortEmbed: "[YOUTUBE_SHORT_EMBED_EP14]", photo: "" },
+            { ep: 13, year: 2024, date: "August 26, 2024", title: "EP 13: First Week at Berkeley Law & Podcast Updates", guest: "Ali Rafie", role: "Host, Legal Leaders Podcast", duration: "5 min", tags: ["Career Transitions", "Leadership"], summary: "A short solo update on starting Berkeley Law, where the show is headed, and a few personal notes from the first week of school.", spotify: "[SPOTIFY_EP13_LINK]", youtube: "[YOUTUBE_EP13_LINK]", apple: "[APPLE_EP13_LINK]", shortEmbed: "[YOUTUBE_SHORT_EMBED_EP13]", photo: "" },
+            { ep: 12, year: 2024, date: "August 17, 2024", title: "EP 12: David Baron - Trial Attorney for 40+ Years & Law Firm Managing Partner", guest: "David Baron", role: "Managing Partner, SBEMP", duration: "33 min", tags: ["Leadership", "BigLaw"], summary: "David Baron looks back on a long trial career, major verdicts, and what it takes to build and sustain a litigation-focused practice over decades.", spotify: "[SPOTIFY_EP12_LINK]", youtube: "[YOUTUBE_EP12_LINK]", apple: "[APPLE_EP12_LINK]", shortEmbed: "[YOUTUBE_SHORT_EMBED_EP12]", photo: "" },
+            { ep: 11, year: 2024, date: "August 9, 2024", title: "EP 11: Matt Samuels - Senior Product Counsel at Databricks", guest: "Matt Samuels", role: "Senior Product Counsel, Databricks", duration: "44 min", tags: ["In-house", "Legal Tech"], summary: "Matt Samuels discusses the move from litigation and clerkships into product counseling and what the in-house path looks like in practice.", spotify: "[SPOTIFY_EP11_LINK]", youtube: "[YOUTUBE_EP11_LINK]", apple: "[APPLE_EP11_LINK]", shortEmbed: "[YOUTUBE_SHORT_EMBED_EP11]", photo: "" },
+            { ep: 10, year: 2024, date: "July 18, 2024", title: "EP 10: Stacy Bratcher - Chief Legal Officer at Cottage Health", guest: "Stacy Bratcher", role: "Chief Legal Officer, Cottage Health", duration: "44 min", tags: ["In-house", "Leadership"], summary: "Stacy Bratcher shares how her healthcare law career developed across policy, firms, academia, and executive legal leadership.", spotify: "[SPOTIFY_EP10_LINK]", youtube: "[YOUTUBE_EP10_LINK]", apple: "[APPLE_EP10_LINK]", shortEmbed: "[YOUTUBE_SHORT_EMBED_EP10]", photo: "" },
+            { ep: 9, year: 2024, date: "July 10, 2024", title: "EP 9: Toney Jacobson - IP Partner at Fenwick & West", guest: "Toney Jacobson", role: "IP Partner, Fenwick & West", duration: "55 min", tags: ["BigLaw", "Career Transitions"], summary: "Toney Jacobson tells a story of perseverance, from struggling graduate-student years to becoming a trusted IP advisor to top technology companies.", spotify: "[SPOTIFY_EP9_LINK]", youtube: "https://youtube.com/shorts/VmVA6wmvegQ?feature=share", apple: "[APPLE_EP9_LINK]", shortEmbed: "VmVA6wmvegQ", photo: "" },
+            { ep: 8, year: 2024, date: "June 22, 2024", title: "EP 8: Ashley Pantuliano - Deputy General Counsel at OpenAI", guest: "Ashley Pantuliano", role: "Deputy General Counsel, OpenAI", duration: "32 min", tags: ["AI", "In-house"], summary: "Ashley Pantuliano covers her path from paralegal to legal leader and what it means to guide product, privacy, and commercial work at scale.", spotify: "[SPOTIFY_EP8_LINK]", youtube: "https://youtube.com/shorts/BiqCttRwDF8?feature=share", apple: "[APPLE_EP8_LINK]", shortEmbed: "BiqCttRwDF8", photo: "" },
+            { ep: 7, year: 2024, date: "March 6, 2024", title: "EP 7: Adam Lovingood - General Counsel at Xero", guest: "Adam Lovingood", role: "General Counsel, Xero", duration: "1 hr 3 min", tags: ["In-house", "Career Transitions"], summary: "Adam Lovingood reflects on an in-house career spanning several industries and how his Berkeley Law background shaped the journey.", spotify: "[SPOTIFY_EP7_LINK]", youtube: "[YOUTUBE_EP7_LINK]", apple: "[APPLE_EP7_LINK]", shortEmbed: "[YOUTUBE_SHORT_EMBED_EP7]", photo: "" },
+            { ep: 6, year: 2024, date: "February 21, 2024", title: "EP 6: Jason Amsel - 15 Years in Big Law to Starting His Own IP Practice", guest: "Jason Amsel", role: "Founder and Principal Attorney, Amsel IP Law", duration: "53 min", tags: ["BigLaw", "Career Transitions"], summary: "Jason Amsel explains the leap from a long BigLaw run into launching an independent IP practice serving startups through growth and exits.", spotify: "[SPOTIFY_EP6_LINK]", youtube: "[YOUTUBE_EP6_LINK]", apple: "[APPLE_EP6_LINK]", shortEmbed: "[YOUTUBE_SHORT_EMBED_EP6]", photo: "" },
+            { ep: 5, year: 2024, date: "February 20, 2024", title: "EP 5: Tifani Sadek - The Importance of Mentorship, Privacy Issues in the Auto Industry, Autonomous Vehicles, Startup Law", guest: "Tifani Sadek", role: "Clinical Assistant Professor of Law, University of Michigan", duration: "54 min", tags: ["Career Transitions", "AI"], summary: "Tifani Sadek brings together mentorship, startup advising, mobility law, and privacy issues in one wide-ranging conversation.", spotify: "[SPOTIFY_EP5_LINK]", youtube: "[YOUTUBE_EP5_LINK]", apple: "[APPLE_EP5_LINK]", shortEmbed: "[YOUTUBE_SHORT_EMBED_EP5]", photo: "" },
+            { ep: 4, year: 2024, date: "February 20, 2024", title: "EP 4: Steve Tonsfeldt - M&A Partner at Cooley", guest: "Steve Tonsfeldt", role: "Partner, Cooley", duration: "49 min", tags: ["BigLaw", "Startups"], summary: "Steve Tonsfeldt shares lessons from decades in M&A, major deal work, and the habits that help younger lawyers build durable careers.", spotify: "[SPOTIFY_EP4_LINK]", youtube: "[YOUTUBE_EP4_LINK]", apple: "[APPLE_EP4_LINK]", shortEmbed: "[YOUTUBE_SHORT_EMBED_EP4]", photo: "" },
+            { ep: 3, year: 2024, date: "February 20, 2024", title: "EP 3: Gabriel Kuris - Harvard Lawyer Turned Law School Admissions Consultant", guest: "Gabriel Kuris", role: "Law School Admissions Consultant", duration: "52 min", tags: ["Career Transitions", "Leadership"], summary: "Gabriel Kuris discusses admissions strategy, legal education, and how he built a career helping applicants aim for top law schools.", spotify: "[SPOTIFY_EP3_LINK]", youtube: "[YOUTUBE_EP3_LINK]", apple: "[APPLE_EP3_LINK]", shortEmbed: "[YOUTUBE_SHORT_EMBED_EP3]", photo: "" },
+            { ep: 2, year: 2024, date: "January 30, 2024", title: "EP 2: My Journey to Berkeley Law", guest: "Ali Rafie", role: "Host, Legal Leaders Podcast", duration: "19 min", tags: ["Career Transitions", "Leadership"], summary: "A solo episode on the LSAT, law school applications, and the road that led to Berkeley Law.", spotify: "[SPOTIFY_EP2_LINK]", youtube: "[YOUTUBE_EP2_LINK]", apple: "[APPLE_EP2_LINK]", shortEmbed: "[YOUTUBE_SHORT_EMBED_EP2]", photo: "" },
+            { ep: 1, year: 2024, date: "January 30, 2024", title: "EP 1: Meet Your Host, Ali Rafie", guest: "Ali Rafie", role: "Host, Legal Leaders Podcast", duration: "11 min", tags: ["Career Transitions", "Leadership"], summary: "An introduction to your background in software sales, the decision to pivot into law, and the thinking behind launching Legal Leaders.", spotify: "[SPOTIFY_EP1_LINK]", youtube: "[YOUTUBE_EP1_LINK]", apple: "[APPLE_EP1_LINK]", shortEmbed: "[YOUTUBE_SHORT_EMBED_EP1]", photo: "" }
+        ];
+
+        const yearSectionConfig = {
+            featured: {
+                title: "Latest Episodes",
+                subtitle: "The newest conversations from Legal Leaders, highlighted first for fast scanning and quick access.",
+                getEpisodes: (episodes) => episodes.slice(0, 6)
+            },
+            2026: {
+                title: "2026 Episodes",
+                subtitle: "The most recent conversations, focused on legal leadership, AI, and high-growth company experience.",
+                getEpisodes: (episodes) => episodes.filter((episode) => episode.year === 2026)
+            },
+            2025: {
+                title: "2025 Episodes",
+                subtitle: "A year of interviews spanning legal tech, startup law, in-house careers, firm leadership, and reflections from Berkeley Law.",
+                getEpisodes: (episodes) => episodes.filter((episode) => episode.year === 2025)
+            },
+            2024: {
+                title: "2024 Episodes",
+                subtitle: "The first wave of conversations that launched the show, from solo episodes to guests across litigation, IP, healthcare, startup law, and legal leadership.",
+                getEpisodes: (episodes) => episodes.filter((episode) => episode.year === 2024)
+            }
+        };
+
+        function isPlaceholder(value) {
+            return !value || /^\[.*\]$/.test(value);
+        }
+
+        function safeUrl(value) {
+            return isPlaceholder(value) ? "#" : value;
+        }
+
+        function extractInitials(name) {
+            return name
+                .replace(/[^A-Za-z0-9& ]/g, "")
+                .split(/[\s&]+/)
+                .filter(Boolean)
+                .slice(0, 2)
+                .map((part) => part[0])
+                .join("")
+                .toUpperCase();
+        }
+
+        function avatarToneClass(episode) {
+            const tones = ["#1D9BF0", "#00B4D8", "#8260FF", "#FF8C00"];
+            return tones[episode.ep % tones.length];
+        }
+
+        function tagClass(tag) {
+            return `tag-${tag.toLowerCase().replace(/[^a-z]+/g, "-")}`;
+        }
+
+        function buildShortEmbed(shortEmbed) {
+            if (isPlaceholder(shortEmbed)) {
+                return "";
+            }
+            if (shortEmbed.includes("youtube.com/embed/")) {
+                return shortEmbed;
+            }
+            return `https://www.youtube.com/embed/${shortEmbed}`;
+        }
+
+        function renderMedia(episode) {
+            const embedSrc = buildShortEmbed(episode.shortEmbed);
+            if (embedSrc) {
+                return `
+                    <iframe class="episode-short" width="200" height="355"
+                        src="${embedSrc}"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                `;
+            }
+
+            return `
+                <div class="episode-short-placeholder">
+                    <div class="short-placeholder-label">YouTube Short</div>
+                    <div>Embed coming soon</div>
+                </div>
+            `;
+        }
+
+        function renderLink(label, url, variant) {
+            const disabled = isPlaceholder(url);
+            if (disabled) {
+                return "";
+            }
+            return `
+                <a class="podcast-button ${variant}" href="${safeUrl(url)}" target="_blank">${label}</a>
+            `;
+        }
+
+        function renderEpisodeCard(episode) {
+            const initials = extractInitials(episode.guest);
+            const avatar = episode.photo
+                ? `<img class="episode-avatar" src="${episode.photo}" alt="${episode.guest}">`
+                : `<div class="episode-avatar-fallback" style="background:${avatarToneClass(episode)}">${initials}</div>`;
+
+            return `
+                <article class="episode-card">
+                    <div class="episode-avatar-wrap">
+                        <span class="episode-badge">EP ${episode.ep}</span>
+                        ${avatar}
+                    </div>
+                    <div class="episode-content">
+                        ${
+                            isPlaceholder(episode.spotify)
+                                ? `<span class="episode-title">${episode.title}</span>`
+                                : `<a class="episode-title" href="${safeUrl(episode.spotify)}" target="_blank">${episode.title}</a>`
+                        }
+                        <div class="episode-guest">${episode.guest} • ${episode.role}</div>
+                        <div class="episode-meta-line">${episode.date} • ${episode.duration}</div>
+                        <div class="episode-tags">
+                            ${episode.tags.map((tag) => `<span class="topic-tag ${tagClass(tag)}">${tag}</span>`).join("")}
+                        </div>
+                        <p class="episode-summary">${episode.summary}</p>
+                        <div class="episode-links">
+                            ${renderLink("Listen on Spotify", episode.spotify, "primary")}
+                            ${renderLink("Watch on YouTube", episode.youtube, "secondary")}
+                            ${renderLink("Apple Podcasts", episode.apple, "secondary")}
+                        </div>
+                    </div>
+                    <div class="episode-media">
+                        ${renderMedia(episode)}
+                    </div>
+                </article>
+            `;
+        }
+
+        function renderSection(containerId, config, episodes) {
+            const container = document.getElementById(containerId);
+            const sectionEpisodes = config.getEpisodes(episodes);
+
+            container.innerHTML = `
+                <div class="section-heading-row">
+                    <div>
+                        <h3>${config.title}</h3>
+                        <p class="section-subtitle">${config.subtitle}</p>
+                    </div>
+                    <div class="section-count">${config.title} (${sectionEpisodes.length})</div>
+                </div>
+                <div class="section-rule"></div>
+                ${
+                    sectionEpisodes.length
+                        ? `<div class="episode-list" style="margin-top: 2rem;">${sectionEpisodes.map(renderEpisodeCard).join("")}</div>`
+                        : `<div class="podcast-empty" style="margin-top: 2rem;">No episodes match the current search or topic filter.</div>`
+                }
+            `;
+        }
+
+        function applyPodcastFilters() {
+            const searchValue = document.getElementById("podcast-search").value.trim().toLowerCase();
+            const topicValue = document.getElementById("podcast-topic-filter").value;
+
+            const filteredEpisodes = podcastEpisodes.filter((episode) => {
+                const matchesSearch = !searchValue || [
+                    episode.title,
+                    episode.guest,
+                    episode.role,
+                    episode.summary,
+                    episode.date,
+                    episode.tags.join(" "),
+                    `EP ${episode.ep}`
+                ].join(" ").toLowerCase().includes(searchValue);
+
+                const matchesTopic = topicValue === "all" || episode.tags.includes(topicValue);
+                return matchesSearch && matchesTopic;
+            });
+
+            renderSection("podcast-featured", yearSectionConfig.featured, filteredEpisodes);
+            renderSection("podcast-2026", yearSectionConfig[2026], filteredEpisodes);
+            renderSection("podcast-2025", yearSectionConfig[2025], filteredEpisodes);
+            renderSection("podcast-2024", yearSectionConfig[2024], filteredEpisodes);
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const hash = window.location.hash.replace('#', '');
+            if (hash && document.getElementById(hash)) {
+                showSection(hash);
+            } else {
+                document.body.classList.add('about-mode');
+            }
+
+            applyPodcastFilters();
+
+            document.getElementById("podcast-search").addEventListener("input", applyPodcastFilters);
+            document.getElementById("podcast-topic-filter").addEventListener("change", applyPodcastFilters);
+        });
+    </script>
 </body>
 </html>
