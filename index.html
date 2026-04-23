@@ -1543,12 +1543,12 @@
     </style>
 </head>
 <body>
-    <nav class="navbar">
-        <a href="#about" onclick="showSection('about')">About Me</a>
-        <a href="#podcast" onclick="showSection('podcast')">Podcast</a>
-        <a href="#consulting" onclick="showSection('consulting')">Consulting</a>
-        <a href="#contact" onclick="showSection('contact')">Contact</a>
-    </nav>
+        <nav class="navbar">
+            <a href="#about" onclick="showSection('about'); return false;">About Me</a>
+            <a href="#podcast" onclick="showSection('podcast'); return false;">Podcast</a>
+            <a href="#consulting" onclick="showSection('consulting'); return false;">Consulting</a>
+            <a href="#contact" onclick="showSection('contact'); return false;">Contact</a>
+        </nav>
     <div class="container">
         <section id="about" class="section active about-section">
             <div class="about-hero">
@@ -1838,6 +1838,7 @@
             } else if (sectionId === 'contact') {
                 document.body.classList.add('contact-mode');
             }
+            window.scrollTo({ top: 0, behavior: 'auto' });
         }
         const podcastEpisodes = [
             { ep: 35, year: 2026, date: "February 17, 2026", title: "EP 35: Leading Legal Teams & Managing Yourself as GC with Executive Coach Dennis Adsit", guest: "Dennis Adsit", role: "Executive Coach, Adsum Insights", duration: "42 min", tags: ["Leadership", "In-house"], summary: "Dennis Adsit shares frameworks for communicating business impact, building stronger legal teams, and making the leap from individual contributor to GC-level leadership.", spotify: "https://creators.spotify.com/ali-rafie7/episodes/EP-35-Leading-Legal-Teams--Managing-Yourself-as-GC-with-Executive-Coach-Dennis-Adsit-e3f6os7", youtube: "https://youtu.be/zcfux4QPmjs", apple: "https://podcasts.apple.com/in/podcast/ep-35-leading-legal-teams-managing-yourself-as-gc-with/id1729091694?i=1000750170393", shortEmbed: "zcfux4QPmjs", photo: "" },
