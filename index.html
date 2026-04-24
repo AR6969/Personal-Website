@@ -347,6 +347,39 @@
             color: #b8c0cb;
             line-height: 1.7;
         }
+        .about-company-stack {
+            display: grid;
+            gap: 1rem;
+        }
+        .about-company-block {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            gap: 0.7rem;
+            align-items: start;
+        }
+        .about-company-header {
+            display: flex;
+            align-items: center;
+            gap: 0.9rem;
+            flex-wrap: wrap;
+        }
+        .about-company-logo {
+            display: block;
+            width: auto;
+            max-width: 130px;
+            height: 28px;
+            object-fit: contain;
+        }
+        .about-company-stack {
+            margin-top: 0.25rem;
+        }
+        .about-card.sales-card .role {
+            color: #e3d6b8;
+        }
+        .about-card.sales-card .company {
+            margin-top: 0;
+            margin-bottom: 0;
+        }
         .about-section .connect-links {
             display: flex;
             flex-wrap: wrap;
@@ -388,6 +421,13 @@
             .about-section .profile-img {
                 width: min(95vw, 320px);
                 height: auto;
+            }
+            .about-company-block {
+                grid-template-columns: 1fr;
+            }
+            .about-company-logo {
+                max-width: 120px;
+                height: 26px;
             }
         }
         .about-section h2 {
@@ -841,6 +881,39 @@
         }
         .podcast-button.disabled {
             opacity: 0.65;
+        }
+        .podcast-button.brand-button {
+            gap: 0.55rem;
+        }
+        .podcast-button.brand-spotify {
+            background: #1db954;
+            border-color: #1db954;
+            color: #07150d;
+        }
+        .podcast-button.brand-spotify:hover {
+            background: #18a64a;
+        }
+        .podcast-button.brand-youtube {
+            background: linear-gradient(135deg, #fff1ed, #ffe2dc);
+            border-color: rgba(228, 117, 96, 0.35);
+            color: #a64234;
+        }
+        .podcast-button.brand-youtube:hover {
+            background: linear-gradient(135deg, #ffe8e2, #ffd7cf);
+        }
+        .podcast-button.brand-apple {
+            background: linear-gradient(135deg, #fcf9ff, #f2ecff);
+            border-color: rgba(167, 132, 239, 0.3);
+            color: #6e4db5;
+        }
+        .podcast-button.brand-apple:hover {
+            background: linear-gradient(135deg, #f8f2ff, #ebe2ff);
+        }
+        .podcast-button .button-icon {
+            width: 18px;
+            height: 18px;
+            display: inline-block;
+            flex: 0 0 auto;
         }
         .podcast-empty {
             padding: 1.5rem;
@@ -1619,23 +1692,51 @@
                 <div class="about-card education-card">
                     <div class="section-title">Education &amp; Current Roles</div>
                     <ul>
-                        <li>2L at UC Berkeley School of Law (Class of 2027)</li>
-                        <li>Summer Associate, Cooley LLP Palo Alto (2026), Cooley Diversity Scholar</li>
+                        <li>2L at UC Berkeley School of Law, focused on startups, private companies, corporate law, and legal career strategy</li>
+                        <li>2L Cooley LLP, Palo Alto, Cooley Diversity Scholar</li>
+                        <li>1L Goodwin Procter, Silicon Valley, Goodwin Fellowship</li>
                         <li>Managing Editor, Berkeley Business Law Journal</li>
                         <li>President, <a href="https://www.linkedin.com/company/ai-at-berkeley-law" target="_blank">AI @ Berkeley Law</a></li>
-                        <li>Goodwin Fellowship / Diversity Scholar, Goodwin Procter Silicon Valley (1L Summer 2025)</li>
+                        <li>Legal Intern, Plug and Play Ventures</li>
                     </ul>
                 </div>
                 <div class="about-card sales-card">
                     <div class="section-title">Sales Background</div>
-                    <div class="company">Samsara (Pre-IPO, 2019-2021)</div>
-                    <div class="role">Account Executive selling IoT fleet management and industrial safety solutions (Ticker: IOT, now a $15B+ public company).</div>
-                    <div class="company">Productiv (2021-2023)</div>
-                    <div class="role">Account Executive for a SaaS management platform selling to IT and procurement leaders at mid-market and enterprise companies.</div>
-                    <ul class="sales-list">
-                        <li>Notable deals at Productiv included Verkada, the LA Clippers, Reddit, Brex, and Gong.</li>
-                        <li>Earlier role: Business Development at GoGoGrandparent (YC 17).</li>
-                    </ul>
+                    <div class="about-company-stack">
+                        <div class="about-company-block">
+                            <div class="company">Axe Automation (2023-2024)</div>
+                            <div class="about-company-copy">
+                                <div class="role">First go-to-market hire, helping take the company from no revenue to $80K MRR while building the sales process and funnel from the ground up, defining the target market, refining positioning and messaging, making early hires, and standing up the broader GTM function.</div>
+                            </div>
+                        </div>
+                        <div class="about-company-block">
+                            <div class="company">Productiv (2021-2023)</div>
+                            <div class="about-company-copy">
+                                <div class="role">Account Executive for a SaaS management platform backed by Accel and Norwest Ventures, selling to IT and procurement leaders at mid-market and enterprise companies.</div>
+                                <ul class="sales-list">
+                                    <li>Closed deals with 13 of the Forbes Cloud 100 companies.</li>
+                                    <li>Notable deals at Productiv included Verkada, the LA Clippers, Reddit, Brex, and Gong.</li>
+                                    <li>President's Club, MVP Award, Rookie of the Year, and Consistency Award.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="about-company-block">
+                            <div class="company">Samsara (Pre-IPO, 2018-2021)</div>
+                            <div class="about-company-copy">
+                                <div class="role">Account Executive selling IoT fleet management and industrial safety solutions (Ticker: IOT, now a $15B+ public company).</div>
+                                <ul class="sales-list">
+                                    <li>Promoted consistently and served as a team lead.</li>
+                                    <li>Winner's Circle.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="about-company-block">
+                            <div class="company">GoGoGrandparent (YC 17)</div>
+                            <div class="about-company-copy">
+                                <div class="role">Business Development supporting growth initiatives at a Y Combinator-backed company serving older adults and caregivers.</div>
+                            </div>
+                        </div>
+                    </div>
                     <p>This background taught me negotiation, stakeholder management, and how to position value, skills I now apply to legal career consulting.</p>
                 </div>
                 <div class="about-card podcast-card">
@@ -1679,9 +1780,9 @@
                             <span class="podcast-stat-chip">Host: Ali Rafie</span>
                         </div>
                         <div class="podcast-actions" style="margin-top: 1.5rem;">
-                            <a class="podcast-button primary" href="https://open.spotify.com/show/1u63TqRwYn2BxmLv1C9Q7E" target="_blank">Listen on Spotify</a>
-                            <a class="podcast-button secondary" href="https://www.youtube.com/@LegalLeadersPodcast" target="_blank">Watch on YouTube</a>
-                            <a class="podcast-button secondary" href="https://podcasts.apple.com/us/podcast/legal-leaders/id1729091694" target="_blank">Apple Podcasts</a>
+                            <a class="podcast-button brand-button brand-spotify" href="https://open.spotify.com/show/1u63TqRwYn2BxmLv1C9Q7E" target="_blank"><svg class="button-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.503 17.314a.75.75 0 0 1-1.032.248c-2.827-1.728-6.386-2.119-10.579-1.16a.75.75 0 0 1-.334-1.462c4.59-1.049 8.53-.607 11.696 1.328a.75.75 0 0 1 .249 1.046zm1.475-3.282a.938.938 0 0 1-1.289.309c-3.238-1.99-8.173-2.568-12-1.406a.938.938 0 0 1-.544-1.795c4.373-1.326 9.804-.68 13.526 1.607a.938.938 0 0 1 .307 1.285zm.126-3.416c-3.882-2.305-10.292-2.517-13.998-1.41a1.125 1.125 0 1 1-.643-2.156c4.255-1.271 11.333-1.024 15.791 1.621a1.125 1.125 0 0 1-1.15 1.945z"/></svg>Listen on Spotify</a>
+                            <a class="podcast-button brand-button brand-youtube" href="https://www.youtube.com/@LegalLeadersPodcast" target="_blank"><svg class="button-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a2.997 2.997 0 0 0-2.11-2.12C19.514 3.5 12 3.5 12 3.5s-7.514 0-9.388.566a2.997 2.997 0 0 0-2.11 2.12C0 8.071 0 12 0 12s0 3.929.502 5.814a2.997 2.997 0 0 0 2.11 2.12C4.486 20.5 12 20.5 12 20.5s7.514 0 9.388-.566a2.997 2.997 0 0 0 2.11-2.12C24 15.929 24 12 24 12s0-3.929-.502-5.814zM9.75 15.568V8.432L15.955 12 9.75 15.568z"/></svg>Watch on YouTube</a>
+                            <a class="podcast-button brand-button brand-apple" href="https://podcasts.apple.com/us/podcast/legal-leaders/id1729091694" target="_blank"><svg class="button-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5" fill="#A855F7"/><circle cx="12" cy="8.15" r="1.35" fill="#FFFFFF"/><path d="M12 10.8a3.15 3.15 0 0 0-3.15 3.15v2.65a.8.8 0 1 0 1.6 0v-2.65a1.55 1.55 0 1 1 3.1 0v2.65a.8.8 0 1 0 1.6 0v-2.65A3.15 3.15 0 0 0 12 10.8Z" fill="#FFFFFF"/><path d="M12 6.15A5.85 5.85 0 0 0 6.15 12a.8.8 0 1 0 1.6 0 4.25 4.25 0 1 1 8.5 0 .8.8 0 1 0 1.6 0A5.85 5.85 0 0 0 12 6.15Z" fill="#FFFFFF" opacity="0.92"/></svg>Apple Podcasts</a>
                         </div>
                     </div>
                 </div>
@@ -2009,13 +2110,39 @@
             `;
         }
 
+        function platformButtonClass(label, variant) {
+            if (label.includes("Spotify")) {
+                return `brand-button brand-spotify ${variant}`;
+            }
+            if (label.includes("YouTube")) {
+                return `brand-button brand-youtube ${variant}`;
+            }
+            if (label.includes("Apple")) {
+                return `brand-button brand-apple ${variant}`;
+            }
+            return variant;
+        }
+
+        function platformButtonIcon(label) {
+            if (label.includes("Spotify")) {
+                return `<svg class="button-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.503 17.314a.75.75 0 0 1-1.032.248c-2.827-1.728-6.386-2.119-10.579-1.16a.75.75 0 0 1-.334-1.462c4.59-1.049 8.53-.607 11.696 1.328a.75.75 0 0 1 .249 1.046zm1.475-3.282a.938.938 0 0 1-1.289.309c-3.238-1.99-8.173-2.568-12-1.406a.938.938 0 0 1-.544-1.795c4.373-1.326 9.804-.68 13.526 1.607a.938.938 0 0 1 .307 1.285zm.126-3.416c-3.882-2.305-10.292-2.517-13.998-1.41a1.125 1.125 0 1 1-.643-2.156c4.255-1.271 11.333-1.024 15.791 1.621a1.125 1.125 0 0 1-1.15 1.945z"/></svg>`;
+            }
+            if (label.includes("YouTube")) {
+                return `<svg class="button-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a2.997 2.997 0 0 0-2.11-2.12C19.514 3.5 12 3.5 12 3.5s-7.514 0-9.388.566a2.997 2.997 0 0 0-2.11 2.12C0 8.071 0 12 0 12s0 3.929.502 5.814a2.997 2.997 0 0 0 2.11 2.12C4.486 20.5 12 20.5 12 20.5s7.514 0 9.388-.566a2.997 2.997 0 0 0 2.11-2.12C24 15.929 24 12 24 12s0-3.929-.502-5.814zM9.75 15.568V8.432L15.955 12 9.75 15.568z"/></svg>`;
+            }
+            if (label.includes("Apple")) {
+                return `<svg class="button-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5" fill="#A855F7"/><circle cx="12" cy="8.15" r="1.35" fill="#FFFFFF"/><path d="M12 10.8a3.15 3.15 0 0 0-3.15 3.15v2.65a.8.8 0 1 0 1.6 0v-2.65a1.55 1.55 0 1 1 3.1 0v2.65a.8.8 0 1 0 1.6 0v-2.65A3.15 3.15 0 0 0 12 10.8Z" fill="#FFFFFF"/><path d="M12 6.15A5.85 5.85 0 0 0 6.15 12a.8.8 0 1 0 1.6 0 4.25 4.25 0 1 1 8.5 0 .8.8 0 1 0 1.6 0A5.85 5.85 0 0 0 12 6.15Z" fill="#FFFFFF" opacity="0.92"/></svg>`;
+            }
+            return "";
+        }
+
         function renderLink(label, url, variant) {
             const disabled = isPlaceholder(url);
             if (disabled) {
                 return "";
             }
             return `
-                <a class="podcast-button ${variant}" href="${safeUrl(url)}" target="_blank">${label}</a>
+                <a class="podcast-button ${platformButtonClass(label, variant)}" href="${safeUrl(url)}" target="_blank">${platformButtonIcon(label)}${label}</a>
             `;
         }
 
