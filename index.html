@@ -1673,10 +1673,10 @@
 </head>
 <body>
         <nav class="navbar">
-            <a href="#about" onclick="showSection('about'); return false;">About Me</a>
-            <a href="#podcast" onclick="showSection('podcast'); return false;">Podcast</a>
-            <a href="consulting.html">Consulting</a>
-            <a href="#contact" onclick="showSection('contact'); return false;">Contact</a>
+            <a href="/#about">About Me</a>
+            <a href="/#podcast">Podcast</a>
+            <a href="/consulting.html">Consulting</a>
+            <a href="/#contact">Contact</a>
         </nav>
     <div class="container">
         <section id="about" class="section active about-section">
@@ -1751,7 +1751,7 @@
                     <div class="company">Host of the <a href="https://open.spotify.com/show/1u63TqRwYn2BxmLv1C9Q7E" target="_blank">Legal Leaders Podcast</a></div>
                     <p>I reach out to successful legal leaders, legal tech founders, in-house counsel, and adjacent operators to interview them about their careers, lessons learned, decision-making, and how they built standout paths in and around the legal industry.</p>
                     <ul class="podcast-list">
-                        <li>35 episodes and growing with Chief Legal Officers, General Counsels, founders, and law firm leaders.</li>
+                        <li>37 episodes and growing with Chief Legal Officers, General Counsels, founders, and law firm leaders.</li>
                         <li>Topics include career transitions, legal leadership, in-house strategy, legal tech, startups, and AI in law.</li>
                         <li>Recent guests include leaders from Flock Safety, Coupa, Toyota Research Institute, Microsoft, Anthropic, OpenAI, Cooley, and Sullivan &amp; Cromwell.</li>
                     </ul>
@@ -1783,7 +1783,7 @@
                         <h2>Legal Leaders Podcast</h2>
                         <p class="podcast-subtitle">Conversations with Chief Legal Officers, General Counsels, founders, and law firm leaders on building standout legal careers.</p>
                         <div class="podcast-stat-row">
-                            <span class="podcast-stat-chip">35 episodes</span>
+                            <span class="podcast-stat-chip">37 episodes</span>
                             <span class="podcast-stat-chip">Host: Ali Rafie</span>
                         </div>
                         <div class="podcast-actions" style="margin-top: 1.5rem;">
@@ -1983,6 +1983,9 @@
     </div>
     <script>
         function showSection(sectionId) {
+            if (!document.getElementById(sectionId)) {
+                sectionId = 'about';
+            }
             document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
             document.getElementById(sectionId).classList.add('active');
             document.body.classList.remove('about-mode', 'consulting-mode', 'contact-mode');
@@ -1995,8 +1998,14 @@
             }
             window.scrollTo({ top: 0, behavior: 'auto' });
         }
+
+        function showSectionFromHash() {
+            const sectionId = window.location.hash.replace('#', '') || 'about';
+            showSection(sectionId);
+        }
         const podcastEpisodes = [
-            { ep: 36, year: 2026, date: "Newest episode", title: "EP 36: From Employment Lawyer to CLO of Eventbrite - Leading Through IPO, Pandemic, and $500M Exit", guest: "Lisa Gorman", role: "General Counsel, Eventbrite", duration: "", tags: ["In-house", "Leadership"], summary: "Lisa Gorman reflects on her path from employment law into leading Eventbrite's legal function through major moments including its IPO-era growth, pandemic disruption, and sale process.", spotify: "https://open.spotify.com/episode/2SF1fgXeqZFE8o10JwKUHZ", youtube: "https://www.youtube.com/watch?v=60S7xkMpJdQ", apple: "[APPLE_EP36_LINK]", shortEmbed: "_kIypBEuftQ", photo: "" },
+            { ep: 37, year: 2026, date: "May 9, 2026", title: "EP 37: How to Build a Successful Career in Law: Insights from Dina Segal, CLO of Gusto", guest: "Dina Segal", role: "Chief Legal Officer, Gusto", duration: "36 min", tags: ["In-house", "Leadership", "AI"], summary: "Dina Segal discusses her path from BigLaw into high-growth technology leadership, building legal, compliance, and government affairs teams, and how modern lawyers can grow by understanding the business and approaching pivots with a learning mindset.", spotify: "[SPOTIFY_EP37_LINK]", youtube: "https://youtube.com/shorts/LLl9LY6YhP0?si=trWOMrUPkDKlwR7B", apple: "https://podcasts.apple.com/us/podcast/legal-leaders/id1729091694", shortEmbed: "LLl9LY6YhP0", photo: "https://images.squarespace-cdn.com/content/v1/58a78a0f1e5b6ce697cf110c/1595467226544-NNIQD62FQZ3PF8ISUV4J/Dina%2BSegal%2BPhoto.jpg", photoPosition: "center 22%" },
+            { ep: 36, year: 2026, date: "April 3, 2026", title: "EP 36: From Employment Lawyer to CLO of Eventbrite - Leading Through IPO, Pandemic, and $500M Exit", guest: "Lisa Gorman", role: "General Counsel, Eventbrite", duration: "31 min", tags: ["In-house", "Leadership"], summary: "Lisa Gorman reflects on her path from employment law into leading Eventbrite's legal function through major moments including its IPO-era growth, pandemic disruption, and sale process.", spotify: "https://open.spotify.com/episode/2SF1fgXeqZFE8o10JwKUHZ", youtube: "https://www.youtube.com/watch?v=60S7xkMpJdQ", apple: "[APPLE_EP36_LINK]", shortEmbed: "_kIypBEuftQ", photo: "" },
             { ep: 35, year: 2026, date: "February 17, 2026", title: "EP 35: Leading Legal Teams & Managing Yourself as GC with Executive Coach Dennis Adsit", guest: "Dennis Adsit", role: "Executive Coach, Adsum Insights", duration: "42 min", tags: ["Leadership", "In-house"], summary: "Dennis Adsit shares frameworks for communicating business impact, building stronger legal teams, and making the leap from individual contributor to GC-level leadership.", spotify: "https://creators.spotify.com/ali-rafie7/episodes/EP-35-Leading-Legal-Teams--Managing-Yourself-as-GC-with-Executive-Coach-Dennis-Adsit-e3f6os7", youtube: "https://youtu.be/zcfux4QPmjs", apple: "https://podcasts.apple.com/in/podcast/ep-35-leading-legal-teams-managing-yourself-as-gc-with/id1729091694?i=1000750170393", shortEmbed: "zcfux4QPmjs", photo: "https://d1yei2z3i6k35z.cloudfront.net/13345431/687fb0b8c5d82_1a83c23-41af-182-38a0-3671f00ba7f_0254ae9a-5d45-4854-b5c4-c6d214e80087.jpeg", photoPosition: "center 24%" },
             { ep: 34, year: 2026, date: "February 4, 2026", title: "EP 34: Dan Haley, CLO of Flock Safety: Building & Leading Legal Teams at High-Growth Companies", guest: "Dan Haley", role: "Chief Legal Officer, Flock Safety", duration: "55 min", tags: ["Leadership", "In-house"], summary: "Dan Haley talks through high-growth legal leadership, the transition from firms to in-house, and how privacy and constitutional questions show up inside a fast-scaling public safety company.", spotify: "https://creators.spotify.com/ali-rafie7/episodes/EP-34-Dan-Haley--CLO-of-Flock-Safety-Building--Leading-Legal-Teams-at-High-Growth-Companies-e3ekvup", youtube: "https://youtube.com/shorts/GHqKZmfNylo?feature=share", apple: "https://podcasts.apple.com/in/podcast/ep-34-dan-haley-clo-of-flock-safety-building-leading/id1729091694?i=1000748247619", shortEmbed: "GHqKZmfNylo", photo: "" },
             { ep: 33, year: 2026, date: "January 19, 2026", title: "EP 33: Building the Future of Legal AI with Justin McCallon, Founder of StrongSuit", guest: "Justin McCallon", role: "Founder and CEO, StrongSuit", duration: "39 min", tags: ["AI", "Legal Tech"], summary: "Justin McCallon breaks down legal AI adoption, product strategy, and where lawyers may see the biggest workflow transformation over the next several years.", spotify: "https://creators.spotify.com/pod/profile/ali-rafie7/episodes/EP-33-Building-the-Future-of-Legal-AI-with-Justin-McCallon--Founder-of-StrongSuit-e3dpbhv", youtube: "https://youtu.be/IxRyZ9jppOo?si=LjJ64hvjRR0zHZ59", apple: "https://podcasts.apple.com/in/podcast/ep-33-building-the-future-of-legal-ai-with/id1729091694?i=1000745755167", shortEmbed: "IxRyZ9jppOo", photo: "https://strongsuit.com/wp-content/uploads/2026/02/Justin-McCallon-Founder-CEO-300x300.webp" },
@@ -2234,18 +2243,15 @@
         }
 
         window.addEventListener('DOMContentLoaded', () => {
-            const hash = window.location.hash.replace('#', '');
-            if (hash && document.getElementById(hash)) {
-                showSection(hash);
-            } else {
-                document.body.classList.add('about-mode');
-            }
+            showSectionFromHash();
 
             applyPodcastFilters();
 
             document.getElementById("podcast-search").addEventListener("input", applyPodcastFilters);
             document.getElementById("podcast-topic-filter").addEventListener("change", applyPodcastFilters);
         });
+
+        window.addEventListener('hashchange', showSectionFromHash);
     </script>
 </body>
 </html>
