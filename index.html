@@ -1674,7 +1674,7 @@
 <body>
         <nav class="navbar">
             <a href="/#about">About Me</a>
-            <a href="/#podcast">Podcast</a>
+            <a href="/podcast/">Podcast</a>
             <a href="/consulting.html">Consulting</a>
             <a href="/#contact">Contact</a>
         </nav>
@@ -2000,7 +2000,8 @@
         }
 
         function showSectionFromHash() {
-            const sectionId = window.location.hash.replace('#', '') || 'about';
+            const pathSection = window.location.pathname.replace(/^\/|\/$/g, '');
+            const sectionId = window.location.hash.replace('#', '') || pathSection || 'about';
             showSection(sectionId);
         }
         const podcastEpisodes = [
