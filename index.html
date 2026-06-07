@@ -847,6 +847,29 @@
             margin-top: 1rem;
             align-items: center;
         }
+        .episode-feature-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+            margin-top: 0.85rem;
+        }
+        .episode-feature-link {
+            display: inline-flex;
+            align-items: center;
+            min-height: 40px;
+            padding: 0.65rem 0.9rem;
+            border-radius: 8px;
+            border: 1px solid rgba(203, 170, 104, 0.26);
+            background: rgba(203, 170, 104, 0.1);
+            color: #f2dba9;
+            font-size: 0.86rem;
+            font-weight: 700;
+            text-decoration: none;
+        }
+        .episode-feature-link:hover {
+            border-color: rgba(203, 170, 104, 0.44);
+            background: rgba(203, 170, 104, 0.16);
+        }
         .podcast-button {
             display: inline-flex;
             align-items: center;
@@ -928,6 +951,58 @@
             background: linear-gradient(135deg, rgba(29, 155, 240, 0.12), rgba(0, 180, 216, 0.08));
             border: 1px solid rgba(29, 155, 240, 0.2);
             border-radius: 18px;
+        }
+        .podcast-press-card,
+        .consulting-feature-card {
+            margin-top: 3rem;
+            padding: 1.7rem 1.8rem;
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(203, 170, 104, 0.18);
+        }
+        .podcast-press-card h3,
+        .consulting-feature-card h3 {
+            margin: 0 0 0.75rem 0;
+            font-size: 1.55rem;
+        }
+        .podcast-press-card p,
+        .consulting-feature-card p {
+            margin: 0 0 1rem 0;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            max-width: 820px;
+        }
+        .feature-link-card {
+            display: block;
+            padding: 1rem;
+            border-radius: 12px;
+            border: 1px solid rgba(29, 155, 240, 0.22);
+            background: rgba(29, 155, 240, 0.08);
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+        .feature-link-card:hover {
+            border-color: rgba(29, 155, 240, 0.42);
+            background: rgba(29, 155, 240, 0.12);
+        }
+        .feature-link-card span {
+            display: block;
+            margin-bottom: 0.4rem;
+            color: var(--accent-2);
+            font-size: 0.76rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+        .feature-link-card strong {
+            display: block;
+            margin-bottom: 0.4rem;
+            font-size: 1rem;
+            line-height: 1.4;
+        }
+        .feature-link-card p {
+            margin: 0;
+            font-size: 0.92rem;
         }
         .subscribe-card h3 {
             margin: 0 0 0.75rem 0;
@@ -1034,6 +1109,22 @@
             background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(246, 248, 251, 0.96));
             border-color: rgba(31, 62, 96, 0.1);
             box-shadow: 0 16px 36px rgba(37, 48, 59, 0.06);
+        }
+        body.consulting-mode .consulting-feature-card {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(246, 248, 251, 0.96));
+            border-color: rgba(31, 62, 96, 0.1);
+            box-shadow: 0 16px 36px rgba(37, 48, 59, 0.06);
+        }
+        body.consulting-mode .consulting-feature-card p {
+            color: #52606d;
+        }
+        body.consulting-mode .consulting-feature-card .feature-link-card {
+            background: rgba(31, 62, 96, 0.06);
+            border-color: rgba(31, 62, 96, 0.12);
+            color: #1f2f3d;
+        }
+        body.consulting-mode .consulting-feature-card .feature-link-card span {
+            color: #8e6b2f;
         }
         .consulting-proof h3 {
             margin: 0 0 1rem 0;
@@ -1812,6 +1903,16 @@
 
                 <div id="podcast-all" class="section-block"></div>
 
+                <div class="podcast-press-card">
+                    <h3>Podcast Reviews &amp; Press</h3>
+                    <p>Independent coverage and reviews of Legal Leaders and featured conversations from the show.</p>
+                    <a class="feature-link-card" href="https://elevatesociety.com/legal-leaders-podcast-review/" target="_blank">
+                        <span>Podcast Review</span>
+                        <strong>Elevate Society review of Legal Leaders Podcast</strong>
+                        <p>A third-party review covering the show, its focus, and the career conversations behind Legal Leaders.</p>
+                    </a>
+                </div>
+
                 <div class="subscribe-card">
                     <h3>Never miss an episode</h3>
                     <p>Drop in your email below for a future subscribe workflow, or follow Legal Leaders on the platforms you already use.</p>
@@ -1846,6 +1947,15 @@
                     <p>I was fortunate to secure both a 1L and 2L BigLaw summer offer in my top offices, and both came with diversity fellowship / DEI scholarship awards totaling $100K. I also currently mentor many 1Ls and incoming law students and genuinely enjoy helping people position themselves to land the schools, firms, and roles they want most.</p>
                     <p>Before law school, I spent 7 years in sales, which gives me a different lens than what most career offices provide. Schools often give broad advice. I work with you to tailor the story to you: your background, your goals, your work experience, your target schools, your desired firms, and how to make your narrative hit with decision-makers.</p>
                     <p>I specialize in helping people stand out. Law schools and BigLaw increasingly value maturity, judgment, and professional polish in ways that can feel closer to MBA-style evaluation than people realize. That is where positioning, messaging, and interview strategy really matter.</p>
+                </div>
+                <div class="consulting-feature-card">
+                    <h3>Featured Recognition</h3>
+                    <p>PeekWire included Ali Rafie in its 2026 list of top legal career consulting services for aspiring attorneys, highlighting a student-centered approach to BigLaw recruiting, law school essays, interview prep, and sales-driven networking strategy.</p>
+                    <a class="feature-link-card" href="https://peekwire.com/article/best-legal-career-consulting-services" target="_blank">
+                        <span>Consulting Feature</span>
+                        <strong>PeekWire: Top 5 Legal Career Consulting Services</strong>
+                        <p>Read the feature and see the recommendation for Ali Rafie’s legal career consulting work.</p>
+                    </a>
                 </div>
                 <div class="consulting-services">
                     <div class="consulting-services-header">
@@ -2034,7 +2144,7 @@
             { ep: 12, year: 2024, date: "August 17, 2024", title: "EP 12: David Baron - Trial Attorney for 40+ Years & Law Firm Managing Partner", guest: "David Baron", role: "Managing Partner, SBEMP", duration: "33 min", tags: ["Leadership", "BigLaw"], summary: "David Baron looks back on a long trial career, major verdicts, and what it takes to build and sustain a litigation-focused practice over decades.", spotify: "[SPOTIFY_EP12_LINK]", youtube: "[YOUTUBE_EP12_LINK]", apple: "[APPLE_EP12_LINK]", shortEmbed: "[YOUTUBE_SHORT_EMBED_EP12]", photo: "" },
             { ep: 11, year: 2024, date: "August 9, 2024", title: "EP 11: Matt Samuels - Senior Product Counsel at Databricks", guest: "Matt Samuels", role: "Senior Product Counsel, Databricks", duration: "44 min", tags: ["In-house", "Legal Tech"], summary: "Matt Samuels discusses the move from litigation and clerkships into product counseling and what the in-house path looks like in practice.", spotify: "[SPOTIFY_EP11_LINK]", youtube: "[YOUTUBE_EP11_LINK]", apple: "[APPLE_EP11_LINK]", shortEmbed: "[YOUTUBE_SHORT_EMBED_EP11]", photo: "" },
             { ep: 10, year: 2024, date: "July 18, 2024", title: "EP 10: Stacy Bratcher - Chief Legal Officer at Cottage Health", guest: "Stacy Bratcher", role: "Chief Legal Officer, Cottage Health", duration: "44 min", tags: ["In-house", "Leadership"], summary: "Stacy Bratcher shares how her healthcare law career developed across policy, firms, academia, and executive legal leadership.", spotify: "[SPOTIFY_EP10_LINK]", youtube: "[YOUTUBE_EP10_LINK]", apple: "[APPLE_EP10_LINK]", shortEmbed: "[YOUTUBE_SHORT_EMBED_EP10]", photo: "" },
-            { ep: 9, year: 2024, date: "July 10, 2024", title: "EP 9: Toney Jacobson - IP Partner at Fenwick & West", guest: "Toney Jacobson", role: "IP Partner, Fenwick & West", duration: "55 min", tags: ["BigLaw", "Career Transitions"], summary: "Toney Jacobson tells a story of perseverance, from struggling graduate-student years to becoming a trusted IP advisor to top technology companies.", spotify: "[SPOTIFY_EP9_LINK]", youtube: "https://youtube.com/shorts/VmVA6wmvegQ?feature=share", apple: "[APPLE_EP9_LINK]", shortEmbed: "VmVA6wmvegQ", photo: "" },
+            { ep: 9, year: 2024, date: "July 10, 2024", title: "EP 9: Toney Jacobson - IP Partner at Fenwick & West", guest: "Toney Jacobson", role: "IP Partner, Fenwick & West", duration: "55 min", tags: ["BigLaw", "Career Transitions"], summary: "Toney Jacobson tells a story of perseverance, from struggling graduate-student years to becoming a trusted IP advisor to top technology companies.", spotify: "[SPOTIFY_EP9_LINK]", youtube: "https://youtube.com/shorts/VmVA6wmvegQ?feature=share", apple: "[APPLE_EP9_LINK]", shortEmbed: "VmVA6wmvegQ", photo: "", features: [{ label: "Featured by Fenwick", url: "https://www.fenwick.com/insights/media-coverage/partner-toney-jacobson-discusses-journey-to-silicon-valley-on-legal-leaders-podcast" }] },
             { ep: 8, year: 2024, date: "June 22, 2024", title: "EP 8: Ashley Pantuliano - Deputy General Counsel at OpenAI", guest: "Ashley Pantuliano", role: "Deputy General Counsel, OpenAI", duration: "32 min", tags: ["AI", "In-house"], summary: "Ashley Pantuliano covers her path from paralegal to legal leader and what it means to guide product, privacy, and commercial work at scale.", spotify: "[SPOTIFY_EP8_LINK]", youtube: "https://youtube.com/shorts/BiqCttRwDF8?feature=share", apple: "[APPLE_EP8_LINK]", shortEmbed: "BiqCttRwDF8", photo: "" },
             { ep: 7, year: 2024, date: "March 6, 2024", title: "EP 7: Adam Lovingood - General Counsel at Xero", guest: "Adam Lovingood", role: "General Counsel, Xero", duration: "1 hr 3 min", tags: ["In-house", "Career Transitions"], summary: "Adam Lovingood reflects on an in-house career spanning several industries and how his Berkeley Law background shaped the journey.", spotify: "[SPOTIFY_EP7_LINK]", youtube: "[YOUTUBE_EP7_LINK]", apple: "[APPLE_EP7_LINK]", shortEmbed: "[YOUTUBE_SHORT_EMBED_EP7]", photo: "" },
             { ep: 6, year: 2024, date: "February 21, 2024", title: "EP 6: Jason Amsel - 15 Years in Big Law to Starting His Own IP Practice", guest: "Jason Amsel", role: "Founder and Principal Attorney, Amsel IP Law", duration: "53 min", tags: ["BigLaw", "Career Transitions"], summary: "Jason Amsel explains the leap from a long BigLaw run into launching an independent IP practice serving startups through growth and exits.", spotify: "[SPOTIFY_EP6_LINK]", youtube: "[YOUTUBE_EP6_LINK]", apple: "[APPLE_EP6_LINK]", shortEmbed: "[YOUTUBE_SHORT_EMBED_EP6]", photo: "" },
@@ -2162,6 +2272,17 @@
             `;
         }
 
+        function renderFeatureLinks(episode) {
+            if (!episode.features || !episode.features.length) {
+                return "";
+            }
+            return `
+                <div class="episode-feature-links">
+                    ${episode.features.map((feature) => `<a class="episode-feature-link" href="${safeUrl(feature.url)}" target="_blank">${feature.label}</a>`).join("")}
+                </div>
+            `;
+        }
+
         function renderEpisodeCard(episode) {
             const initials = extractInitials(episode.guest);
             const photoUrl = episodePhotoUrl(episode);
@@ -2193,6 +2314,7 @@
                             ${renderLink("Watch on YouTube", episode.youtube, "secondary")}
                             ${renderLink("Apple Podcasts", episode.apple, "secondary")}
                         </div>
+                        ${renderFeatureLinks(episode)}
                     </div>
                     <div class="episode-media">
                         ${renderMedia(episode)}
