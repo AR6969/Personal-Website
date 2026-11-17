@@ -1799,15 +1799,12 @@
 .consulting-booking-actions { flex-wrap: wrap; }
 .consulting-booking-actions a { text-align: center; }
 </style>
-<link rel="stylesheet" href="/practice.css?v=2">
+<link rel="stylesheet" href="/practice.css?v=3">
+<link rel="stylesheet" href="/site-shell.css?v=1">
+<script src="/site-shell.js?v=1" defer></script>
 </head>
-<body>
-        <nav class="navbar">
-            <a href="/#about">About Me</a>
-            <a href="/podcast/">Podcast</a>
-            <a href="/consulting.html">Consulting</a>
-            <a href="/#contact">Contact</a>
-        </nav>
+<body class="about-mode">
+        <header class="site-header"><nav class="site-nav" aria-label="Main navigation"><a class="site-brand" href="/#about">Ali Rafie<span>LAW · CAREERS · CONVERSATIONS</span></a><div class="site-nav-links"><a href="/#about" data-page="about">About</a><a href="/podcast/" data-page="podcast">Podcast</a><a href="/consulting" data-page="consulting">Consulting</a><a href="/#contact" data-page="contact">Contact</a></div></nav></header>
     <div class="container">
         <section id="about" class="section active about-section">
             <div class="about-hero">
@@ -1949,14 +1946,7 @@
 
                 <div id="podcast-all" class="section-block"></div>
 
-                <div class="subscribe-card">
-                    <h3>Never miss an episode</h3>
-                    <p>Drop in your email below for a future subscribe workflow, or follow Legal Leaders on the platforms you already use.</p>
-                    <div class="subscribe-form">
-                        <input type="email" placeholder="Email address">
-                        <button class="podcast-button primary" type="button">Subscribe</button>
-                    </div>
-                    <div class="podcast-platform-links">
+                <div class="subscribe-card"><h3>Keep the conversation going.</h3><p>Follow Legal Leaders on your preferred platform for new episodes.</p><div class="podcast-platform-links">
                         <a href="https://open.spotify.com/show/1u63TqRwYn2BxmLv1C9Q7E" target="_blank">Spotify</a>
                         <a href="https://www.youtube.com/@LegalLeadersPodcast" target="_blank">YouTube</a>
                         <a href="https://podcasts.apple.com/us/podcast/legal-leaders/id1729091694" target="_blank">Apple Podcasts</a>
@@ -2007,11 +1997,13 @@
             }
             document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
             document.getElementById(sectionId).classList.add('active');
-            document.body.classList.remove('about-mode', 'consulting-mode', 'contact-mode');
+            document.body.classList.remove('about-mode', 'consulting-mode', 'contact-mode', 'podcast-mode');
             if (sectionId === 'about') {
                 document.body.classList.add('about-mode');
             } else if (sectionId === 'consulting') {
                 document.body.classList.add('consulting-mode');
+            } else if (sectionId === 'podcast') {
+                document.body.classList.add('podcast-mode');
             } else if (sectionId === 'contact') {
                 document.body.classList.add('contact-mode');
             }

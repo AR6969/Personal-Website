@@ -1,0 +1,78 @@
+/* One layout system; a distinct palette for each section. */
+:root {--site-bg:#101923;--site-ink:#eef1f5;--site-muted:#a9b7c5;--site-line:#344253;--site-accent:#a5c3e8;--site-card:#162330;}
+body.about-mode {--site-bg:#080808;--site-ink:#f2f1ec;--site-muted:#b3b6b3;--site-line:#2b2d2a;--site-accent:#b9c8ad;--site-card:#111310;background:var(--site-bg);}
+body.podcast-mode {--site-bg:#101923;--site-ink:#eef1f5;--site-muted:#a9b7c5;--site-line:#344253;--site-accent:#a5c3e8;--site-card:#162330;background:var(--site-bg);}
+body.practice-page,body.consulting-mode {--site-bg:#f7f5ef;--site-ink:#192b32;--site-muted:#5b6666;--site-line:#cfd6cc;--site-accent:#365c46;--site-card:#eff1e9;background:var(--site-bg);}
+body.contact-mode {--site-bg:#211719;--site-ink:#f9ece9;--site-muted:#cab7b3;--site-line:#503637;--site-accent:#e7b5a9;--site-card:#2b1e21;background:var(--site-bg);}
+body {margin:0; font-family:Arial,Helvetica,sans-serif;}
+.site-header,.site-header * {box-sizing:border-box;}
+.site-header {color:var(--site-ink);background:var(--site-bg);border-bottom:1px solid var(--site-line);}
+.site-nav {max-width:1240px;padding:24px 48px;margin:auto;min-height:104px;display:flex;justify-content:space-between;gap:30px;align-items:center;}
+.site-header a {color:var(--site-ink);text-decoration:none;}
+.site-brand {font:29px/1.1 Georgia,serif;letter-spacing:-1px;white-space:nowrap;}
+.site-brand span {display:block;margin-top:8px;font:8px/1.5 Arial,sans-serif;letter-spacing:1.8px;color:var(--site-muted);}
+.site-nav-links {display:flex;gap:30px;align-items:center;}
+.site-nav-links a {font:13px/1.5 Arial,sans-serif;padding:7px 0;border-bottom:1px solid transparent;}
+.site-nav-links a:hover,.site-nav-links a[aria-current="page"] {border-color:var(--site-accent);color:var(--site-accent);}
+.site-header a:focus-visible {outline:2px solid var(--site-accent);outline-offset:6px;}
+body.about-mode .container,body.podcast-mode .container,body.contact-mode .container {box-sizing:border-box;width:100%;max-width:1240px;padding:48px;margin:0 auto;background:none;border:0;box-shadow:none;border-radius:0;}
+.about-section .about-hero {grid-template-columns:320px minmax(0,1fr);gap:70px;padding:16px 0 52px;}
+.about-section .about-hero-copy h2 {font:400 64px/1.1 Georgia,serif;letter-spacing:-2px;color:var(--site-ink);}
+.about-section .about-kicker {color:var(--site-accent);}
+.about-section .about-intro,.about-section .about-subtitle {color:var(--site-muted);font-size:16px;line-height:1.8;}
+.about-section .about-hero .profile-img {width:320px;height:360px;object-fit:cover;object-position:center 30%;border:0;border-radius:2px;box-shadow:none;}
+.about-section .about-grid {display:grid;grid-template-columns:1.15fr 1fr;gap:24px;align-items:start;}
+.about-section .about-card {padding:30px;border:1px solid var(--site-line);background:var(--site-card);border-radius:3px;box-shadow:none;}
+.about-section .about-card .section-title {color:var(--site-accent);font:600 10px/1.5 Arial,sans-serif;letter-spacing:2px;}
+.about-section .about-card p,.about-section .about-card li,.about-section .role {font-size:14px;line-height:1.9;color:var(--site-muted);}
+.about-section .sales-card {grid-column:1/-1;}
+.about-section .company {color:var(--site-ink);}
+.about-section a,.about-section a:visited {color:var(--site-accent);}
+.about-section .connect-links a {border-radius:2px;border-color:var(--site-line);background:none;}
+body.podcast-mode .podcast-page {padding:16px 0 0;}
+body.podcast-mode .podcast-hero {gap:52px;align-items:center;margin-bottom:48px;}
+body.podcast-mode .podcast-banner {border-radius:3px;box-shadow:none;border:1px solid var(--site-line);}
+body.podcast-mode .podcast-hero-copy h2 {font:400 clamp(40px,4.9vw,64px)/1.08 Georgia,serif;letter-spacing:-1.8px;text-align:left;color:var(--site-ink);}
+body.podcast-mode .podcast-subtitle {font-size:16px;color:var(--site-muted);line-height:1.8;text-align:left;}
+body.podcast-mode .podcast-stat-chip {border:0;border-radius:0;padding:0 20px 0 0;background:none;color:var(--site-accent);font-size:12px;}
+body.podcast-mode .podcast-toolbar {padding:24px 0;border-top:1px solid var(--site-line);border-bottom:1px solid var(--site-line);background:none;border-radius:0;box-shadow:none;}
+body.podcast-mode .podcast-search,body.podcast-mode .podcast-filter {background:var(--site-card);color:var(--site-ink);border:1px solid var(--site-line);border-radius:3px;box-sizing:border-box;}
+body.podcast-mode .episode-card {background:var(--site-card);border:1px solid var(--site-line);border-radius:3px;box-shadow:none;padding:24px;}
+body.podcast-mode .episode-card h3 {font:400 25px/1.3 Georgia,serif;letter-spacing:-.3px;}
+body.podcast-mode .episode-summary {color:var(--site-muted);font-size:14px;line-height:1.8;}
+body.podcast-mode .podcast-button {border-radius:3px;box-shadow:none;font-size:12px;}
+body.podcast-mode .section-heading-row h3 {font:400 34px/1.2 Georgia,serif;}
+body.podcast-mode .podcast-press-strip,body.podcast-mode .subscribe-card {background:transparent;border:1px solid var(--site-line);border-radius:3px;box-shadow:none;}
+body.podcast-mode .subscribe-card {padding:32px;}
+body.podcast-mode .subscribe-card h3 {font:400 32px/1.2 Georgia,serif;}
+body.podcast-mode .subscribe-card p {color:var(--site-muted);}
+body.contact-mode .contact-section h2 {font:400 clamp(40px,4.9vw,64px)/1.1 Georgia,serif;letter-spacing:-1.8px;color:var(--site-ink);}
+body.contact-mode .contact-card {background:var(--site-card);border:1px solid var(--site-line);border-radius:3px;box-shadow:none;}
+body.contact-mode .contact-section .podcast-button {border-radius:3px;}
+@media(max-width:900px) {
+ .about-section .about-hero {grid-template-columns:240px minmax(0,1fr);gap:35px;}
+ .about-section .about-hero .profile-img {width:240px;height:300px;}
+ .about-section .about-grid {grid-template-columns:1fr;}
+ body.podcast-mode .podcast-hero {gap:30px;}
+}
+@media(max-width:650px) {
+ .site-nav {padding:20px 24px;min-height:92px;gap:20px;flex-wrap:wrap;}
+ .site-brand {font-size:25px;}
+ .site-brand span {font-size:7px;letter-spacing:1.3px;}
+ .site-nav-links {gap:20px;flex:1;justify-content:flex-end;}
+ .site-nav-links a {font-size:11px;}
+ body.practice-page main,body.consulting-mode .container {padding-left:24px;padding-right:24px;}
+ body.about-mode .container,body.podcast-mode .container,body.contact-mode .container {padding:32px 24px;}
+ .about-section {padding:0;}
+ .about-section .about-hero {grid-template-columns:1fr;gap:26px;padding:0 0 32px;}
+ .about-section .about-hero .profile-img {width:140px;height:170px;margin:0;}
+ .about-section .about-hero-copy h2 {font-size:48px;text-align:left;}
+ .about-section .about-card {padding:24px;}
+ body.podcast-mode .podcast-hero {grid-template-columns:1fr;gap:28px;}
+ body.podcast-mode .podcast-banner {max-width:320px;}
+ body.podcast-mode .podcast-hero-copy h2 {font-size:44px;}
+ body.podcast-mode .podcast-actions {justify-content:flex-start;}
+ body.podcast-mode .episode-card {padding:20px;}
+}
+body.podcast-mode .episode-title {font:400 25px/1.3 Georgia,serif;letter-spacing:-.3px;color:var(--site-ink);}
+body.podcast-mode .episode-title:hover {color:var(--site-accent);}

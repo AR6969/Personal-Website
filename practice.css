@@ -127,17 +127,3 @@ body.about-mode .container {background:none;border:0;box-shadow:none;max-width:1
 .practice .practice-path+.practice-path:hover {background:#e9e2d3;}
 .practice h1 {font-size:clamp(44px,4.9vw,64px);}
 @media(max-width:650px) {.practice h1 {font-size:42px;}}
-/* Carry the consulting identity through the personal homepage. */
-body.about-mode {background:#f7f5ef;color:#192b32;}
-body.about-mode .navbar {background:rgba(247,245,239,.96);border-color:#d5d9d1;gap:32px;padding:22px;}
-body.about-mode .navbar a {color:#31423b;font-size:12px;font-weight:400;}
-body.about-mode .about-section,body.about-mode .about-section h2 {color:#192b32;}
-body.about-mode .about-section .about-hero .profile-img {object-fit:cover;object-position:center 30%;}
-body.about-mode .about-section .about-intro,body.about-mode .about-section .about-subtitle {color:#5b6666;font-size:16px;}
-body.about-mode .about-section .about-kicker {color:#5c7261;}
-body.about-mode .about-section .about-card {background:#f0f1ea;border-color:#cfd6cc;}
-body.about-mode .about-section .about-card .section-title {color:#5a705e;}
-body.about-mode .about-section .about-card p,body.about-mode .about-section .about-card li,body.about-mode .about-section .role {color:#53615b;}
-body.about-mode .about-section .company {color:#203b32;}
-body.about-mode .about-section a,body.about-mode .about-section a:visited {color:#345d48;}
-body.about-mode .about-section .connect-links a {border-color:#cbd3c5;background:transparent;border-radius:2px;}
