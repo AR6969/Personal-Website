@@ -1589,7 +1589,11 @@
                 flex-direction: column;
             }
         }
-    </style>
+    
+* { box-sizing: border-box; }
+.consulting-booking-actions { flex-wrap: wrap; }
+.consulting-booking-actions a { text-align: center; }
+</style>
 </head>
 <body class="consulting-mode">
     <nav class="navbar">
@@ -1606,7 +1610,7 @@
                     <div class="consulting-kicker">Services</div>
                     <h2>Law School Admissions &amp; Big Law Recruiting Consulting</h2>
                     <p class="consulting-subtitle">I work with applicants and law students who want more than generic advice. The focus is on helping you position yourself clearly, tailor your narrative to your goals, and compete for the schools and firms you actually want.</p>
-                    <div class="consulting-chip-row">
+                    <div class="consulting-booking-actions"><a class="podcast-button primary calendly-button" href="https://calendly.com/alirafie-berkeley/new-meeting" target="_blank" rel="noopener">Book a Free 15-Minute Consultation</a></div><div class="consulting-booking-actions"><a class="podcast-button secondary" href="/admissions/">Law School Admissions</a><a class="podcast-button secondary" href="/biglaw/">BigLaw Recruiting</a></div><div class="consulting-chip-row">
                         <span class="consulting-chip">Law School Applications</span>
                         <span class="consulting-chip">Big Law Recruiting</span>
                         <span class="consulting-chip">Narrative Positioning</span>
@@ -1633,7 +1637,7 @@
                         <div class="consulting-service-block applications">
                             <div class="consulting-service-label">Admissions Strategy</div>
                             <h4 class="consulting-service-title">Law School Applications</h4>
-                            <p class="consulting-service-copy">For law school applicants, I help craft a sharper application strategy built around your story, your strengths, and the specific schools you are targeting. That includes helping you frame your background in a way that feels authentic, compelling, and aligned with the narrative politics and culture of each individual school.</p>
+                            <p class="consulting-service-copy">Build a clear, cohesive law school application around your experience and goals. I help you develop your personal statement, refine supplemental essays, strengthen your resume, and plan a school list and application timeline. You stay the author of your work; we focus on making your own voice and story come through.</p>
                             <ul class="consulting-service-list">
                                 <li>Personal statement and essay development, from idea shaping to line-by-line refinement.</li>
                                 <li>Narrative positioning so your application tells one coherent story instead of reading like disconnected accomplishments.</li>
@@ -1670,7 +1674,6 @@
                         </div>
                         <div class="consulting-free-note">Free 15-minute intro consult</div>
                         <p class="consulting-subtitle">The free consult is a separate 15-minute conversation. If you want to move forward after that, the standard paid session is $200 for one hour.</p>
-                        <div class="consulting-availability-note">From June 1 through August 8, I am only available on weekends.</div>
                         <div class="consulting-package-list">
                             <div class="consulting-package-item">
                                 <strong>5-hour package: $800</strong>
@@ -1709,7 +1712,7 @@
                             </div>
                         </div>
                         <div class="consulting-booking-actions">
-                            <a class="podcast-button primary calendly-button" href="https://calendly.com/alirafie-berkeley/new-meeting?month=2026-04" target="_blank">Book on Calendly</a>
+                            <a class="podcast-button primary calendly-button" href="https://calendly.com/alirafie-berkeley/new-meeting" target="_blank">Book a Free 15-Minute Consultation</a>
                             <a class="podcast-button secondary" href="mailto:alirafie@berkeley.edu?subject=Consulting%20Question">Ask a Question</a>
                         </div>
                     </div>
@@ -1718,12 +1721,14 @@
                     <h3>Interested in working together?</h3>
                     <p>If you are applying to law school, preparing for BigLaw recruiting, or trying to sharpen how you present your background, start with the free 15-minute consult. If we decide to continue, you can then book and pay for the separate one-hour session.</p>
                     <div class="consulting-booking-actions">
-                        <a class="podcast-button primary calendly-button" href="https://calendly.com/alirafie-berkeley/new-meeting?month=2026-04" target="_blank">Schedule a Session</a>
+                        <a class="podcast-button primary calendly-button" href="https://calendly.com/alirafie-berkeley/new-meeting" target="_blank">Book a Free 15-Minute Consultation</a>
                         <a class="podcast-button secondary" href="mailto:alirafie@berkeley.edu?subject=Consulting%20Inquiry">Email About Consulting</a>
                     </div>
                 </div>
             </div>
         </section>
     </div>
+<script src="/booking-config.js"></script>
+<script src="/booking.js" defer></script>
 </body>
 </html>
