@@ -12,6 +12,20 @@
     tag.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(config.conversionId);
     document.head.append(tag);
   }
+  const openaiEnabled = /^[A-Za-z0-9_-]{10,100}$/.test(config.openaiPixelId || '');
+  if (openaiEnabled) {
+    if (!window.oaiq) {
+      const queue = function () { queue.q.push(arguments); };
+      queue.q = [];
+      window.oaiq = queue;
+      const pixel = document.createElement('script');
+      pixel.async = true;
+      pixel.src = 'https://bzrcdn.openai.com/sdk/oaiq.min.js';
+      document.head.append(pixel);
+    }
+    window.oaiq('init', { pixelId: config.openaiPixelId });
+    window.oaiq('measure', 'page_viewed', { type: 'contents' });
+  }
   let dialog, frame;
   const seen = new Set();
   document.addEventListener('click', event => {
@@ -55,6 +69,9 @@
     if (!id || seen.has(id)) return;
     seen.add(id);
     // Only a confirmed booking can trigger a conversion; clicks never do.
+    if (openaiEnabled) window.oaiq('measure', 'appointment_scheduled', {
+      type: 'customer_action'
+    }, { event_id: 'calendly_' + id });
     if (enabled) window.gtag('event', 'conversion', {
       send_to: config.conversionId + '/' + config.conversionLabel,
       transaction_id: id
