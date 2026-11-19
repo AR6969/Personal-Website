@@ -135,3 +135,9 @@ body.about-mode .container {background:none;border:0;box-shadow:none;max-width:1
 .practice .practice-email-intro a:hover {color:#35574c;border-color:#35574c;}
 .practice .practice-email-intro a span {margin-left:12px;}
 .practice .practice-email {font-size:15px;color:#203c37;margin-top:24px;text-decoration:underline;text-underline-offset:5px;}
+
+/* Clarify the free consultation and simplify contact options. */
+.practice .practice-consult-actions {display:flex;align-items:center;flex-wrap:wrap;gap:16px 24px;margin-top:26px;}
+.practice .practice-consult-actions .practice-button {font-size:16px;min-height:48px;justify-content:center;padding:15px 22px;}
+.practice .practice-hero-email {font-size:14px;color:#203c37;text-decoration:underline;text-underline-offset:5px;}
+.practice .practice-consult-note {font-size:14px;line-height:1.7;color:#596369;margin:16px 0 0;max-width:440px;}
