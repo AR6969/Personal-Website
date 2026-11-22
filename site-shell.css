@@ -137,3 +137,12 @@ body.contact-mode .contact-note {max-width:720px;margin:36px 0 0;padding:24px 0;
  body.contact-mode .contact-hero h2 {font-size:44px;}
  body.contact-mode .contact-actions .podcast-button {width:auto;}
 }
+
+/* Audit corrections: compact mobile search and no unfinished video placeholders. */
+body.podcast-mode .episode-card--no-media {grid-template-columns:100px minmax(0,1fr);}
+body.podcast-mode .episode-card--no-media .episode-media {display:none;}
+@media(max-width:650px) {
+ body.podcast-mode .podcast-search {flex:0 0 auto;width:100%;min-width:0;height:50px;min-height:50px;}
+ body.podcast-mode .podcast-filter {width:100%;min-width:0;min-height:46px;}
+ body.podcast-mode .episode-card--no-media {grid-template-columns:1fr;}
+}

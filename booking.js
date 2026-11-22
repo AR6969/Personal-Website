@@ -30,7 +30,7 @@
   const seen = new Set();
   document.addEventListener('click', event => {
     const link = event.target.closest('a[href^="https://calendly.com/alirafie-berkeley/new-meeting"]');
-    if (!link || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey || typeof HTMLDialogElement === 'undefined') return;
+    if (!link || link.dataset.bookingExternal === 'true' || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey || typeof HTMLDialogElement === 'undefined') return;
     event.preventDefault();
     if (!dialog) {
       dialog = document.createElement('dialog');
@@ -44,18 +44,24 @@
       fallback.href = link.href;
       fallback.target = '_blank';
       fallback.rel = 'noopener';
+      fallback.dataset.bookingExternal = 'true';
       fallback.textContent = 'Open Calendly in a new tab';
       fallback.style.marginLeft = '16px';
       frame = document.createElement('iframe');
       frame.title = 'Schedule your free consultation with Ali Rafie';
       frame.style.cssText = 'display:block;width:100%;height:70vh;min-height:360px;border:0;margin-top:12px;';
       const url = new URL(link.href);
+      const externalUrl = new URL(link.href);
       url.searchParams.set('embed_domain', window.location.hostname);
       url.searchParams.set('embed_type', 'Inline');
       for (const [key, value] of new URLSearchParams(window.location.search)) {
-        if (/^utm_(source|medium|campaign|content|term)$/.test(key)) url.searchParams.set(key, value);
+        if (/^utm_(source|medium|campaign|content|term)$/.test(key)) {
+          url.searchParams.set(key, value);
+          externalUrl.searchParams.set(key, value);
+        }
       }
       frame.src = url.href;
+      fallback.href = externalUrl.href;
       dialog.append(close, fallback, frame);
       document.body.append(dialog);
     }
