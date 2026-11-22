@@ -26,6 +26,13 @@
     window.oaiq('init', { pixelId: config.openaiPixelId });
     window.oaiq('measure', 'page_viewed', { type: 'contents' });
   }
+  ['https://calendly.com', 'https://assets.calendly.com'].forEach(href => {
+    const hint = document.createElement('link');
+    hint.rel = 'preconnect';
+    hint.href = href;
+    hint.crossOrigin = '';
+    document.head.append(hint);
+  });
   let dialog, frame;
   const seen = new Set();
   document.addEventListener('click', event => {
@@ -35,7 +42,22 @@
     if (!dialog) {
       dialog = document.createElement('dialog');
       dialog.setAttribute('aria-label', 'Book a free 15-minute consultation');
-      dialog.style.cssText = 'width:min(960px,96vw);max-width:96vw;padding:16px;border:0;border-radius:16px;background:#fff;color:#25303b;';
+      dialog.className = 'booking-dialog';
+      const layout = document.createElement('style');
+      layout.textContent = `
+        .booking-dialog {width:min(960px,96vw);max-width:96vw;padding:16px;border:0;border-radius:16px;background:#fff;color:#25303b;box-sizing:border-box;}
+        .booking-dialog .booking-controls {display:flex;align-items:center;flex-wrap:wrap;gap:8px 16px;flex-shrink:0;}
+        .booking-dialog .booking-frame {display:block;width:100%;height:70vh;min-height:360px;border:0;margin-top:12px;}
+        .booking-dialog .booking-loading {margin:24px 0 0;text-align:center;color:#5b6670;}
+        @media(max-width:640px) {
+          .booking-dialog[open] {position:fixed;inset:0;display:flex;flex-direction:column;width:100%;max-width:100%;height:100vh;height:100dvh;max-height:100vh;max-height:100dvh;margin:0;padding:12px;border-radius:0;overflow:hidden;}
+          .booking-dialog .booking-controls {font-size:14px;line-height:1.5;}
+          .booking-dialog .booking-controls button {min-height:44px;}
+          .booking-dialog .booking-frame {flex:1 1 0;min-height:0;height:auto;margin-top:8px;}
+          .booking-dialog .booking-loading {font-size:14px;margin:12px 0;}
+        }
+      `;
+      document.head.append(layout);
       const close = document.createElement('button');
       close.textContent = 'Close booking';
       close.style.cssText = 'padding:10px 16px;cursor:pointer;';
@@ -46,14 +68,22 @@
       fallback.rel = 'noopener';
       fallback.dataset.bookingExternal = 'true';
       fallback.textContent = 'Open Calendly in a new tab';
-      fallback.style.marginLeft = '16px';
+      const controls = document.createElement('div');
+      controls.className = 'booking-controls';
+      controls.append(close, fallback);
       frame = document.createElement('iframe');
       frame.title = 'Schedule your free consultation with Ali Rafie';
-      frame.style.cssText = 'display:block;width:100%;height:70vh;min-height:360px;border:0;margin-top:12px;';
+      frame.className = 'booking-frame';
+      const loading = document.createElement('p');
+      loading.className = 'booking-loading';
+      loading.setAttribute('role', 'status');
+      loading.textContent = 'Loading available times…';
+      frame.addEventListener('load', () => loading.remove(), { once: true });
       const url = new URL(link.href);
       const externalUrl = new URL(link.href);
       url.searchParams.set('embed_domain', window.location.hostname);
       url.searchParams.set('embed_type', 'Inline');
+      if (window.matchMedia('(max-width: 640px)').matches) url.searchParams.set('hide_event_type_details', '1');
       for (const [key, value] of new URLSearchParams(window.location.search)) {
         if (/^utm_(source|medium|campaign|content|term)$/.test(key)) {
           url.searchParams.set(key, value);
@@ -62,7 +92,7 @@
       }
       frame.src = url.href;
       fallback.href = externalUrl.href;
-      dialog.append(close, fallback, frame);
+      dialog.append(controls, loading, frame);
       document.body.append(dialog);
     }
     dialog.showModal();
