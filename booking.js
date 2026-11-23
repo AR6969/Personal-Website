@@ -35,10 +35,7 @@
   });
   let dialog, frame;
   const seen = new Set();
-  document.addEventListener('click', event => {
-    const link = event.target.closest('a[href^="https://calendly.com/alirafie-berkeley/new-meeting"]');
-    if (!link || link.dataset.bookingExternal === 'true' || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey || typeof HTMLDialogElement === 'undefined') return;
-    event.preventDefault();
+  function prepareBooking(link) {
     if (!dialog) {
       dialog = document.createElement('dialog');
       dialog.setAttribute('aria-label', 'Book a free 15-minute consultation');
@@ -49,6 +46,7 @@
         .booking-dialog .booking-controls {display:flex;align-items:center;flex-wrap:wrap;gap:8px 16px;flex-shrink:0;}
         .booking-dialog .booking-frame {display:block;width:100%;height:70vh;min-height:360px;border:0;margin-top:12px;}
         .booking-dialog .booking-loading {margin:24px 0 0;text-align:center;color:#5b6670;}
+        .booking-dialog.booking-preparing:not([open]) {display:flex;flex-direction:column;position:fixed;left:0;top:0;width:100vw;max-width:640px;height:100dvh;max-height:100dvh;margin:0;opacity:0;z-index:-1;pointer-events:none;}
         @media(max-width:640px) {
           .booking-dialog[open] {position:fixed;inset:0;display:flex;flex-direction:column;width:100%;max-width:100%;height:100vh;height:100dvh;max-height:100vh;max-height:100dvh;margin:0;padding:12px;border-radius:0;overflow:hidden;}
           .booking-dialog .booking-controls {font-size:14px;line-height:1.5;}
@@ -95,8 +93,30 @@
       dialog.append(controls, loading, frame);
       document.body.append(dialog);
     }
+  }
+  document.addEventListener('click', event => {
+    const link = event.target.closest('a[href^="https://calendly.com/alirafie-berkeley/new-meeting"]');
+    if (!link || link.dataset.bookingExternal === 'true' || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey || typeof HTMLDialogElement === 'undefined') return;
+    event.preventDefault();
+    prepareBooking(link);
+    dialog.classList.remove('booking-preparing');
+    dialog.removeAttribute('aria-hidden');
+    dialog.removeAttribute('inert');
     dialog.showModal();
   });
+  // Prepare once while phone visitors read; the same frame retains booking tracking.
+  // The dialog stays closed and Calendly's own cookie choices remain available.
+  if (window.matchMedia('(max-width: 640px)').matches && document.body.classList.contains('practice-page') && typeof HTMLDialogElement !== 'undefined') {
+    window.setTimeout(() => {
+      const link = document.querySelector('.practice-hero a[href^="https://calendly.com/alirafie-berkeley/new-meeting"]');
+      if (link && !dialog) {
+        prepareBooking(link);
+        dialog.classList.add('booking-preparing');
+        dialog.setAttribute('aria-hidden', 'true');
+        dialog.setAttribute('inert', '');
+      }
+    }, 1500);
+  }
   window.addEventListener('message', event => {
     if (event.origin !== 'https://calendly.com' || !frame || event.source !== frame.contentWindow || event.data?.event !== 'calendly.event_scheduled') return;
     const uri = event.data.payload?.event?.uri;
