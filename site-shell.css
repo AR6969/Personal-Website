@@ -146,3 +146,76 @@ body.podcast-mode .episode-card--no-media .episode-media {display:none;}
  body.podcast-mode .podcast-filter {width:100%;min-width:0;min-height:46px;}
  body.podcast-mode .episode-card--no-media {grid-template-columns:1fr;}
 }
+
+/* Shared visual system, November 2026. All sections use the same palette and type. */
+:root,body.about-mode,body.podcast-mode,body.contact-mode,body.consulting-mode,body.practice-page {
+ --site-bg:#111514;--site-ink:#f4f1e9;--site-muted:#b7beb7;--site-line:#35413a;
+ --site-accent:#d2dfbc;--site-card:#1b231e;--site-hover:#29362b;
+ background:var(--site-bg);color:var(--site-ink);font-family:Arial,Helvetica,sans-serif;
+ -webkit-font-smoothing:antialiased;
+}
+.site-header {background:var(--site-bg);}
+.site-brand {font:400 29px/1.1 Georgia,serif;}
+body .site-nav {max-width:1240px;}
+body.about-mode .container,body.podcast-mode .container,body.contact-mode .container {padding-top:64px;}
+body .about-section .about-hero,body.podcast-mode .podcast-hero,body.contact-mode .contact-hero {
+ display:grid;grid-template-columns:1.3fr 1fr;gap:70px;align-items:center;padding:0 0 54px;margin:0;
+}
+body .about-section .about-hero-copy {grid-column:1;grid-row:1;}
+body .about-section .about-hero .profile-img {grid-column:2;grid-row:1;width:100%;height:430px;object-fit:cover;object-position:center 35%;}
+body .about-section .about-hero-copy h2,body.podcast-mode .podcast-hero-copy h2,body.contact-mode .contact-hero h2,.practice h1 {
+ font:400 clamp(42px,4.9vw,64px)/1.08 Georgia,serif;letter-spacing:-1.7px;color:var(--site-ink);margin:24px 0;text-align:left;
+}
+.practice h1 em {color:var(--site-accent);}
+body .about-section .about-intro,body .about-section .about-subtitle,body.podcast-mode .podcast-subtitle,body.contact-mode .contact-subtitle,.practice-lede {font:17px/1.8 Arial,Helvetica,sans-serif;color:var(--site-muted);max-width:510px;}
+body .about-section .about-kicker,body.podcast-mode .section-eyebrow,body.contact-mode .section-eyebrow,.practice .practice-eyebrow {font:600 10px/1.5 Arial,sans-serif;letter-spacing:2px;color:var(--site-accent);}
+body .about-section .about-card,body.contact-mode .contact-card {border:1px solid var(--site-line);background:var(--site-card);padding:28px;border-radius:3px;}
+body .about-section .about-card *,body .about-section .role {font-family:Arial,Helvetica,sans-serif;}
+body .about-section .company {color:var(--site-ink);}
+body .about-section .connect-links a,body.podcast-mode .podcast-button,body.contact-mode .contact-actions .podcast-button,.practice .practice-button {
+ border:1px solid var(--site-accent);border-radius:3px;box-shadow:none;min-height:48px;padding:13px 20px;font:400 14px/1.5 Arial,sans-serif;text-decoration:none;
+}
+body.podcast-mode .podcast-button.primary,body.contact-mode .contact-actions .podcast-button.primary,.practice .practice-button {background:var(--site-accent);color:#111514;}
+body.podcast-mode .podcast-button.secondary,body.contact-mode .contact-actions .podcast-button.secondary {background:transparent;color:var(--site-ink);border-color:var(--site-line);}
+.practice .practice-button:hover,body.podcast-mode .podcast-button.primary:hover {background:#e1ebd1;color:#111514;}
+.practice .practice-public-thanks {background:var(--site-card);color:var(--site-ink);}
+.practice .practice-public-thanks .practice-person-context,.practice .practice-public-thanks figcaption span {color:var(--site-muted);}
+.practice .practice-free-offer {margin-top:26px;padding:20px 24px;border:1px solid var(--site-line);border-left:3px solid var(--site-accent);border-radius:3px;background:var(--site-card);max-width:520px;}
+.practice .practice-offer-label {font:600 10px/1.5 Arial,sans-serif;letter-spacing:1.6px;color:var(--site-accent);margin:0 0 12px;}
+.practice-free-offer ul {padding-left:18px;margin:0;}
+.practice-free-offer li {font:14px/1.65 Arial,sans-serif;color:var(--site-ink);padding:3px 0;}
+.practice .practice-consult-note {font-size:12px;color:var(--site-muted);}
+.practice .practice-hero-email,.practice .practice-email {color:var(--site-accent);}
+.practice .practice-portrait img {filter:none;}
+.practice .practice-path,.practice .practice-path+.practice-path {background:var(--site-card);}
+.practice .practice-path:hover,.practice .practice-path+.practice-path:hover {background:var(--site-hover);}
+@media(max-width:900px) {
+ body .about-section .about-hero,body.podcast-mode .podcast-hero,body.contact-mode .contact-hero {gap:35px;}
+}
+@media(max-width:650px) {
+ body.about-mode .container,body.podcast-mode .container,body.contact-mode .container {padding-top:40px;}
+ body .about-section .about-hero,body.podcast-mode .podcast-hero,body.contact-mode .contact-hero {grid-template-columns:1fr;gap:28px;padding-bottom:32px;}
+ body .about-section .about-hero-copy,body .about-section .about-hero .profile-img {grid-column:auto;grid-row:auto;}
+ body .about-section .about-hero .profile-img {width:120px;height:145px;}
+ body .about-section .about-hero-copy h2,body.podcast-mode .podcast-hero-copy h2,body.contact-mode .contact-hero h2,.practice h1 {font-size:42px;}
+ .practice .practice-free-offer {padding:17px 19px;margin-top:22px;}
+ .practice .practice-consult-actions {gap:16px;}
+}
+body.podcast-mode .podcast-button.brand-spotify {background:var(--site-accent);color:#111514;border-color:var(--site-accent);}
+body.podcast-mode .podcast-button.brand-youtube,body.podcast-mode .podcast-button.brand-apple {background:transparent;color:var(--site-ink);border-color:var(--site-line);}
+body.podcast-mode .podcast-button.brand-youtube:hover,body.podcast-mode .podcast-button.brand-apple:hover {background:var(--site-card);border-color:var(--site-accent);}
+@media(max-width:650px) {
+ .practice-hero-copy {display:flex;flex-direction:column;align-items:flex-start;}
+ .practice-hero-copy>.practice-eyebrow {order:0;}
+ .practice-hero-copy>h1 {order:1;}
+ .practice-hero-copy>.practice-lede {order:2;}
+ .practice-hero-copy>.practice-consult-actions {order:3;margin-top:4px;}
+ .practice-hero-copy>.practice-free-offer {order:4;width:100%;}
+ .practice-hero-copy>.practice-consult-note {order:5;}
+}
+/* Section colors vary within the same layout and typography system. */
+body.about-mode {--site-bg:#111514;--site-card:#1b231e;--site-line:#35413a;--site-accent:#d2dfbc;--site-hover:#29362b;}
+body.podcast-mode {--site-bg:#111923;--site-card:#1a2735;--site-line:#344655;--site-accent:#bbd2eb;--site-hover:#283b4c;}
+body.contact-mode {--site-bg:#22191c;--site-card:#302329;--site-line:#503a42;--site-accent:#e8c4b9;--site-hover:#423039;}
+body.practice-page,body.consulting-mode {--site-bg:#151c18;--site-card:#202d24;--site-line:#3b4b3e;--site-accent:#d2dfbc;--site-hover:#304034;}
+body.podcast-mode .podcast-button.brand-spotify {color:#111514;}
